@@ -10,7 +10,7 @@
     "jwt-decode": "^3.1.2",
     "jwt-encode": "^1.0.1",
     "miragejs": "^0.1.47",
-    "mock-man": "^1.1.5",
+    "mockman-js": "^1.1.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
