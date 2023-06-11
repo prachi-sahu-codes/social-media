@@ -6,8 +6,11 @@ import Mockman from "mockman-js";
 import { Landing } from "./pages/landing/Landing";
 import { Login } from "./pages/account/Login";
 import { Signup } from "./pages/account/SignUp";
+import { Home } from "./pages/home/Home";
+import { useAuth } from "./context/authContext/AuthContext";
 
 function App() {
+  const { logoutHandler } = useAuth();
   return (
     <div className="App">
       <ToastContainer
@@ -29,10 +32,12 @@ function App() {
         <Link to="/signup"> signup </Link> ||
         <Link to="/mockman"> mockman</Link>
       </nav>
+      <button onClick={() => logoutHandler()}>Log Out</button>
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/home" element={<Home />} />
         <Route path="/mockman" element={<Mockman />} />
       </Routes>
     </div>

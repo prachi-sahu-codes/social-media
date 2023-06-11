@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
+import { useAuth } from "../../context/authContext/AuthContext";
 
 export const Login = () => {
   const [passVisible, setPassVisible] = useState("password");
-  //   const { userDetail, setUserDetail, loginUser } = useAuth();
+  const { userDetail, setUserDetail, loginUser } = useAuth();
 
   return (
     <div>
@@ -12,16 +13,16 @@ export const Login = () => {
         <h3 className="sign-title">Sign In</h3>
         <form className="sign-form" onSubmit={(e) => e.preventDefault()}>
           <div className="sign-input-label">
-            <label htmlFor="email">Email address:</label>
+            <label htmlFor="email">User Name:</label>
             <input
-              type="email"
-              placeholder="prachi@gmail.com"
-              id="email"
-              name="email"
-              //   value={userDetail.email}
-              //   onChange={(e) =>
-              //     setUserDetail((u) => ({ ...u, email: e.target.value }))
-              //   }
+              type="text"
+              placeholder="BigJohn"
+              id="text"
+              name="text"
+              value={userDetail.username}
+              onChange={(e) =>
+                setUserDetail((u) => ({ ...u, username: e.target.value }))
+              }
               required
             />
           </div>
@@ -34,10 +35,10 @@ export const Login = () => {
               id="pwd"
               name="pwd"
               className="sign-input "
-              //   value={userDetail.password}
-              //   onChange={(e) =>
-              //     setUserDetail((u) => ({ ...u, password: e.target.value }))
-              //   }
+              value={userDetail.password}
+              onChange={(e) =>
+                setUserDetail((u) => ({ ...u, password: e.target.value }))
+              }
               required
             />
             <div className="pwd-eye-icon">
@@ -52,19 +53,19 @@ export const Login = () => {
           <button
             type="submit"
             className="card-btn"
-            // onClick={() => loginUser(userDetail)}
+            onClick={() => loginUser(userDetail)}
           >
             Create New Account
           </button>
           <button
             type="submit"
             className="card-btn"
-            // onClick={() =>
-            //   loginUser({
-            //     email: "prachi@gmail.com",
-            //     password: "prachi66r",
-            //   })
-            // }
+            onClick={() =>
+              loginUser({
+                username: "JoyfulJenny",
+                password: "jenny123@",
+              })
+            }
           >
             Login as a guest
           </button>
