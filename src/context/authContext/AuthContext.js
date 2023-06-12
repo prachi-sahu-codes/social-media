@@ -33,7 +33,7 @@ export const AuthProvider = ({ children }) => {
         setToken(encodedToken);
         setLoggedUser(foundUser);
         navigate("./home");
-        console.log(foundUser);
+
         notifyToast("success", `Welcome back, ${foundUser.username}!`);
       } else {
         notifyToast("error", "Something is Wrong!");
@@ -74,7 +74,6 @@ export const AuthProvider = ({ children }) => {
         notifyToast("success", "Succesfully Signed Up!");
       } else {
         notifyToast("error", "Something is Wrong!");
-        console.log("wrong");
       }
     } catch (e) {
       console.error("Error:", e);

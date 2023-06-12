@@ -13,10 +13,9 @@ export const Login = () => {
         <h3 className="sign-title">Sign In</h3>
         <form className="sign-form" onSubmit={(e) => e.preventDefault()}>
           <div className="sign-input-label">
-            <label htmlFor="email">User Name:</label>
             <input
               type="text"
-              placeholder="BigJohn"
+              placeholder="Username"
               id="text"
               name="text"
               value={userDetail.username}
@@ -28,10 +27,9 @@ export const Login = () => {
           </div>
 
           <div className="sign-input-label pwd-input">
-            <label htmlFor="pwd">Password:</label>
             <input
               type={passVisible}
-              placeholder="********"
+              placeholder="Password"
               id="pwd"
               name="pwd"
               className="sign-input "

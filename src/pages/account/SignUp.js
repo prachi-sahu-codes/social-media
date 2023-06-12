@@ -48,10 +48,9 @@ export const Signup = () => {
         <form className="sign-form" onSubmit={(e) => e.preventDefault()}>
           <div className="flex-center name-sign-up">
             <div className="sign-input-label">
-              <label htmlFor="first">Full name:</label>
               <input
                 type="text"
-                placeholder="John"
+                placeholder="Full Name"
                 id="first"
                 name="first"
                 className="sign-input sign-input-first"
@@ -63,10 +62,9 @@ export const Signup = () => {
             </div>
 
             <div className="sign-input-label">
-              <label htmlFor="last">User name:</label>
               <input
                 type="text"
-                placeholder="BigJohn"
+                placeholder="Username"
                 id="last"
                 name="last"
                 className="sign-input"
@@ -78,10 +76,9 @@ export const Signup = () => {
             </div>
           </div>
           <div className="sign-input-label">
-            <label htmlFor="email">Email:</label>
             <input
               type="email"
-              placeholder="john@gmail.com"
+              placeholder="Email"
               id="email"
               name="email"
               className="sign-input"
@@ -92,10 +89,9 @@ export const Signup = () => {
             />
           </div>
           <div className="sign-input-label pwd-input">
-            <label htmlFor="pwd">Password:</label>
             <input
               type={passVisible.pass}
-              placeholder="********"
+              placeholder="Password"
               id="pwd"
               name="pwd"
               className="sign-input "
@@ -122,10 +118,9 @@ export const Signup = () => {
           </div>
 
           <div className="sign-input-label pwd-input">
-            <label htmlFor="cnfrmpwd">Confirm password:</label>
             <input
               type={passVisible.confPass}
-              placeholder="********"
+              placeholder="Confirm Password"
               id="cnfrmpwd"
               name="cnfrmpwd"
               className="sign-input "
