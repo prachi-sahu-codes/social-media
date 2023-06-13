@@ -33,10 +33,14 @@ export const AuthProvider = ({ children }) => {
         setToken(encodedToken);
         setLoggedUser(foundUser);
         navigate("./home");
+        setUserDetail(() => ({ username: "", password: "" }));
 
-        notifyToast("success", `Welcome back, ${foundUser.username}!`);
+        notifyToast(
+          "success",
+          `Greetings, ${foundUser.username} ! Enjoy your time with us!`
+        );
       } else {
-        notifyToast("error", "Something is Wrong!");
+        notifyToast("error", `Invalid username or password. Please try again.`);
       }
     } catch (e) {
       console.error("Error:", e);
@@ -48,7 +52,7 @@ export const AuthProvider = ({ children }) => {
     setToken(null);
     setLoggedUser(null);
     navigate("./");
-    notifyToast("success", "Succesfully Logged Out!");
+    notifyToast("success", "Logout successful. We hope to see you again soon!");
   };
 
   const signUpUser = async (input) => {
@@ -71,9 +75,12 @@ export const AuthProvider = ({ children }) => {
         setToken(encodedToken);
         setLoggedUser(createdUser);
         navigate("./home");
-        notifyToast("success", "Succesfully Signed Up!");
+        notifyToast(
+          "success",
+          `Greetings, ${createdUser.username} ! Enjoy your time with us!`
+        );
       } else {
-        notifyToast("error", "Something is Wrong!");
+        notifyToast("error", `Something is wrong. Please try again.`);
       }
     } catch (e) {
       console.error("Error:", e);

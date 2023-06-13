@@ -37,6 +37,7 @@ module.exports = {
         bgWhole: "#f0f4f5",
         svgBg: "#fdf5f2",
         gray: "#818181",
+        lightGray: "#cfcfcf",
       },
     },
   },
