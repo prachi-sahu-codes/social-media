@@ -25,11 +25,11 @@ export const Navbar = () => {
         showShadow ? "shadow-md  drop-shadow-sm" : ""
       } transition delay-75 ease-in-out`}
     >
-      <div className="flex  items-center text-xl font-cursive">
-        <span className="py-0 pt-0.5 px-2 rounded-lg text-lg text-white bg-secondary mr-2 font-cursive">
+      <div className="flex items-center active:opacity-80">
+        <span className="cursor-pointer py-0 pt-0.5 px-2 rounded-lg text-lg text-white bg-primary mr-2 font-cursive">
           W
         </span>
-        WhizVerse
+        <span className="cursor-pointer text-xl font-cursive"> WhizVerse</span>
       </div>
     </div>
   );

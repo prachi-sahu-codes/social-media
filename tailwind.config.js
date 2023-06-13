@@ -6,19 +6,21 @@ module.exports = {
       cursive: ["Calistoga"],
     },
     screens: {
+      sm360: "360px",
+
+      sm570: "570px",
+
       sm: "640px",
-      // => @media (min-width: 640px) { ... }
 
       md: "768px",
-      // => @media (min-width: 768px) { ... }
 
-      md1: "970px",
+      md840: "840px",
+
+      md970: "970px",
 
       lg: "1024px",
-      // => @media (min-width: 1024px) { ... }
 
       xl: "1280px",
-      // => @media (min-width: 1280px) { ... }
 
       "2xl": "1536px",
       // => @media (min-width: 1536px) { ... }
@@ -30,6 +32,7 @@ module.exports = {
       },
       colors: {
         primary: "#DC2F02",
+        secondary: "#FFD100",
         black: "#151515",
         bgWhole: "#f0f4f5",
         svgBg: "#fdf5f2",
