@@ -26,13 +26,13 @@ function App() {
         pauseOnHover
         theme="light"
       />
-      <nav>
+      {/* <nav>
         <Link to="/">Landing </Link> ||
         <Link to="/login"> login </Link> ||
         <Link to="/signup"> signup </Link> ||
         <Link to="/mockman"> mockman</Link>
       </nav>
-      <button onClick={() => logoutHandler()}>Log Out</button>
+      <button onClick={() => logoutHandler()}>Log Out</button> */}
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/login" element={<Login />} />
