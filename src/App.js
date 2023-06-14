@@ -8,11 +8,15 @@ import { Login } from "./pages/account/Login";
 import { Signup } from "./pages/account/SignUp";
 import { Home } from "./pages/home/Home";
 import { useAuth } from "./context/authContext/AuthContext";
+import { Loader } from "./components/loader/Loader";
+import { usePost } from "./context/postContext/PostContext";
 
 function App() {
   const { logoutHandler } = useAuth();
+  const { loading } = usePost();
   return (
     <div className="App">
+      {loading && <Loader />}
       <ToastContainer
         position="bottom-right"
         autoClose={1500}

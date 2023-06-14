@@ -38,6 +38,7 @@ module.exports = {
         svgBg: "#fdf5f2",
         gray: "#818181",
         lightGray: "#cfcfcf",
+        bgColorLoad: "#e2e2e2c4",
       },
     },
   },
