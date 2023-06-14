@@ -27,7 +27,9 @@ export const PostProvider = ({ children }) => {
   }, []);
 
   return (
-    <PostContext.Provider value={{ postData }}>{children}</PostContext.Provider>
+    <PostContext.Provider value={{ loading, setLoading, postData }}>
+      {children}
+    </PostContext.Provider>
   );
 };
 
