@@ -6,7 +6,7 @@ import Mockman from "mockman-js";
 import { Landing } from "./pages/landing/Landing";
 import { Login } from "./pages/account/Login";
 import { Signup } from "./pages/account/SignUp";
-import { Home } from "./pages/home/Home";
+import { Feed } from "./pages/feed/Feed";
 import { Loader } from "./components/loader/Loader";
 import { usePost } from "./context/postContext/PostContext";
 import { RequiresAuth } from "./pages/auth/RequiresAuth";
@@ -39,10 +39,10 @@ function App() {
         <Route path="/signup" element={<Signup />} />
 
         <Route
-          path="/home"
+          path="/feed"
           element={
             <RequiresAuth>
-              <Home />
+              <Feed />
             </RequiresAuth>
           }
         />

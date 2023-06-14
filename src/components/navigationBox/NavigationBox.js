@@ -12,10 +12,6 @@ import {
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/authContext/AuthContext";
 
-const styleLinks = ({ isActive }) => ({
-  color: isActive ? "red" : "blue",
-});
-
 export const NavigationBox = () => {
   const { logoutHandler } = useAuth();
   const [newActiveLink, setNewActiveLink] = useState(0);
@@ -26,17 +22,29 @@ export const NavigationBox = () => {
 
   return (
     <div className="w-64 py-7 px-6">
-      <NavLink to="/home" style={styleLinks} onClick={() => handleClick(0)}>
-        {newActiveLink === 0 ? <BsHouseDoorFill /> : <BsHouseDoor />}
+      <NavLink to="/feed" onClick={() => handleClick(0)}>
+        <div className="flex">
+          {newActiveLink === 0 ? <BsHouseDoorFill /> : <BsHouseDoor />}{" "}
+          <span>Feed</span>
+        </div>
       </NavLink>
-      <NavLink to="/explore" style={styleLinks} onClick={() => handleClick(1)}>
-        {newActiveLink === 1 ? <BsCompassFill /> : <BsCompass />}
+      <NavLink to="/explore" onClick={() => handleClick(1)}>
+        <div className="flex">
+          {newActiveLink === 1 ? <BsCompassFill /> : <BsCompass />}
+          <span>Explore</span>
+        </div>
       </NavLink>
-      <NavLink to="/bookmark" style={styleLinks} onClick={() => handleClick(2)}>
-        {newActiveLink === 2 ? <BsBookmarkFill /> : <BsBookmark />}
+      <NavLink to="/bookmark" onClick={() => handleClick(2)}>
+        <div className="flex">
+          {newActiveLink === 2 ? <BsBookmarkFill /> : <BsBookmark />}
+          <span>Bookmarks</span>
+        </div>
       </NavLink>
-      <NavLink to="/bookmark" style={styleLinks} onClick={() => handleClick(3)}>
-        {newActiveLink === 3 ? <BsHeartFill /> : <BsHeart />}
+      <NavLink to="/bookmark" onClick={() => handleClick(3)}>
+        <div className="flex">
+          {newActiveLink === 3 ? <BsHeartFill /> : <BsHeart />}
+          <span>Favourites</span>
+        </div>
       </NavLink>
       <button onClick={() => logoutHandler()}>Log Out</button>
     </div>
