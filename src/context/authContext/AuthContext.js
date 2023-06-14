@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
 
         setToken(encodedToken);
         setLoggedUser(foundUser);
-        navigate("./home");
+        navigate("./feed");
         setUserDetail(() => ({ username: "", password: "" }));
 
         notifyToast(
@@ -74,7 +74,7 @@ export const AuthProvider = ({ children }) => {
         );
         setToken(encodedToken);
         setLoggedUser(createdUser);
-        navigate("./home");
+        navigate("./feed");
         notifyToast(
           "success",
           `Greetings, ${createdUser.username} ! Enjoy your time with us!`
