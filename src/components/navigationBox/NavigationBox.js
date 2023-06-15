@@ -16,7 +16,7 @@ import {
 export const NavigationBox = () => {
   const { loggedUser, logoutHandler } = useAuth();
 
-  const path = window.location.pathname ?? "";
+  const path = window.location.pathname;
 
   const [newActiveLink, setNewActiveLink] = useState(path);
 
