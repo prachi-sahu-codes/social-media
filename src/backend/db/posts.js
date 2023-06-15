@@ -5,7 +5,8 @@ export const posts = [
     _id: "ksd2k3_ksdo29_2ksd_ksdj2",
     content:
       "A masterpiece in progress. Immersing in the dreamlike landscapes and ethereal brushstrokes of impressionist masterpieces, where art captures fleeting moments.",
-    image: "https://i.imgur.com/YmpQzMV.png",
+    image: "https://i.imgur.com/Rytba1u.png",
+    contentImage: "https://i.imgur.com/5EZlfZm.png",
     likes: {
       likeCount: 112,
       likedBy: [],
@@ -144,7 +145,7 @@ export const posts = [
     _id: "kdoe9d3_ksd83k_ksd32",
     content:
       "Witnessing the vibrant hues of flowers in full bloom. Nature's color palette is a true work of art!",
-    image: "https://i.imgur.com/usR4cPn.png",
+    image: "https://i.imgur.com/3koLVx8.png",
     likes: {
       likeCount: 0,
       likedBy: [],
@@ -161,7 +162,7 @@ export const posts = [
     _id: "skdjeo903_kds3_ksd8s_ksd93",
     content:
       "Wandering through vibrant streets adorned with captivating murals and graffiti, where creativity spills beyond gallery walls.",
-    image: "https://i.imgur.com/3koLVx8.png",
+    image: "https://i.imgur.com/rq3yabN.png",
     likes: {
       likeCount: 82,
       likedBy: [],

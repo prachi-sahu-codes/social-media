@@ -6,7 +6,7 @@ export const Explore = () => {
   const { postData } = usePost();
 
   return (
-    <div className="w-full py-7 px-6 h-calc-nav overflow-x-hidden overflow-y-scroll">
+    <div className="w-full py-7 px-6 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-50">
       <ul>
         {postData.map((post) => (
           <li>
