@@ -11,7 +11,7 @@ export const RequiresAuth = ({ children }) => {
   return token ? (
     <>
       <Navbar />
-      <div className="mt-12 flex">
+      <div className="mt-12 flex ">
         <NavigationBox />
         {children}
         <SuggestionBox />

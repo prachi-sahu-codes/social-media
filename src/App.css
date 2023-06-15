@@ -31,6 +31,18 @@
   width: 34rem;
 }
 
-.color {
-  color: #e2e2e2c4;
+/********scrollbar********/
+
+::-webkit-scrollbar {
+  width: 10px;
+  padding-top: 10rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #dc2f02;
+  border-radius: 10px;
 }

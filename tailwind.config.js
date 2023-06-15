@@ -30,6 +30,7 @@ module.exports = {
         "calc-nav": "calc(100vh - 48px)",
         "calc-img": "calc(100% - 2rem)",
       },
+
       colors: {
         primary: "#DC2F02",
         secondary: "#FFD100",
@@ -38,7 +39,15 @@ module.exports = {
         svgBg: "#fdf5f2",
         gray: "#818181",
         lightGray: "#cfcfcf",
+        mediumGray: "#979797",
         bgColorLoad: "#e2e2e2c4",
+      },
+
+      spacing: {
+        "1.05rem": "1.05rem",
+        "1.3rem": "1.3rem",
+        "0.15rem": "0.15rem",
+        "0.1rem": "0.1rem",
       },
     },
   },

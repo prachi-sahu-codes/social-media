@@ -1,0 +1,9 @@
+export { default as homeActive } from "./icons/homeActive.svg";
+export { default as homeGray } from "./icons/homeGray.svg";
+export { default as exploreActive } from "./icons/exploreActive.png";
+export { default as exploreGray } from "./icons/exploreGray.png";
+export { default as bookmarkActive } from "./icons/bookmarkActive.png";
+export { default as bookmarkGray } from "./icons/bookmarkGray.png";
+export { default as heartActive } from "./icons/heartActive.png";
+export { default as heartGray } from "./icons/heartGray.png";
+export { default as logout } from "./icons/logout.png";
