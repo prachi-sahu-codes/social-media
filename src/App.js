@@ -9,7 +9,7 @@ import { Signup } from "./pages/account/SignUp";
 import { Feed } from "./pages/feed/Feed";
 import { Loader } from "./components/loader/Loader";
 import { usePost } from "./context/postContext/PostContext";
-import { RequiresAuth } from "./pages/auth/RequiresAuth";
+import { RequiresAuth } from "./auth/RequiresAuth";
 import { Explore } from "./pages/explore/Explore";
 import { Bookmark } from "./pages/bookmark/Bookmark";
 import { Favourite } from "./pages/favourite/Favourite";

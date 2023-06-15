@@ -25,7 +25,6 @@ export const posts = [
     fullName: "Vincent van Gogh",
     username: "vangogh",
     occupation: "Post-Impressionist Painter",
-    description: "Vibrant colors, emotional brushstrokes.",
     createdAt: "2023-06-01T10:55:01+18:30",
     updatedAt: formatDate(),
   },
@@ -43,7 +42,6 @@ export const posts = [
     fullName: "Frida Kahlo",
     username: "fridakahlo",
     occupation: "Surrealist Painter",
-    description: "Bold self-portraits, symbolic imagery.",
     createdAt: "2023-06-03T18:20:10+05:30",
     updatedAt: formatDate(),
   },
@@ -72,7 +70,6 @@ export const posts = [
     fullName: "Leonardo da Vinci",
     username: "leonardodavinci",
     occupation: "Renaissance Polymath",
-    description: "Masterpieces in art, science.",
     createdAt: "2023-06-05T12:45:30+02:00",
     updatedAt: formatDate(),
   },
@@ -90,7 +87,6 @@ export const posts = [
     fullName: "Pablo Picasso",
     username: "picasso",
     occupation: "Cubist Painter, Sculptor",
-    description: "Abstracted forms, shattered perspectives.",
     createdAt: "2023-06-08T09:10:20+08:00",
     updatedAt: formatDate(),
   },
@@ -119,14 +115,13 @@ export const posts = [
     fullName: "Georgia O'Keeffe",
     username: "georgiaokeeffe",
     occupation: "Modernist Painter",
-    description: "Enlarged flowers, desert landscapes.",
     createdAt: "2023-06-10T16:35:55+10:00",
     updatedAt: formatDate(),
   },
 
   {
     _id: "kdoe9d3_ksd83k_ksd32",
-    content: "Enjoying the art festival!",
+    content: "Immersed in Nature's Palette, Light, color, fleeting moments.",
     image: "https://i.imgur.com/usR4cPn.png",
     likes: {
       likeCount: 0,
@@ -137,8 +132,53 @@ export const posts = [
     fullName: "Claude Monet",
     username: "claudemonet",
     occupation: "Impressionist Painter",
-    description: "Light, color, fleeting moments.",
     createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+
+  {
+    _id: "kdoe9d3_ksd83k_ksd32",
+    content:
+      "Witnessing the vibrant hues of flowers in full bloom. Nature's color palette is a true work of art!",
+    image: "https://i.imgur.com/usR4cPn.png",
+    likes: {
+      likeCount: 0,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [],
+    fullName: "Jenny Felicitas",
+    username: "JoyfulJenny",
+    occupation: "Impressionist Painter",
+    createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: "skdjeo903_kds3_ksd8s_ksd93",
+    content:
+      "Wandering through vibrant streets adorned with captivating murals and graffiti, where creativity spills beyond gallery walls.",
+    image: "https://i.imgur.com/3koLVx8.png",
+    likes: {
+      likeCount: 82,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [
+      {
+        _id: "kdiw8s3_ksd9s_ksd38_ksd2",
+        username: "fridakahlo",
+        image: "https://i.imgur.com/hRwELzq.png",
+        text: "Inspiring!",
+        votes: {
+          upvotedBy: [],
+          downvotedBy: [],
+        },
+      },
+    ],
+    fullName: "Vincent van Gogh",
+    username: "vangogh",
+    occupation: "Post-Impressionist Painter",
+    createdAt: "2023-06-01T10:55:01+18:30",
     updatedAt: formatDate(),
   },
 ];

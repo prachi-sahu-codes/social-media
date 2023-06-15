@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/authContext/AuthContext";
 import {
@@ -15,13 +15,17 @@ import {
 
 export const NavigationBox = () => {
   const { loggedUser, logoutHandler } = useAuth();
-  const [newActiveLink, setNewActiveLink] = useState(0);
 
-  const handleClick = (linkIndex) => {
-    setNewActiveLink(() => linkIndex);
-  };
+  const path = window.location.pathname ?? "";
+
+  const [newActiveLink, setNewActiveLink] = useState(path);
 
   console.log(loggedUser);
+
+  useEffect(() => {
+    setNewActiveLink(() => path);
+  }, [path]);
+  console.log(path, newActiveLink);
 
   return (
     <div className="w-64 py-7 flex flex-col gap-2 items-center border-r-2 border-bgColorLoad h-calc-nav">
@@ -37,10 +41,10 @@ export const NavigationBox = () => {
       <div className="flex flex-col gap-5 mx-3">
         <hr className="text-bgColorLoad" />
 
-        <NavLink to="/feed" onClick={() => handleClick(0)}>
+        <NavLink to="/feed">
           <div className="flex text-xl  w-36 items-center py-1 hover:bg-svgBg rounded-md ">
             <div className="mx-3">
-              {newActiveLink === 0 ? (
+              {newActiveLink === "/feed" ? (
                 <img
                   src={homeActive}
                   className="w-1.3rem h-1.3rem"
@@ -52,7 +56,7 @@ export const NavigationBox = () => {
             </div>
             <span
               className={`text-base font-semibold pt-1 pr-3 ${
-                newActiveLink === 0 ? "text-primary" : "text-mediumGray"
+                newActiveLink === "/feed" ? "text-primary" : "text-mediumGray"
               }`}
             >
               Feed
@@ -60,10 +64,10 @@ export const NavigationBox = () => {
           </div>
         </NavLink>
 
-        <NavLink to="/explore" onClick={() => handleClick(1)}>
+        <NavLink to="/explore">
           <div className="flex text-xl py-1  w-36 items-center hover:bg-svgBg rounded-md">
             <div className="mx-3">
-              {newActiveLink === 1 ? (
+              {newActiveLink === "/explore" ? (
                 <img
                   src={exploreActive}
                   className="w-1.3rem h-1.3rem"
@@ -79,7 +83,7 @@ export const NavigationBox = () => {
             </div>
             <span
               className={`text-base font-semibold pt-1 pr-3 ${
-                newActiveLink === 1
+                newActiveLink === "/explore"
                   ? "text-primary"
                   : "text-mediumGray ml-0.15rem"
               }`}
@@ -88,10 +92,10 @@ export const NavigationBox = () => {
             </span>
           </div>
         </NavLink>
-        <NavLink to="/bookmark" onClick={() => handleClick(2)}>
+        <NavLink to="/bookmark">
           <div className="flex text-xl py-1 items-center w-36 hover:bg-svgBg rounded-md">
             <div className="mx-3">
-              {newActiveLink === 2 ? (
+              {newActiveLink === "/bookmark" ? (
                 <img
                   src={bookmarkActive}
                   className="w-1.3rem h-1.3rem"
@@ -107,17 +111,19 @@ export const NavigationBox = () => {
             </div>
             <span
               className={`text-base font-semibold pt-1 pr-3 ${
-                newActiveLink === 2 ? "text-primary" : "text-mediumGray"
+                newActiveLink === "/bookmark"
+                  ? "text-primary"
+                  : "text-mediumGray"
               }`}
             >
               Bookmarks
             </span>
           </div>
         </NavLink>
-        <NavLink to="/bookmark" onClick={() => handleClick(3)}>
+        <NavLink to="/favourite">
           <div className="flex text-xl items-center py-1  w-36 hover:bg-svgBg rounded-md">
             <div className="mx-3">
-              {newActiveLink === 3 ? (
+              {newActiveLink === "/favourite" ? (
                 <img
                   src={heartActive}
                   className="w-1.3rem h-1.3rem"
@@ -129,7 +135,9 @@ export const NavigationBox = () => {
             </div>
             <span
               className={`text-base font-semibold pr-3 pt-1 ${
-                newActiveLink === 3 ? "text-primary" : "text-mediumGray"
+                newActiveLink === "/favourite"
+                  ? "text-primary"
+                  : "text-mediumGray"
               }`}
             >
               Favourites
