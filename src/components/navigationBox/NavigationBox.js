@@ -20,8 +20,6 @@ export const NavigationBox = () => {
 
   const [newActiveLink, setNewActiveLink] = useState(path);
 
-  console.log(loggedUser);
-
   useEffect(() => {
     setNewActiveLink(() => path);
   }, [path]);
