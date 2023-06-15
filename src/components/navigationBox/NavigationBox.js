@@ -25,18 +25,17 @@ export const NavigationBox = () => {
   useEffect(() => {
     setNewActiveLink(() => path);
   }, [path]);
-  console.log(path, newActiveLink);
 
   return (
     <div className="w-64 py-7 flex flex-col gap-2 items-center border-r-2 border-bgColorLoad h-calc-nav">
-      <div className="flex flex-col gap-2 items-center justify-center mx-3">
+      <div className="flex flex-col items-center justify-center mx-3">
         <img
           src={loggedUser?.image}
           alt="profile pic"
-          className="w-20 rounded-full border-2 border-solid border-primary"
+          className="w-20 rounded-full border-2 my-2 border-solid border-primary"
         />
-        <div className="py-2">{loggedUser?.fullname}</div>
-        <div className="py-2">{loggedUser?.description}</div>
+        <div className="pt-2 font-semibold">{loggedUser?.fullname}</div>
+        <div className="pb-4 text-sm text-gray">{loggedUser?.occupation}</div>
       </div>
       <div className="flex flex-col gap-5 mx-3">
         <hr className="text-bgColorLoad" />
