@@ -34,7 +34,7 @@
 /********scrollbar********/
 
 ::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
   padding-top: 10rem;
 }
 
@@ -44,5 +44,5 @@
 
 ::-webkit-scrollbar-thumb {
   background: #dc2f02;
-  border-radius: 10px;
+  border-radius: 8px;
 }
