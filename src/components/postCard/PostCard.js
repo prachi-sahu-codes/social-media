@@ -7,8 +7,6 @@ import { useAuth } from "../../context/authContext/AuthContext";
 
 export const PostCard = ({ post }) => {
   const { loggedUser } = useAuth();
-  console.log("loggedUser", loggedUser);
-  console.log("post", post);
   const checkUser = loggedUser.username !== post.username;
   var formattedDate = moment(post?.createdAt).format("ddd MMM DD YYYY");
 
