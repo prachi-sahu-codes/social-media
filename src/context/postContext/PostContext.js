@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { postsService } from "../../api/apiServices";
+import { postsService } from "../../api/services/postServices";
 
 const PostContext = createContext();
 
@@ -24,6 +24,8 @@ export const PostProvider = ({ children }) => {
   useEffect(() => {
     getPostData();
   }, []);
+
+  const likePost = "";
 
   return (
     <PostContext.Provider value={{ loading, setLoading, postData }}>

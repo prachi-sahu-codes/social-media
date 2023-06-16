@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { loginService, signupService } from "../../api/apiServices";
+import { loginService, signupService } from "../../api/services/authServices";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 
