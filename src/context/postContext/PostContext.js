@@ -1,9 +1,15 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { postsService } from "../../api/services/postServices";
+import {
+  postsService,
+  likePostService,
+  dislikePostService,
+} from "../../api/services/postServices";
+import { useAuth } from "../authContext/AuthContext";
 
 const PostContext = createContext();
 
 export const PostProvider = ({ children }) => {
+  const { token } = useAuth();
   const [postData, setPostData] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -25,10 +31,28 @@ export const PostProvider = ({ children }) => {
     getPostData();
   }, []);
 
-  const likePost = "";
+  const likePost = async (postId) => {
+    try {
+      const res = await likePostService(postId, token);
+      setPostData(res.data.posts);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
+
+  const dislikePost = async (postId) => {
+    try {
+      const res = await dislikePostService(postId, token);
+      setPostData(res.data.posts);
+    } catch (e) {
+      console.log(e.message);
+    }
+  };
 
   return (
-    <PostContext.Provider value={{ loading, setLoading, postData }}>
+    <PostContext.Provider
+      value={{ loading, setLoading, postData, likePost, dislikePost }}
+    >
       {children}
     </PostContext.Provider>
   );

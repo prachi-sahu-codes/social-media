@@ -4,11 +4,20 @@ import { FaRegHeart, FaHeart, FaRegComment } from "react-icons/fa";
 import { HiOutlineShare, HiOutlineBookmark, HiBookmark } from "react-icons/hi";
 import moment from "moment";
 import { useAuth } from "../../context/authContext/AuthContext";
+import { usePost } from "../../context/postContext/PostContext";
 
 export const PostCard = ({ post }) => {
   const { loggedUser, notifyToast } = useAuth();
+  const { likePost, dislikePost } = usePost();
+
   const checkUser = loggedUser.username !== post.username;
-  var formattedDate = moment(post?.createdAt).format("ddd MMM DD YYYY");
+
+  const formattedDate = moment(post?.createdAt).format("ddd MMM DD YYYY");
+
+  const isLiked =
+    post.likes.likedBy.filter(
+      (person) => person.username === loggedUser.username
+    ).length !== 0;
 
   const copyLinkHandler = () => {
     navigator.clipboard.writeText(
@@ -56,7 +65,13 @@ export const PostCard = ({ post }) => {
 
       <div className="flex justify-between items-center mt-5 text-lg ">
         <div className="flex gap-2 cursor-pointer">
-          {true ? <FaRegHeart /> : <FaHeart />}
+          {!isLiked ? (
+            <div onClick={() => likePost(post._id)}>
+              <FaRegHeart />
+            </div>
+          ) : (
+            <FaHeart onClick={() => dislikePost(post._id)} />
+          )}
           <span className="text-sm">{post.likes.likeCount} Likes</span>
         </div>
 
