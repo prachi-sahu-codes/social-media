@@ -14,6 +14,9 @@ export const Signup = () => {
     username: "",
     email: "",
     password: "",
+    profileImage: "",
+    bio: "",
+    website: "",
   });
 
   const clickSubmit = () => {

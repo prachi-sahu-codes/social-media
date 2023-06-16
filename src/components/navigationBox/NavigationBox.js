@@ -15,7 +15,7 @@ import {
 
 export const NavigationBox = () => {
   const { loggedUser, logoutHandler } = useAuth();
-
+  console.log(loggedUser);
   const path = window.location.pathname;
 
   const [newActiveLink, setNewActiveLink] = useState(path);
@@ -27,11 +27,19 @@ export const NavigationBox = () => {
   return (
     <div className="w-64 py-7 flex flex-col gap-2 items-center border-r-2 border-bgColorLoad h-calc-nav">
       <div className="flex flex-col items-center justify-center mx-3">
-        <img
-          src={loggedUser?.image}
-          alt="profile pic"
-          className="w-20 rounded-full border-2 my-2 border-solid border-primary"
-        />
+        {loggedUser?.profileImage ? (
+          <img
+            src={loggedUser?.profileImage}
+            alt="profile pic"
+            className="w-20 rounded-full border-2 my-2 border-solid border-primary"
+          />
+        ) : (
+          <img
+            src="https://i.imgur.com/qMW3Cze.png"
+            alt="profile pic"
+            className="w-20 rounded-full border-2 my-2 border-solid border-primary"
+          />
+        )}
         <div className="pt-2 font-semibold">{loggedUser?.fullname}</div>
         <div className="pb-4 text-sm text-gray">{loggedUser?.bio}</div>
       </div>
