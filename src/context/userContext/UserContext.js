@@ -15,7 +15,6 @@ export const UserProvider = ({ children }) => {
 
       if (res.status === 200) {
         setUserData(res.data?.users);
-        console.log("res", res);
         setLoading(false);
       }
     } catch (e) {
