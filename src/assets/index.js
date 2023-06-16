@@ -7,3 +7,7 @@ export { default as bookmarkGray } from "./icons/bookmarkGray.png";
 export { default as heartActive } from "./icons/heartActive.png";
 export { default as heartGray } from "./icons/heartGray.png";
 export { default as logout } from "./icons/logout.png";
+
+export { default as bookmarkNow } from "./emptyPage/bookmarkNow.svg";
+export { default as likingNow } from "./emptyPage/likingNow.svg";
+export { default as postNow } from "./emptyPage/postNow.svg";
