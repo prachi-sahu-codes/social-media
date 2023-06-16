@@ -15,7 +15,7 @@ export const PostCard = ({ post }) => {
       `https://whizverse.netlify.app/post/${post._id}`
     );
     notifyToast(
-      "success",
+      "info",
       "Link copied! Share the post with your friends and followers!"
     );
   };
