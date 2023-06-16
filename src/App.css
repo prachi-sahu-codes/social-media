@@ -46,3 +46,7 @@
   background: #dc2f02;
   border-radius: 8px;
 }
+
+.suggestionScroll::-webkit-scrollbar {
+  display: none;
+}
