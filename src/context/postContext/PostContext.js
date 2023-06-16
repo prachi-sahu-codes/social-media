@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
+import axios from "axios";
 
 const PostContext = createContext();
 
@@ -9,15 +10,13 @@ export const PostProvider = ({ children }) => {
   const getPostData = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/posts");
-      const dataFetched = await res.json();
-
+      const res = await axios.get("/api/posts");
       if (res.status === 200) {
-        setPostData(dataFetched?.posts);
+        setPostData(res.data?.posts);
         setTimeout(() => setLoading(false), 1000);
       }
     } catch (e) {
-      console.log("Error:", e);
+      console.log(e.message);
       setLoading(false);
     }
   };
