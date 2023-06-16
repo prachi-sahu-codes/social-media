@@ -87,8 +87,12 @@ export const AuthProvider = ({ children }) => {
       toast.success(msg);
     } else if (type === "warning") {
       toast.warning(msg);
-    } else {
+    } else if (type === "error") {
       toast.error(msg);
+    } else if (type === "info") {
+      toast.info(msg);
+    } else {
+      toast.default(msg);
     }
   };
 
