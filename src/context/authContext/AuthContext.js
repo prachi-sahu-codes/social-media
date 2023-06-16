@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from "react";
+import { loginService, signupService } from "../../api/apiServices";
 import { useNavigate } from "react-router";
 import { toast } from "react-toastify";
 
@@ -13,18 +14,39 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorageToken?.token);
   const [loggedUser, setLoggedUser] = useState(localStorageToken?.user);
 
+  const signUpUser = async (input) => {
+    try {
+      const res = await signupService(input);
+      if (res.status === 200 || res.status === 201) {
+        const { createdUser, encodedToken } = res.data;
+        localStorage.setItem(
+          "authItems",
+          JSON.stringify({ token: encodedToken, user: createdUser })
+        );
+        setToken(encodedToken);
+        setLoggedUser(createdUser);
+        navigate("./feed");
+        notifyToast(
+          "success",
+          `Greetings, ${createdUser.username} ! Enjoy your time with us!`
+        );
+      }
+    } catch (e) {
+      console.log(e);
+      notifyToast(
+        "error",
+        e?.response?.data?.errors
+          ? e?.response?.data?.errors[0]
+          : "Something is wrong. Please try again!"
+      );
+    }
+  };
+
   const loginUser = async (input) => {
     try {
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(input),
-      });
+      const res = await loginService(input);
       if (res.status === 200 || res.status === 201) {
-        const data = await res.json();
-        const { foundUser, encodedToken } = data;
+        const { foundUser, encodedToken } = res.data;
         localStorage.setItem(
           "authItems",
           JSON.stringify({ token: encodedToken, user: foundUser })
@@ -39,11 +61,15 @@ export const AuthProvider = ({ children }) => {
           "success",
           `Greetings, ${foundUser.username} ! Enjoy your time with us!`
         );
-      } else {
-        notifyToast("error", `Invalid username or password. Please try again.`);
       }
     } catch (e) {
-      console.error("Error:", e);
+      console.log(e);
+      notifyToast(
+        "error",
+        e?.response?.data?.errors
+          ? e?.response?.data?.errors[0]
+          : "Something is wrong. Please try again!"
+      );
     }
   };
 
@@ -53,38 +79,6 @@ export const AuthProvider = ({ children }) => {
     setLoggedUser(null);
     navigate("./");
     notifyToast("success", "Logout successful. We hope to see you again soon!");
-  };
-
-  const signUpUser = async (input) => {
-    try {
-      const res = await fetch("/api/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(input),
-      });
-      if (res.status === 200 || res.status === 201) {
-        const data = await res.json();
-        const { createdUser, encodedToken } = data;
-
-        localStorage.setItem(
-          "authItems",
-          JSON.stringify({ token: encodedToken, user: createdUser })
-        );
-        setToken(encodedToken);
-        setLoggedUser(createdUser);
-        navigate("./feed");
-        notifyToast(
-          "success",
-          `Greetings, ${createdUser.username} ! Enjoy your time with us!`
-        );
-      } else {
-        notifyToast("error", `Something is wrong. Please try again.`);
-      }
-    } catch (e) {
-      console.error("Error:", e);
-    }
   };
 
   //TOAST
