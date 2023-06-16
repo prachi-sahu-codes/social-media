@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import axios from "axios";
+import { postsService } from "../../api/apiServices";
 
 const PostContext = createContext();
 
@@ -10,7 +10,7 @@ export const PostProvider = ({ children }) => {
   const getPostData = async () => {
     try {
       setLoading(true);
-      const res = await axios.get("/api/posts");
+      const res = await postsService();
       if (res.status === 200) {
         setPostData(res.data?.posts);
         setTimeout(() => setLoading(false), 1000);

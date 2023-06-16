@@ -148,7 +148,7 @@ export const posts = [
   },
 
   {
-    _id: "kdoe9d3_ksd83k_ksd32",
+    _id: "kdoe9d3_ksd86k_ksd32",
     content:
       "Witnessing the vibrant hues of flowers in full bloom. Nature's color palette is a true work of art!",
     profileImage: "https://i.imgur.com/3koLVx8.png",

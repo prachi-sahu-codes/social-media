@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { usePost } from "../postContext/PostContext";
+import { usersService } from "../../api/apiServices";
 
 const UserContext = createContext();
 
@@ -10,12 +11,11 @@ export const UserProvider = ({ children }) => {
   const getUserData = async () => {
     try {
       setLoading(true);
-      const res = await fetch("/api/users");
-      const dataFetched = await res.json();
+      const res = await usersService();
 
       if (res.status === 200) {
-        setUserData(dataFetched?.users);
-        console.log(dataFetched);
+        setUserData(res.data?.users);
+        console.log("res", res);
         setLoading(false);
       }
     } catch (e) {
