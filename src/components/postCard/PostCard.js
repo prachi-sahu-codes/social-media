@@ -6,9 +6,19 @@ import moment from "moment";
 import { useAuth } from "../../context/authContext/AuthContext";
 
 export const PostCard = ({ post }) => {
-  const { loggedUser } = useAuth();
+  const { loggedUser, notifyToast } = useAuth();
   const checkUser = loggedUser.username !== post.username;
   var formattedDate = moment(post?.createdAt).format("ddd MMM DD YYYY");
+
+  const copyLinkHandler = () => {
+    navigator.clipboard.writeText(
+      `https://whizverse.netlify.app/post/${post._id}`
+    );
+    notifyToast(
+      "success",
+      "Link copied! Share the post with your friends and followers!"
+    );
+  };
 
   return (
     <div className="m-6 shadow-md bg-white rounded-lg p-6 max-w-2xl mx-auto">
@@ -57,7 +67,10 @@ export const PostCard = ({ post }) => {
           </span>
         </div>
 
-        <div className="flex gap-2 cursor-pointer">
+        <div
+          className="flex gap-2 cursor-pointer"
+          onClick={() => copyLinkHandler()}
+        >
           <HiOutlineShare />
           <span className="text-sm">Share</span>
         </div>
