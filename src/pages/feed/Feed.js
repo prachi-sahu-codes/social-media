@@ -36,7 +36,7 @@ export const Feed = () => {
             <img
               src={loggedUser?.profileImage}
               alt="profile pic"
-              className="w-10 h-10 rounded-full border-2 border-solid border-primary cursor-pointer"
+              className="w-12 h-12 rounded-full border-2 border-solid border-primary cursor-pointer"
             />
           ) : (
             <img
