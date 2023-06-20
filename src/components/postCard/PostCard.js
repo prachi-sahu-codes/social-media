@@ -70,7 +70,10 @@ export const PostCard = ({ post }) => {
               <FaRegHeart />
             </div>
           ) : (
-            <FaHeart onClick={() => dislikePost(post._id)} />
+            <FaHeart
+              onClick={() => dislikePost(post._id)}
+              className="fill-red-600"
+            />
           )}
           <span className="text-sm">{post.likes.likeCount} Likes</span>
         </div>
