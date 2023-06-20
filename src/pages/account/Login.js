@@ -72,7 +72,7 @@ export const Login = () => {
 
             <button
               onClick={() => loginHandler()}
-              className="inline-block w-full p-1.5 mt-10 text-lg font-semibold text-white bg-primary rounded-full"
+              className="inline-block w-full p-1.5 mt-10 text-lg font-semibold text-white bg-primary rounded-full hover:opacity-90 active:opacity-80"
             >
               Login
             </button>
@@ -88,7 +88,7 @@ export const Login = () => {
                   password: "jenny123@",
                 });
               }}
-              className="inline-block w-full p-1.5 mt-5 text-lg font-semibold border-2 border-primary text-primary rounded-full"
+              className="inline-block w-full p-1.5 mt-5 text-lg font-semibold border-2 border-primary text-primary rounded-full hover:opacity-80 active:opacity-50"
             >
               Guest Login
             </button>
@@ -97,7 +97,7 @@ export const Login = () => {
               <span className="text-gray">Don't have an account? </span>
               <Link
                 to="/signup"
-                className="font-bold text-cyan-900  underline dark:text-secondary"
+                className="font-bold text-cyan-900 hover:opacity-90 active:opacity-80 underline dark:text-secondary"
               >
                 SignUp!
               </Link>

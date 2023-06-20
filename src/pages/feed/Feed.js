@@ -30,7 +30,7 @@ export const Feed = () => {
 
   return (
     <div className="w-full py-7 px-6 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-50">
-      <div className="flex flex-col gap-4 border-2 max-w-2xl mx-auto bg-white border-bgColorLoad rounded-lg p-6 ">
+      <div className="flex flex-col gap-4 max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6 ">
         <div className="flex gap-3">
           {loggedUser?.profileImage ? (
             <img
@@ -60,7 +60,7 @@ export const Feed = () => {
             <FiImage />
             <BsEmojiSunglasses />
           </div>
-          <button className="w-28 border-2 text-xl py-1 bg-primary active:bg-primary hover:bg-secondary text-white rounded-full">
+          <button className="w-28 border-2 text-xl py-1 bg-primary hover:opacity-90 active:opacity-80 text-white rounded-full shadow-md border-none">
             Post
           </button>
         </div>

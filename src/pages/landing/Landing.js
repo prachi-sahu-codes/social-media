@@ -24,7 +24,7 @@ export const Landing = () => {
           </p>
           <button
             onClick={() => navigate("/signup")}
-            className="inline-block w-full p-1.5 mt-10 text-lg font-semibold text-white bg-primary rounded-full"
+            className="inline-block w-full p-1.5 mt-10 text-lg font-semibold text-white bg-primary rounded-full hover:opacity-90 active:opacity-80"
           >
             Join Us
           </button>
@@ -33,7 +33,7 @@ export const Landing = () => {
             <span className="text-gray">Already have an account? </span>
             <Link
               to="/login"
-              className="font-bold text-cyan-900  underline dark:text-secondary"
+              className="font-bold text-cyan-900 hover:opacity-90 active:opacity-80 underline dark:text-secondary"
             >
               Login!
             </Link>

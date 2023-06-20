@@ -30,10 +30,10 @@ export const SuggestionBox = () => {
           <div className="flex gap-2 pt-4 pb-6 mb-2">
             <button
               onClick={() => setActiveSortBtn(() => "latest")}
-              className={`flex justify-center items-center pr-1 text-lg pt-0.1rem w-full border-2 rounded-md hover:opacity-80 active:opacity-50 ${
+              className={`flex justify-center items-center pr-1 text-lg pt-0.1rem w-full border-2 rounded-md hover:opacity-80 active:opacity-60 ${
                 activeSortBtn === "latest"
                   ? "border-primary text-primary"
-                  : "border-mediumGray text-mediumGray"
+                  : "border-lightGray text-mediumGray"
               }`}
             >
               <div>
@@ -47,10 +47,10 @@ export const SuggestionBox = () => {
             </button>
             <button
               onClick={() => setActiveSortBtn(() => "trending")}
-              className={`flex justify-center items-center text-lg pt-0.1rem w-full border-2 rounded-md hover:opacity-80 active:opacity-50 ${
+              className={`flex justify-center items-center text-lg pt-0.1rem w-full border-2 rounded-md hover:opacity-80 active:opacity-60 ${
                 activeSortBtn === "trending"
                   ? "border-primary text-primary"
-                  : "border-mediumGray text-mediumGray"
+                  : "border-lightGray text-mediumGray"
               }`}
             >
               <div>
