@@ -12,10 +12,6 @@ export const Explore = () => {
 
   return (
     <div className="w-full py-7 px-6 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-50">
-      <div className=" px-6 max-w-2xl mx-auto text-right">
-        <button>Trending</button>
-        <button className="">Latest</button>
-      </div>
       <ul>
         {filterLoggedUserPost.map((post) => (
           <li key={post._id}>

@@ -1,12 +1,12 @@
 import React from "react";
 import { useUser } from "../../context/userContext/UserContext";
 import { useAuth } from "../../context/authContext/AuthContext";
-import { FiImage } from "react-icons/fi";
-import { BsEmojiSunglasses } from "react-icons/bs";
-
+import { usePost } from "../../context/postContext/PostContext";
+import { lightGray, lightActive, fireGray, fireActive } from "../../assets";
 export const SuggestionBox = () => {
   const { userData } = useUser();
   const { loggedUser } = useAuth();
+  const { activeSortBtn, setActiveSortBtn } = usePost();
 
   const loggedUserFollowers = loggedUser.followers.map(
     (person) => person.username
@@ -18,36 +18,59 @@ export const SuggestionBox = () => {
       !loggedUserFollowers.includes(user.username)
   );
 
+  const checkPath = window.location.pathname === "/feed";
+
   return (
     <div className="w-96 py-7 px-5 h-calc-nav text-center">
-      <div className="flex flex-col gap-4 border-2 border-bgColorLoad rounded-lg p-2 py-4 ">
-        <div className="flex gap-3">
-          {loggedUser?.profileImage ? (
-            <img
-              src={loggedUser?.profileImage}
-              alt="profile pic"
-              className="w-10 h-10 rounded-full border-2 border-solid border-primary cursor-pointer"
-            />
-          ) : (
-            <img
-              src="https://i.imgur.com/qMW3Cze.png"
-              alt="profile pic"
-              className="w-10 h-10 rounded-full border-2 border-solid border-primary cursor-pointer"
-            />
-          )}
-          <input type="text" placeholder="Write something..." />
-        </div>
-        <hr className="text-bgColorLoad" />
-        <div className="flex justify-between ">
-          <div className="flex gap-3">
-            <FiImage />
-            <BsEmojiSunglasses />
+      {checkPath && (
+        <>
+          <h1 className="mt-4 text-left text-lg font-semibold">
+            Sort Posts By
+          </h1>
+          <div className="flex gap-2 pt-4 pb-6 mb-2">
+            <button
+              onClick={() => setActiveSortBtn(() => "latest")}
+              className={`flex justify-center items-center pr-1 text-lg pt-0.1rem w-full border-2 rounded-md hover:opacity-80 ${
+                activeSortBtn === "latest"
+                  ? "border-primary text-primary"
+                  : "border-mediumGray text-mediumGray"
+              }`}
+            >
+              <div>
+                {activeSortBtn === "latest" ? (
+                  <img src={lightActive} className="w-6 h-4" alt="icon" />
+                ) : (
+                  <img src={lightGray} className="w-6 h-4" alt="icon" />
+                )}
+              </div>
+              Latest
+            </button>
+            <button
+              onClick={() => setActiveSortBtn(() => "trending")}
+              className={`flex justify-center items-center text-lg pt-0.1rem w-full border-2 rounded-md hover:opacity-80  ${
+                activeSortBtn === "trending"
+                  ? "border-primary text-primary"
+                  : "border-mediumGray text-mediumGray"
+              }`}
+            >
+              <div>
+                {activeSortBtn === "trending" ? (
+                  <img src={fireActive} className="w-4 h-4 mb-1" alt="icon" />
+                ) : (
+                  <img src={fireGray} className="w-4 h-4 mb-1" alt="icon" />
+                )}
+              </div>
+              Trending
+            </button>
           </div>
-          <button>Post</button>
-        </div>
-      </div>
+          <hr className="text-bgColorLoad mb-6" />
+        </>
+      )}
+
       <div>
-        <h1 className="mt-4 mb-3 text-lg font-semibold">Suggestions for you</h1>
+        <h1 className="mt-4 text-left text-lg font-semibold">
+          Suggestions for you
+        </h1>
         <ul className=" h-72 overflow-y-scroll suggestionScroll">
           {suggestionsArr.map(({ _id, fullname, username, profileImage }) => (
             <li

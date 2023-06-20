@@ -50,3 +50,7 @@
 .suggestionScroll::-webkit-scrollbar {
   display: none;
 }
+
+.color {
+  color: #c7310b;
+}

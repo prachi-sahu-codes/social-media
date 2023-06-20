@@ -2,10 +2,11 @@ import React from "react";
 import { usePost } from "../../context/postContext/PostContext";
 import { PostCard } from "../../components/postCard/PostCard";
 import { useAuth } from "../../context/authContext/AuthContext";
-import { postNow } from "../../assets";
+import { FiImage } from "react-icons/fi";
+import { BsEmojiSunglasses } from "react-icons/bs";
 
 export const Feed = () => {
-  const { postData } = usePost();
+  const { postData, activeSortBtn } = usePost();
   const { loggedUser } = useAuth();
 
   const loggedUserFollowers = loggedUser.followers.map(
@@ -18,12 +19,52 @@ export const Feed = () => {
       loggedUserFollowers.includes(post.username)
   );
 
-  const sortedFeedData = filterLoggedUserPost.sort(
-    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-  );
+  const sortedFeedData =
+    activeSortBtn === "latest"
+      ? filterLoggedUserPost.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        )
+      : filterLoggedUserPost.sort(
+          (a, b) => b.likes.likeCount - a.likes.likeCount
+        );
 
   return (
     <div className="w-full py-7 px-6 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-50">
+      <div className="flex flex-col gap-4 border-2 max-w-2xl mx-auto bg-white border-bgColorLoad rounded-lg p-6 ">
+        <div className="flex gap-3">
+          {loggedUser?.profileImage ? (
+            <img
+              src={loggedUser?.profileImage}
+              alt="profile pic"
+              className="w-10 h-10 rounded-full border-2 border-solid border-primary cursor-pointer"
+            />
+          ) : (
+            <img
+              src="https://i.imgur.com/qMW3Cze.png"
+              alt="profile pic"
+              className="w-12 h-12 rounded-full border-2 border-solid border-primary cursor-pointer"
+            />
+          )}
+          <textarea
+            type="text"
+            placeholder="Share your thoughts..."
+            className="border-none py-2 px-3 h-24"
+            rows="3"
+          ></textarea>
+        </div>
+
+        <hr className="text-bgColorLoad" />
+
+        <div className="flex items-center justify-between ">
+          <div className="flex gap-4 md:gap-6 text-xl">
+            <FiImage />
+            <BsEmojiSunglasses />
+          </div>
+          <button className="w-28 border-2 text-xl py-1 bg-primary active:bg-primary hover:bg-secondary text-white rounded-full">
+            Post
+          </button>
+        </div>
+      </div>
       {sortedFeedData.length !== 0 ? (
         <ul>
           {sortedFeedData.map((post) => (
@@ -33,9 +74,44 @@ export const Feed = () => {
           ))}
         </ul>
       ) : (
-        <div className="flex flex-col items-center justify-center gap-10 py-7">
-          <img src={postNow} alt="girl posting" className="w-96" />
-          <h1 className="text-xl font-semibold max-w-2xl text-center">
+        <div className="py-6">
+          <div className="flex flex-col gap-4 border-2 max-w-2xl mx-auto bg-white border-bgColorLoad rounded-lg p-6 ">
+            <div className="flex gap-3">
+              {loggedUser?.profileImage ? (
+                <img
+                  src={loggedUser?.profileImage}
+                  alt="profile pic"
+                  className="w-10 h-10 rounded-full border-2 border-solid border-primary cursor-pointer"
+                />
+              ) : (
+                <img
+                  src="https://i.imgur.com/qMW3Cze.png"
+                  alt="profile pic"
+                  className="w-12 h-12 rounded-full border-2 border-solid border-primary cursor-pointer"
+                />
+              )}
+              <textarea
+                type="text"
+                placeholder="Share your thoughts..."
+                className="border-none py-2 px-3 h-24"
+                rows="3"
+              ></textarea>
+            </div>
+
+            <hr className="text-bgColorLoad" />
+
+            <div className="flex items-center justify-between ">
+              <div className="flex gap-4 md:gap-6 text-xl">
+                <FiImage />
+                <BsEmojiSunglasses />
+              </div>
+              <button className="w-28 border-2 text-xl py-1 bg-primary active:bg-primary hover:bg-secondary text-white rounded-full">
+                Post
+              </button>
+            </div>
+          </div>
+
+          <h1 className="text-center text-2xl my-10 max-w-2xl m-auto">
             No posts yet. Start sharing your own creations and follow other
             artists to see their amazing posts!!
           </h1>

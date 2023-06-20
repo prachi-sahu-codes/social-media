@@ -33,7 +33,8 @@ module.exports = {
 
       colors: {
         primary: "#DC2F02",
-        secondary: "#FFD100",
+        secondary: "#c7310b",
+        yellow: "#FFD100",
         black: "#151515",
         bgWhole: "#f0f4f5",
         svgBg: "#fdf5f2",

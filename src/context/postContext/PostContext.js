@@ -12,6 +12,7 @@ export const PostProvider = ({ children }) => {
   const { token } = useAuth();
   const [postData, setPostData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [activeSortBtn, setActiveSortBtn] = useState("latest");
 
   const getPostData = async () => {
     try {
@@ -51,7 +52,15 @@ export const PostProvider = ({ children }) => {
 
   return (
     <PostContext.Provider
-      value={{ loading, setLoading, postData, likePost, dislikePost }}
+      value={{
+        loading,
+        setLoading,
+        activeSortBtn,
+        setActiveSortBtn,
+        postData,
+        likePost,
+        dislikePost,
+      }}
     >
       {children}
     </PostContext.Provider>
