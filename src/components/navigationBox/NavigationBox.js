@@ -47,7 +47,7 @@ export const NavigationBox = () => {
         <hr className="text-bgColorLoad" />
 
         <NavLink to="/feed">
-          <div className="flex text-xl  w-36 items-center py-1 hover:bg-svgBg rounded-md ">
+          <div className="flex text-xl  w-36 items-center py-1 hover:opacity-80 active:opacity-50 rounded-md ">
             <div className="mx-3">
               {newActiveLink === "/feed" ? (
                 <img
@@ -70,7 +70,7 @@ export const NavigationBox = () => {
         </NavLink>
 
         <NavLink to="/explore">
-          <div className="flex text-xl py-1  w-36 items-center hover:bg-svgBg rounded-md">
+          <div className="flex text-xl py-1  w-36 items-center hover:opacity-80 active:opacity-50 rounded-md">
             <div className="mx-3">
               {newActiveLink === "/explore" ? (
                 <img
@@ -98,7 +98,7 @@ export const NavigationBox = () => {
           </div>
         </NavLink>
         <NavLink to="/bookmark">
-          <div className="flex text-xl py-1 items-center w-36 hover:bg-svgBg rounded-md">
+          <div className="flex text-xl py-1 items-center w-36 hover:opacity-80 active:opacity-50 rounded-md">
             <div className="mx-3">
               {newActiveLink === "/bookmark" ? (
                 <img
@@ -126,7 +126,7 @@ export const NavigationBox = () => {
           </div>
         </NavLink>
         <NavLink to="/favourite">
-          <div className="flex text-xl items-center py-1  w-36 hover:bg-svgBg rounded-md">
+          <div className="flex text-xl items-center py-1 w-36 hover:opacity-80 active:opacity-50 rounded-md">
             <div className="mx-3">
               {newActiveLink === "/favourite" ? (
                 <img
@@ -152,7 +152,7 @@ export const NavigationBox = () => {
 
         <hr className="text-bgColorLoad" />
 
-        <div className="flex text-lg items-center py-1  w-36 hover:bg-svgBg rounded-md">
+        <div className="flex text-lg items-center py-1  w-36 hover:opacity-80 active:opacity-50 rounded-md">
           <img src={logout} className="w-1.3rem h-1.3rem mx-3" alt="icon" />
           <button
             onClick={() => logoutHandler()}
