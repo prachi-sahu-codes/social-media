@@ -3,6 +3,7 @@ import { usePost } from "../postContext/PostContext";
 import { useAuth } from "../authContext/AuthContext";
 import {
   usersService,
+  userDetailService,
   getBookmarksService,
   bookmarkService,
   removeBookmarkService,
@@ -16,7 +17,7 @@ export const UserProvider = ({ children }) => {
   const { token } = useAuth();
   const { setLoading } = usePost();
   const [userData, setUserData] = useState([]);
-
+  const [userDetail, setUserDetail] = useState({});
   const [bookmarkArr, setBookmarkArr] = useState([]);
 
   const getUserData = async () => {
@@ -38,6 +39,20 @@ export const UserProvider = ({ children }) => {
     getUserData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const getUserDetail = async (userId) => {
+    try {
+      setLoading(true);
+      const res = await userDetailService(userId);
+      if (res.status === 200) {
+        setUserDetail(res?.data?.user);
+        setLoading(false);
+      }
+    } catch (e) {
+      console.log("Error:", e?.message);
+      setLoading(false);
+    }
+  };
 
   const getAllBookmarks = async () => {
     try {
@@ -109,6 +124,8 @@ export const UserProvider = ({ children }) => {
     <UserContext.Provider
       value={{
         userData,
+        userDetail,
+        getUserDetail,
         bookmarkPost,
         removeBookmark,
         bookmarkArr,

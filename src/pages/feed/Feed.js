@@ -60,7 +60,7 @@ export const Feed = () => {
             <FiImage />
             <BsEmojiSunglasses />
           </div>
-          <button className="w-28 border-2 text-xl py-1 bg-primary hover:opacity-90 active:opacity-80 text-white rounded-full shadow-md border-none">
+          <button className="w-24 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full shadow-md border-none">
             Post
           </button>
         </div>

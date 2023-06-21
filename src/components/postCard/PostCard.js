@@ -47,7 +47,13 @@ export const PostCard = ({ post, noDetail }) => {
       onClick={() => navigate(`/posts/${post._id}`)}
     >
       <div className="flex justify-between items-center">
-        <div className="flex gap-3 items-center">
+        <div
+          className="flex gap-3 items-center"
+          onClick={(e) => {
+            navigate(`/users/${post.username}`);
+            e.stopPropagation();
+          }}
+        >
           <img
             src={post.profileImage}
             alt="profile pic"
