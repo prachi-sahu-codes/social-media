@@ -4,7 +4,7 @@ import { useAuth } from "../../context/authContext/AuthContext";
 import { usePost } from "../../context/postContext/PostContext";
 import { lightGray, lightActive, fireGray, fireActive } from "../../assets";
 export const SuggestionBox = () => {
-  const { userData } = useUser();
+  const { userData, followUser } = useUser();
   const { loggedUser } = useAuth();
   const { activeSortBtn, setActiveSortBtn } = usePost();
 
@@ -88,15 +88,13 @@ export const SuggestionBox = () => {
                   <p className="text-xs text-gray">@{username}</p>
                 </div>
               </div>
-              {true ? (
-                <button className="text-primary text-sm font-semibold">
-                  Follow
-                </button>
-              ) : (
-                <button className="text-primary text-sm font-semibold">
-                  Unfollow
-                </button>
-              )}
+
+              <button
+                className="text-primary text-sm font-semibold"
+                onClick={() => followUser(_id)}
+              >
+                Follow
+              </button>
             </li>
           ))}
         </ul>

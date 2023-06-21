@@ -6,6 +6,8 @@ import {
   getBookmarksService,
   bookmarkService,
   removeBookmarkService,
+  followUserService,
+  unfollowUserService,
 } from "../../api/services/userServices";
 
 const UserContext = createContext();
@@ -32,6 +34,11 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    getUserData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const getAllBookmarks = async () => {
     try {
       setLoading(true);
@@ -46,11 +53,6 @@ export const UserProvider = ({ children }) => {
       setLoading(false);
     }
   };
-
-  useEffect(() => {
-    getUserData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     if (token) {
@@ -81,6 +83,28 @@ export const UserProvider = ({ children }) => {
     }
   };
 
+  //toBe checked
+
+  const followUser = async (userId) => {
+    try {
+      const res = await followUserService(userId, token);
+      if (res.status === 200) {
+        console.log(res.data.followUser);
+      }
+    } catch (e) {
+      console.log("Error:", e?.message);
+    }
+  };
+
+  const unfollowUser = async (userId) => {
+    try {
+      const res = await unfollowUserService(userId, token);
+      console.log(res.data.followUser);
+    } catch (e) {
+      console.log("Error:", e?.message);
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -88,6 +112,8 @@ export const UserProvider = ({ children }) => {
         bookmarkPost,
         removeBookmark,
         bookmarkArr,
+        followUser,
+        unfollowUser,
       }}
     >
       {children}

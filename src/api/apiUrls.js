@@ -18,3 +18,8 @@ export const DISLIKE_POST_URL = `${baseURL}/posts/dislike`;
 
 export const BOOKMARK_URL = `${baseURL}/users/bookmark`;
 export const REMOVE_BOOKMARK_URL = `${baseURL}/users/remove-bookmark`;
+
+//follow-unfollow
+
+export const FOLLOW_URL = `${baseURL}/users/follow`;
+export const UNFOLLOW_URL = `${baseURL}/users/unfollow`;
