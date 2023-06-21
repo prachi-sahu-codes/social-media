@@ -74,43 +74,7 @@ export const Feed = () => {
           ))}
         </ul>
       ) : (
-        <div className="py-6">
-          <div className="flex flex-col gap-4 border-2 max-w-2xl mx-auto bg-white border-bgColorLoad rounded-lg p-6 ">
-            <div className="flex gap-3">
-              {loggedUser?.profileImage ? (
-                <img
-                  src={loggedUser?.profileImage}
-                  alt="profile pic"
-                  className="w-10 h-10 rounded-full border-2 border-solid border-primary cursor-pointer"
-                />
-              ) : (
-                <img
-                  src="https://i.imgur.com/qMW3Cze.png"
-                  alt="profile pic"
-                  className="w-12 h-12 rounded-full border-2 border-solid border-primary cursor-pointer"
-                />
-              )}
-              <textarea
-                type="text"
-                placeholder="Share your thoughts..."
-                className="border-none py-2 px-3 h-24"
-                rows="3"
-              ></textarea>
-            </div>
-
-            <hr className="text-bgColorLoad" />
-
-            <div className="flex items-center justify-between ">
-              <div className="flex gap-4 md:gap-6 text-xl">
-                <FiImage />
-                <BsEmojiSunglasses />
-              </div>
-              <button className="w-28 border-2 text-xl py-1 bg-primary active:bg-primary hover:bg-secondary text-white rounded-full">
-                Post
-              </button>
-            </div>
-          </div>
-
+        <div className="py-5">
           <h1 className="text-center text-2xl my-10 max-w-2xl m-auto">
             No posts yet. Start sharing your own creations and follow other
             artists to see their amazing posts!!

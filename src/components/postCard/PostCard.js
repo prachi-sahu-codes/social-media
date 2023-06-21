@@ -84,13 +84,13 @@ export const PostCard = ({ post }) => {
               className="fill-red-600"
             />
           )}
-          <span className="text-sm">{post.likes.likeCount} Likes</span>
+          <span className="text-sm">{post.likes?.likeCount} Likes</span>
         </div>
 
         <div className="flex gap-2 cursor-pointer">
           <FaRegComment />
           <span className="text-sm">
-            {post.comments.length === 0 ? "" : post.comments.length} Comment
+            {post.comments?.length === 0 ? "" : post.comments?.length} Comment
           </span>
         </div>
 

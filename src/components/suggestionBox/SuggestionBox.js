@@ -88,9 +88,15 @@ export const SuggestionBox = () => {
                   <p className="text-xs text-gray">@{username}</p>
                 </div>
               </div>
-              <button className="text-primary text-sm font-semibold">
-                Follow
-              </button>
+              {true ? (
+                <button className="text-primary text-sm font-semibold">
+                  Follow
+                </button>
+              ) : (
+                <button className="text-primary text-sm font-semibold">
+                  Unfollow
+                </button>
+              )}
             </li>
           ))}
         </ul>

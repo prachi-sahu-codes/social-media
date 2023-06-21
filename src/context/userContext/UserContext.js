@@ -49,9 +49,15 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     getUserData();
-    getAllBookmarks();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (token) {
+      getAllBookmarks();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token]);
 
   const bookmarkPost = async (postId) => {
     try {

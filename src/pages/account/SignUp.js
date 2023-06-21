@@ -17,9 +17,8 @@ export const Signup = () => {
     profileImage: "",
     bio: "",
     website: "",
-    bookmarks: [],
-    followers:[],
-    following:[]
+    followers: [],
+    following: [],
   });
 
   const clickSubmit = () => {
