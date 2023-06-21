@@ -12,11 +12,14 @@ import moment from "moment";
 import { useAuth } from "../../context/authContext/AuthContext";
 import { usePost } from "../../context/postContext/PostContext";
 import { useUser } from "../../context/userContext/UserContext";
+import { useNavigate } from "react-router";
 
 export const PostCard = ({ post }) => {
   const { loggedUser, notifyToast } = useAuth();
   const { likePost, dislikePost } = usePost();
   const { bookmarkPost, removeBookmark, bookmarkArr } = useUser();
+
+  const navigate = useNavigate();
 
   const checkUser = loggedUser.username !== post.username;
 
@@ -39,7 +42,10 @@ export const PostCard = ({ post }) => {
   };
 
   return (
-    <div className="m-6 shadow-md bg-white rounded-lg p-6 max-w-2xl mx-auto">
+    <div
+      className="m-6 shadow-md bg-white rounded-lg p-6 max-w-2xl mx-auto"
+      onClick={() => navigate(`/posts/${post._id}`)}
+    >
       <div className="flex justify-between items-center">
         <div className="flex gap-3 items-center">
           <img
@@ -56,7 +62,12 @@ export const PostCard = ({ post }) => {
         {checkUser ? (
           ""
         ) : (
-          <BsThreeDotsVertical className="text-xl cursor-pointer" />
+          <BsThreeDotsVertical
+            className="text-xl cursor-pointer"
+            onClick={(e) => {
+              e.stopPropagation();
+            }}
+          />
         )}
       </div>
 
@@ -73,21 +84,37 @@ export const PostCard = ({ post }) => {
       <p className="mt-6">{post.content}</p>
 
       <div className="flex justify-between items-center mt-5 text-lg ">
-        <div className="flex gap-2 cursor-pointer">
-          {!isLiked ? (
-            <div onClick={() => likePost(post._id)}>
-              <FaRegHeart />
-            </div>
-          ) : (
-            <FaHeart
-              onClick={() => dislikePost(post._id)}
-              className="fill-red-600"
-            />
-          )}
-          <span className="text-sm">{post.likes?.likeCount} Likes</span>
-        </div>
+        {!isLiked ? (
+          <div
+            className="flex gap-2 cursor-pointer"
+            onClick={(e) => {
+              likePost(post._id);
+              e.stopPropagation();
+            }}
+          >
+            <FaRegHeart />
 
-        <div className="flex gap-2 cursor-pointer">
+            <span className="text-sm">{post.likes?.likeCount} Likes</span>
+          </div>
+        ) : (
+          <div
+            className="flex gap-2 cursor-pointer"
+            onClick={(e) => {
+              dislikePost(post._id);
+              e.stopPropagation();
+            }}
+          >
+            <FaHeart className="fill-red-600" />
+            <span className="text-sm">{post.likes?.likeCount} Likes</span>
+          </div>
+        )}
+
+        <div
+          className="flex gap-2 cursor-pointer"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
           <FaRegComment />
           <span className="text-sm">
             {post.comments?.length === 0 ? "" : post.comments?.length} Comment
@@ -96,20 +123,38 @@ export const PostCard = ({ post }) => {
 
         <div
           className="flex gap-2 cursor-pointer"
-          onClick={() => copyLinkHandler()}
+          onClick={(e) => {
+            copyLinkHandler();
+            e.stopPropagation();
+          }}
         >
           <HiOutlineShare />
           <span className="text-sm">Share</span>
         </div>
 
-        <div className="flex gap-2 cursor-pointer">
-          {!isBookmarked ? (
-            <FaRegBookmark onClick={() => bookmarkPost(post._id)} />
-          ) : (
-            <FaBookmark onClick={() => removeBookmark(post._id)} />
-          )}
-          <span className="text-sm">Bookmark</span>
-        </div>
+        {!isBookmarked ? (
+          <div
+            className="flex gap-2 cursor-pointer"
+            onClick={(e) => {
+              bookmarkPost(post._id);
+              e.stopPropagation();
+            }}
+          >
+            <FaRegBookmark />
+            <span className="text-sm">Bookmark</span>
+          </div>
+        ) : (
+          <div
+            className="flex gap-2 cursor-pointer"
+            onClick={(e) => {
+              removeBookmark(post._id);
+              e.stopPropagation();
+            }}
+          >
+            <FaBookmark />
+            <span className="text-sm">Bookmark</span>{" "}
+          </div>
+        )}
       </div>
 
       <hr className="text-bgColorLoad mt-5" />
@@ -117,6 +162,9 @@ export const PostCard = ({ post }) => {
       <input
         type="text"
         placeholder="Write your comment..."
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
         className="rounded-full bg-slate-50 w-full py-2 px-6 mt-5 border-2 border-bgColorLoad"
       />
     </div>

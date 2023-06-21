@@ -13,6 +13,8 @@ import { RequiresAuth } from "./auth/RequiresAuth";
 import { Explore } from "./pages/explore/Explore";
 import { Bookmark } from "./pages/bookmark/Bookmark";
 import { Favourite } from "./pages/favourite/Favourite";
+import { PostDetail } from "./pages/postDetail/PostDetail";
+import { UserProfile } from "./pages/userProfile/UserProfile";
 
 function App() {
   const { loading } = usePost();
@@ -70,6 +72,24 @@ function App() {
           element={
             <RequiresAuth>
               <Favourite />
+            </RequiresAuth>
+          }
+        />
+
+        <Route
+          path="/posts/:postId"
+          element={
+            <RequiresAuth>
+              <PostDetail />
+            </RequiresAuth>
+          }
+        />
+
+        <Route
+          path="/users/:username"
+          element={
+            <RequiresAuth>
+              <UserProfile />
             </RequiresAuth>
           }
         />
