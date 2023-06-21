@@ -14,7 +14,7 @@ import { usePost } from "../../context/postContext/PostContext";
 import { useUser } from "../../context/userContext/UserContext";
 import { useNavigate } from "react-router";
 
-export const PostCard = ({ post }) => {
+export const PostCard = ({ post, noDetail }) => {
   const { loggedUser, notifyToast } = useAuth();
   const { likePost, dislikePost } = usePost();
   const { bookmarkPost, removeBookmark, bookmarkArr } = useUser();
@@ -109,12 +109,7 @@ export const PostCard = ({ post }) => {
           </div>
         )}
 
-        <div
-          className="flex gap-2 cursor-pointer"
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-        >
+        <div className="flex gap-2 cursor-pointer">
           <FaRegComment />
           <span className="text-sm">
             {post.comments?.length === 0 ? "" : post.comments?.length} Comment
@@ -158,6 +153,31 @@ export const PostCard = ({ post }) => {
       </div>
 
       <hr className="text-bgColorLoad mt-5" />
+
+      {noDetail && post?.comments?.length > 0 && (
+        <div className="bg-slate-50 mt-5 rounded-lg">
+          <p className="pt-4 px-2">Comments</p>
+          <div>
+            {post?.comments?.map((comment, index) => (
+              <li key={index} className="list-none py-6 px-2">
+                <div className="flex gap-3 items-center">
+                  <img
+                    src={comment.profileImage}
+                    alt="profile pic"
+                    className="w-12 h-12 rounded-full border-2 border-solid border-primary cursor-pointer"
+                  />
+                  <div>
+                    <p className="font-semibold cursor-pointer">
+                      {comment.username}
+                    </p>
+                  </div>
+                </div>
+                <p className="p-2">{comment.text}</p>
+              </li>
+            ))}
+          </div>
+        </div>
+      )}
 
       <input
         type="text"
