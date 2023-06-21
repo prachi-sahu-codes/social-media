@@ -1,23 +1,32 @@
 import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import { FaRegHeart, FaHeart, FaRegComment } from "react-icons/fa";
-import { HiOutlineShare, HiOutlineBookmark, HiBookmark } from "react-icons/hi";
+import {
+  FaRegHeart,
+  FaHeart,
+  FaRegComment,
+  FaBookmark,
+  FaRegBookmark,
+} from "react-icons/fa";
+import { HiOutlineShare } from "react-icons/hi";
 import moment from "moment";
 import { useAuth } from "../../context/authContext/AuthContext";
 import { usePost } from "../../context/postContext/PostContext";
+import { useUser } from "../../context/userContext/UserContext";
 
 export const PostCard = ({ post }) => {
   const { loggedUser, notifyToast } = useAuth();
   const { likePost, dislikePost } = usePost();
+  const { bookmarkPost, removeBookmark, bookmarkArr } = useUser();
 
   const checkUser = loggedUser.username !== post.username;
 
   const formattedDate = moment(post?.createdAt).format("ddd MMM DD YYYY");
 
-  const isLiked =
-    post.likes.likedBy.filter(
-      (person) => person.username === loggedUser.username
-    ).length !== 0;
+  const isLiked = !!post?.likes?.likedBy?.find(
+    (person) => person.username === loggedUser.username
+  );
+
+  const isBookmarked = !!bookmarkArr?.find((postId) => postId === post._id);
 
   const copyLinkHandler = () => {
     navigator.clipboard.writeText(
@@ -94,7 +103,11 @@ export const PostCard = ({ post }) => {
         </div>
 
         <div className="flex gap-2 cursor-pointer">
-          {true ? <HiOutlineBookmark /> : <HiBookmark />}
+          {!isBookmarked ? (
+            <FaRegBookmark onClick={() => bookmarkPost(post._id)} />
+          ) : (
+            <FaBookmark onClick={() => removeBookmark(post._id)} />
+          )}
           <span className="text-sm">Bookmark</span>
         </div>
       </div>

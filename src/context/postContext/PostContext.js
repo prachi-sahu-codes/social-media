@@ -3,8 +3,6 @@ import {
   postsService,
   likePostService,
   dislikePostService,
-  bookmarkService,
-  removeBookmarkService,
 } from "../../api/services/postServices";
 import { useAuth } from "../authContext/AuthContext";
 
@@ -25,7 +23,7 @@ export const PostProvider = ({ children }) => {
         setTimeout(() => setLoading(false), 1000);
       }
     } catch (e) {
-      console.log(e?.message);
+      console.log("Error:", e?.message);
       setLoading(false);
     }
   };
@@ -37,42 +35,23 @@ export const PostProvider = ({ children }) => {
   const likePost = async (postId) => {
     try {
       const res = await likePostService(postId, token);
-      setPostData(res?.data?.posts);
+      if (res.status === 200 || res.status === 201) {
+        setPostData(res?.data?.posts);
+      }
     } catch (e) {
-      console.log(e?.message);
+      console.log("Error:", e?.message);
     }
   };
 
   const dislikePost = async (postId) => {
     try {
       const res = await dislikePostService(postId, token);
-      setPostData(res?.data?.posts);
-    } catch (e) {
-      console.log(e?.message);
-    }
-  };
-
-  const bookmarkPost = async (postId) => {
-    try {
-      const res = await bookmarkService(postId, token);
-
       if (res.status === 200 || res.status === 201) {
-        console.log("my hi", res.data);
+        setPostData(res?.data?.posts);
+        console.log(res);
       }
     } catch (e) {
-      console.log(e?.message);
-    }
-  };
-
-  useEffect(() => {
-    bookmarkPost("kdiw8s3_ksd9s_ksd38_ksd2");
-  }, []);
-
-  const removeBookmark = async (postId) => {
-    try {
-      const res = await removeBookmarkService(postId, token);
-    } catch (e) {
-      console.log(e?.message);
+      console.log("Error:", e?.message);
     }
   };
 

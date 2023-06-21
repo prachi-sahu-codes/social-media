@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
         );
       }
     } catch (e) {
-      console.log(e);
+      console.log("Error:", e);
       notifyToast(
         "error",
         e?.response?.data?.errors
@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }) => {
         );
       }
     } catch (e) {
-      console.log(e);
+      console.log("Error:", e);
       notifyToast(
         "error",
         e?.response?.data?.errors
