@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useUser } from "../../context/userContext/UserContext";
 import { useAuth } from "../../context/authContext/AuthContext";
 import { usePost } from "../../context/postContext/PostContext";
@@ -8,15 +8,25 @@ export const SuggestionBox = () => {
   const { loggedUser } = useAuth();
   const { activeSortBtn, setActiveSortBtn } = usePost();
 
-  const loggedUserFollowers = loggedUser.followers.map(
-    (person) => person.username
-  );
+  const [suggestionsArr, setSuggestionsArr] = useState([]);
 
-  const suggestionsArr = userData.filter(
-    (user) =>
-      user.username !== loggedUser.username &&
-      !loggedUserFollowers.includes(user.username)
-  );
+  useEffect(() => {
+    const followedUsers = userData?.filter((user) =>
+      user.followers.find((person) => person.username === loggedUser.username)
+    );
+
+    const gettingUsername = followedUsers?.map((user) => user.username);
+
+    const updatedSuggestions = userData.filter(
+      (user) =>
+        user.username !== loggedUser.username &&
+        !gettingUsername.includes(user.username)
+    );
+
+    setSuggestionsArr(() => updatedSuggestions);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userData]);
 
   const checkPath = window.location.pathname === "/feed";
 
@@ -67,38 +77,40 @@ export const SuggestionBox = () => {
         </>
       )}
 
-      <div>
-        <h1 className="mt-4 text-left text-lg font-semibold">
-          Suggestions for you
-        </h1>
-        <ul className=" h-72 overflow-y-scroll suggestionScroll">
-          {suggestionsArr.map(({ _id, fullname, username, profileImage }) => (
-            <li
-              key={_id}
-              className="flex gap-3 justify-between items-center my-5 w-60 pr-2"
-            >
-              <div className="flex gap-3 items-center">
-                <img
-                  src={profileImage}
-                  alt="profile pic"
-                  className="w-10 h-10 rounded-full border-2 border-solid border-primary cursor-pointer"
-                />
-                <div>
-                  <p className=" text-sm cursor-pointer">{fullname}</p>
-                  <p className="text-xs text-gray">@{username}</p>
-                </div>
-              </div>
-
-              <button
-                className="text-primary text-sm font-semibold"
-                onClick={() => followUser(_id)}
+      {suggestionsArr.length > 0 && (
+        <div className="mb-4">
+          <h1 className="mt-4 text-left text-lg font-semibold">
+            Suggestions for you
+          </h1>
+          <ul className=" max-h-72 overflow-y-scroll suggestionScroll">
+            {suggestionsArr.map(({ _id, fullname, username, profileImage }) => (
+              <li
+                key={_id}
+                className="flex gap-3 justify-between items-center my-5 w-60 pr-2"
               >
-                Follow
-              </button>
-            </li>
-          ))}
-        </ul>
-      </div>
+                <div className="flex gap-3 items-center">
+                  <img
+                    src={profileImage}
+                    alt="profile pic"
+                    className="w-10 h-10 rounded-full border-2 border-solid border-primary cursor-pointer"
+                  />
+                  <div>
+                    <p className=" text-sm cursor-pointer">{fullname}</p>
+                    <p className="text-xs text-gray">@{username}</p>
+                  </div>
+                </div>
+
+                <button
+                  className="text-primary text-sm font-semibold"
+                  onClick={() => followUser(_id)}
+                >
+                  Follow
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };
