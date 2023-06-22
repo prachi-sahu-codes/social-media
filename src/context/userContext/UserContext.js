@@ -42,15 +42,12 @@ export const UserProvider = ({ children }) => {
 
   const getUserDetail = async (userId) => {
     try {
-      setLoading(true);
       const res = await userDetailService(userId);
       if (res.status === 200) {
         setUserDetail(res?.data?.user);
-        setLoading(false);
       }
     } catch (e) {
       console.log("Error:", e?.message);
-      setLoading(false);
     }
   };
 

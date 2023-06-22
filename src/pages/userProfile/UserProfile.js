@@ -9,17 +9,17 @@ export const UserProfile = () => {
   const { userData, userDetail, getUserDetail } = useUser();
   const { singleUserPosts, getPostByUsername } = usePost();
 
+  const findUserDetail = userData?.find((user) => user.username === username);
+
   useEffect(() => {
-    const findUserDetail = userData?.find((user) => user.username === username);
-    console.log("sending id", findUserDetail);
-    console.log("hii");
     getUserDetail(findUserDetail?._id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [findUserDetail]);
+
+  useEffect(() => {
     getPostByUsername(username);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  console.log(userDetail);
-  console.log(username);
 
   return (
     <div className="w-full py-7 px-6 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-50">
