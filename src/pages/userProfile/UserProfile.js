@@ -3,23 +3,36 @@ import { useParams } from "react-router";
 import { useUser } from "../../context/userContext/UserContext";
 import { usePost } from "../../context/postContext/PostContext";
 import { PostCard } from "../../components/postCard/PostCard";
+import { useAuth } from "../../context/authContext/AuthContext";
+import { useState } from "react";
 
 export const UserProfile = () => {
   const { username } = useParams();
-  const { userData, userDetail, getUserDetail } = useUser();
+  const { loggedUser } = useAuth();
+  const { userData, userDetail, getUserDetail, followUser, unfollowUser } =
+    useUser();
   const { singleUserPosts, getPostByUsername } = usePost();
+
+  const [isFollowing, setIsFollowing] = useState(false);
 
   const findUserDetail = userData?.find((user) => user.username === username);
 
   useEffect(() => {
     getUserDetail(findUserDetail?._id);
+
+    const followUpdate = !!findUserDetail?.followers?.find(
+      (user) => user?.username === loggedUser?.username
+    );
+    setIsFollowing(() => followUpdate);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [findUserDetail]);
+  }, [findUserDetail, loggedUser]);
 
   useEffect(() => {
     getPostByUsername(username);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // console.log("isFollowing", isFollowing);
 
   return (
     <div className="w-full py-7 px-6 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-50">
@@ -59,9 +72,21 @@ export const UserProfile = () => {
         <p>{userDetail.bio}</p>
         <div className="flex justify-between">
           <p className="text-sky-500">{userDetail.websiteLink}</p>
-          <button className="px-6 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-lg shadow-md border-none">
-            Follow
-          </button>
+          {isFollowing ? (
+            <button
+              onClick={() => unfollowUser(findUserDetail?._id)}
+              className="px-6 py-1 pb-0.15rem border-2 border-primary hover:opacity-90 active:opacity-80 text-primary text-lg rounded-lg shadow-md"
+            >
+              Unfollow
+            </button>
+          ) : (
+            <button
+              onClick={() => followUser(findUserDetail?._id)}
+              className="px-6 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-lg shadow-md"
+            >
+              Follow
+            </button>
+          )}
         </div>
       </div>
 

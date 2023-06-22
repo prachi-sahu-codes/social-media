@@ -95,13 +95,15 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  //toBe checked
-
   const followUser = async (userId) => {
     try {
       const res = await followUserService(userId, token);
+
       if (res.status === 200) {
-        console.log(res.data.followUser);
+        const updatedData = userData.map((user) =>
+          user._id === userId ? res.data.followUser : user
+        );
+        setUserData(updatedData);
       }
     } catch (e) {
       console.log("Error:", e?.message);
@@ -111,7 +113,13 @@ export const UserProvider = ({ children }) => {
   const unfollowUser = async (userId) => {
     try {
       const res = await unfollowUserService(userId, token);
-      console.log(res.data.followUser);
+
+      if (res.status === 200) {
+        const updatedData = userData.map((user) =>
+          user._id === userId ? res.data.followUser : user
+        );
+        setUserData(updatedData);
+      }
     } catch (e) {
       console.log("Error:", e?.message);
     }

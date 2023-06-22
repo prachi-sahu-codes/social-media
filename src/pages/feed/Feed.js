@@ -4,20 +4,34 @@ import { PostCard } from "../../components/postCard/PostCard";
 import { useAuth } from "../../context/authContext/AuthContext";
 import { FiImage } from "react-icons/fi";
 import { BsEmojiSunglasses } from "react-icons/bs";
+import { useUser } from "../../context/userContext/UserContext";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export const Feed = () => {
   const { postData, activeSortBtn } = usePost();
+  const { userData } = useUser();
   const { loggedUser } = useAuth();
 
-  const loggedUserFollowers = loggedUser.followers.map(
-    (person) => person.username
-  );
+  const [filterLoggedUserPost, setFilterLoggedUserPost] = useState([]);
 
-  const filterLoggedUserPost = postData.filter(
-    (post) =>
-      post.username === loggedUser.username ||
-      loggedUserFollowers.includes(post.username)
-  );
+  useEffect(() => {
+    const followedUsers = userData?.filter((user) =>
+      user.followers.find((person) => person.username === loggedUser.username)
+    );
+
+    const gettingUsername = followedUsers?.map((user) => user.username);
+
+    const filteredPost = postData.filter(
+      (post) =>
+        post.username === loggedUser.username ||
+        gettingUsername.includes(post.username)
+    );
+
+    setFilterLoggedUserPost(() => filteredPost);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [userData]);
 
   const sortedFeedData =
     activeSortBtn === "latest"
