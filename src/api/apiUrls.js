@@ -11,6 +11,8 @@ export const USERS_URL = `${baseURL}/users`;
 // post URL
 
 export const POSTS_URL = `${baseURL}/posts`;
+
+export const POST_BY_USERNAME_URL = `${baseURL}/posts/user`;
 export const LIKE_POST_URL = `${baseURL}/posts/like`;
 export const DISLIKE_POST_URL = `${baseURL}/posts/dislike`;
 

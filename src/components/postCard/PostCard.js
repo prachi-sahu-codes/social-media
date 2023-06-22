@@ -21,15 +21,15 @@ export const PostCard = ({ post, noDetail }) => {
 
   const navigate = useNavigate();
 
-  const checkUser = loggedUser.username !== post.username;
+  const checkUser = loggedUser?.username !== post?.username;
 
   const formattedDate = moment(post?.createdAt).format("ddd MMM DD YYYY");
 
   const isLiked = !!post?.likes?.likedBy?.find(
-    (person) => person.username === loggedUser.username
+    (person) => person?.username === loggedUser?.username
   );
 
-  const isBookmarked = !!bookmarkArr?.find((postId) => postId === post._id);
+  const isBookmarked = !!bookmarkArr?.find((postId) => postId === post?._id);
 
   const copyLinkHandler = () => {
     navigator.clipboard.writeText(
@@ -55,12 +55,12 @@ export const PostCard = ({ post, noDetail }) => {
           }}
         >
           <img
-            src={post.profileImage}
+            src={post?.profileImage}
             alt="profile pic"
             className="w-12 h-12 rounded-full border-2 border-solid border-primary cursor-pointer"
           />
           <div>
-            <p className="font-semibold cursor-pointer">{post.username}</p>
+            <p className="font-semibold cursor-pointer">{post?.username}</p>
             <p className="text-xs text-gray">{formattedDate}</p>
           </div>
         </div>
@@ -87,38 +87,38 @@ export const PostCard = ({ post, noDetail }) => {
         </div>
       )}
 
-      <p className="mt-6">{post.content}</p>
+      <p className="mt-6">{post?.content}</p>
 
       <div className="flex justify-between items-center mt-5 text-lg ">
         {!isLiked ? (
           <div
             className="flex gap-2 cursor-pointer"
             onClick={(e) => {
-              likePost(post._id);
+              likePost(post?._id);
               e.stopPropagation();
             }}
           >
             <FaRegHeart />
 
-            <span className="text-sm">{post.likes?.likeCount} Likes</span>
+            <span className="text-sm">{post?.likes?.likeCount} Likes</span>
           </div>
         ) : (
           <div
             className="flex gap-2 cursor-pointer"
             onClick={(e) => {
-              dislikePost(post._id);
+              dislikePost(post?._id);
               e.stopPropagation();
             }}
           >
             <FaHeart className="fill-red-600" />
-            <span className="text-sm">{post.likes?.likeCount} Likes</span>
+            <span className="text-sm">{post?.likes?.likeCount} Likes</span>
           </div>
         )}
 
         <div className="flex gap-2 cursor-pointer">
           <FaRegComment />
           <span className="text-sm">
-            {post.comments?.length === 0 ? "" : post.comments?.length} Comment
+            {post?.comments?.length === 0 ? "" : post?.comments?.length} Comment
           </span>
         </div>
 
@@ -137,7 +137,7 @@ export const PostCard = ({ post, noDetail }) => {
           <div
             className="flex gap-2 cursor-pointer"
             onClick={(e) => {
-              bookmarkPost(post._id);
+              bookmarkPost(post?._id);
               e.stopPropagation();
             }}
           >
@@ -148,7 +148,7 @@ export const PostCard = ({ post, noDetail }) => {
           <div
             className="flex gap-2 cursor-pointer"
             onClick={(e) => {
-              removeBookmark(post._id);
+              removeBookmark(post?._id);
               e.stopPropagation();
             }}
           >
@@ -168,17 +168,17 @@ export const PostCard = ({ post, noDetail }) => {
               <li key={index} className="list-none py-6 px-2">
                 <div className="flex gap-3 items-center">
                   <img
-                    src={comment.profileImage}
+                    src={comment?.profileImage}
                     alt="profile pic"
                     className="w-12 h-12 rounded-full border-2 border-solid border-primary cursor-pointer"
                   />
                   <div>
                     <p className="font-semibold cursor-pointer">
-                      {comment.username}
+                      {comment?.username}
                     </p>
                   </div>
                 </div>
-                <p className="p-2">{comment.text}</p>
+                <p className="p-2">{comment?.text}</p>
               </li>
             ))}
           </div>

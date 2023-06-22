@@ -1,18 +1,26 @@
 import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import { useUser } from "../../context/userContext/UserContext";
+import { usePost } from "../../context/postContext/PostContext";
+import { PostCard } from "../../components/postCard/PostCard";
 
 export const UserProfile = () => {
   const { username } = useParams();
   const { userData, userDetail, getUserDetail } = useUser();
+  const { singleUserPosts, getPostByUsername } = usePost();
 
   useEffect(() => {
     const findUserDetail = userData?.find((user) => user.username === username);
+    console.log("sending id", findUserDetail);
+    console.log("hii");
     getUserDetail(findUserDetail?._id);
+    getPostByUsername(username);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   console.log(userDetail);
+  console.log(username);
+
   return (
     <div className="w-full py-7 px-6 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-50">
       <img
@@ -31,7 +39,7 @@ export const UserProfile = () => {
         <div className="flex gap-3">
           <div className="w-full text-center">
             <p className="text-xs font-bold uppercase text-mediumGray">Post</p>
-            <p>2</p>
+            <p>{singleUserPosts?.length}</p>
           </div>
           <div className="w-full text-center">
             <p className="text-xs font-bold uppercase text-mediumGray">
@@ -56,6 +64,15 @@ export const UserProfile = () => {
           </button>
         </div>
       </div>
+
+      <ul>
+        {singleUserPosts.length > 0 &&
+          singleUserPosts?.map((post) => (
+            <li key={post._id}>
+              <PostCard post={post} />
+            </li>
+          ))}
+      </ul>
     </div>
   );
 };

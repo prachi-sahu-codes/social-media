@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import {
   postsService,
   postDetailService,
+  postByUsernameService,
   likePostService,
   dislikePostService,
 } from "../../api/services/postServices";
@@ -13,6 +14,7 @@ export const PostProvider = ({ children }) => {
   const { token } = useAuth();
   const [postData, setPostData] = useState([]);
   const [postDetail, setPostDetail] = useState([]);
+  const [singleUserPosts, setSingleUserPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeSortBtn, setActiveSortBtn] = useState("latest");
 
@@ -38,9 +40,22 @@ export const PostProvider = ({ children }) => {
     try {
       setLoading(true);
       const res = await postDetailService(postId);
-      console.log(res);
       if (res.status === 200) {
         setPostDetail(res?.data?.post);
+        setLoading(false);
+      }
+    } catch (e) {
+      console.log("Error:", e?.message);
+      setLoading(false);
+    }
+  };
+
+  const getPostByUsername = async (username) => {
+    try {
+      setLoading(true);
+      const res = await postByUsernameService(username);
+      if (res.status === 200) {
+        setSingleUserPosts(res?.data?.posts);
         setLoading(false);
       }
     } catch (e) {
@@ -82,6 +97,8 @@ export const PostProvider = ({ children }) => {
         postData,
         postDetail,
         getPostDetail,
+        singleUserPosts,
+        getPostByUsername,
         likePost,
         dislikePost,
       }}
