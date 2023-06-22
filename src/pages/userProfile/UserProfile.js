@@ -69,9 +69,12 @@ export const UserProfile = () => {
         </div>
 
         <hr className="text-bgColorLoad my-5" />
-        <p>{userDetail.bio}</p>
+
         <div className="flex justify-between">
-          <p className="text-sky-500">{userDetail.websiteLink}</p>
+          <div>
+            <p>{userDetail.bio}</p>
+            <p className="text-sky-500">{userDetail.websiteLink}</p>
+          </div>
 
           <div>
             {isUserLoggedUser ? (
