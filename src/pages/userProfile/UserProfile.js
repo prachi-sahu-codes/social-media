@@ -32,7 +32,7 @@ export const UserProfile = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // console.log("isFollowing", isFollowing);
+  const isUserLoggedUser = loggedUser.username === username;
 
   return (
     <div className="w-full py-7 px-6 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-50">
@@ -72,21 +72,32 @@ export const UserProfile = () => {
         <p>{userDetail.bio}</p>
         <div className="flex justify-between">
           <p className="text-sky-500">{userDetail.websiteLink}</p>
-          {isFollowing ? (
-            <button
-              onClick={() => unfollowUser(findUserDetail?._id)}
-              className="px-6 py-1 pb-0.15rem border-2 border-primary hover:opacity-90 active:opacity-80 text-primary text-lg rounded-lg shadow-md"
-            >
-              Unfollow
-            </button>
-          ) : (
-            <button
-              onClick={() => followUser(findUserDetail?._id)}
-              className="px-6 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-lg shadow-md"
-            >
-              Follow
-            </button>
-          )}
+
+          <div>
+            {isUserLoggedUser ? (
+              <button className="px-6 py-1 pb-0.15rem border-2 border-primary hover:opacity-90 active:opacity-80 text-primary text-lg rounded-lg shadow-md">
+                Edit
+              </button>
+            ) : (
+              <div>
+                {isFollowing ? (
+                  <button
+                    onClick={() => unfollowUser(findUserDetail?._id)}
+                    className="px-6 py-1 pb-0.15rem border-2 border-primary hover:opacity-90 active:opacity-80 text-primary text-lg rounded-lg shadow-md"
+                  >
+                    Unfollow
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => followUser(findUserDetail?._id)}
+                    className="px-6 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-lg shadow-md"
+                  >
+                    Follow
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </div>
 
