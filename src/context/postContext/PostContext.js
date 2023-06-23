@@ -8,6 +8,8 @@ import {
 } from "../../api/services/postServices";
 import { useAuth } from "../authContext/AuthContext";
 
+import axios from "axios";
+
 const PostContext = createContext();
 
 export const PostProvider = ({ children }) => {
@@ -87,6 +89,28 @@ export const PostProvider = ({ children }) => {
     }
   };
 
+  const createPost = async (input) => {
+    console.log(token);
+    console.log(input);
+    try {
+      const res = await axios({
+        method: "post",
+        url: "/api/posts",
+        body: {
+          postData: input,
+        },
+        header: {
+          authorization: token,
+        },
+      });
+      console.log(res);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  console.log(postData);
+
   return (
     <PostContext.Provider
       value={{
@@ -101,6 +125,7 @@ export const PostProvider = ({ children }) => {
         getPostByUsername,
         likePost,
         dislikePost,
+        createPost,
       }}
     >
       {children}

@@ -9,7 +9,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 export const Feed = () => {
-  const { postData, activeSortBtn } = usePost();
+  const { postData, activeSortBtn, createPost } = usePost();
   const { userData } = useUser();
   const { loggedUser } = useAuth();
 
@@ -74,7 +74,16 @@ export const Feed = () => {
             <FiImage />
             <BsEmojiSunglasses />
           </div>
-          <button className="w-24 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full shadow-md border-none">
+          <button
+            className="w-24 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full shadow-md border-none"
+            onClick={() =>
+              createPost({
+                content: "Wandering through ",
+                contentImage: "",
+                profileImage: "https://i.imgur.com/RUgHMHR.png",
+              })
+            }
+          >
             Post
           </button>
         </div>
