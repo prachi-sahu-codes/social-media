@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext/AuthContext";
 import {
   homeActive,
@@ -15,7 +15,7 @@ import {
 
 export const NavigationBox = () => {
   const { loggedUser, logoutHandler } = useAuth();
-
+  const navigate = useNavigate();
   const path = window.location.pathname;
 
   const [newActiveLink, setNewActiveLink] = useState(path);
@@ -26,7 +26,12 @@ export const NavigationBox = () => {
 
   return (
     <div className="w-64 py-7 flex flex-col gap-2 items-center border-r-2 border-bgColorLoad h-calc-nav">
-      <div className="flex flex-col items-center justify-center mx-3">
+      <div
+        className="flex flex-col items-center justify-center mx-3"
+        onClick={(e) => {
+          navigate(`/users/${loggedUser.username}`);
+        }}
+      >
         {loggedUser?.profileImage ? (
           <img
             src={loggedUser?.profileImage}
