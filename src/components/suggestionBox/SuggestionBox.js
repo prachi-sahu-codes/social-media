@@ -79,14 +79,14 @@ export const SuggestionBox = () => {
 
       {suggestionsArr.length > 0 && (
         <div className="mb-4">
-          <h1 className="mt-4 text-left text-lg font-semibold">
+          <h1 className="mt-4 pb-3 text-left text-lg font-semibold">
             Suggestions for you
           </h1>
-          <ul className=" max-h-72 overflow-y-scroll suggestionScroll">
+          <ul className=" max-h-72 pt-2 overflow-y-scroll suggestionScroll">
             {suggestionsArr.map(({ _id, fullname, username, profileImage }) => (
               <li
                 key={_id}
-                className="flex gap-3 justify-between items-center my-5 w-60 pr-2"
+                className="flex gap-3 justify-between items-center mb-5 w-60 pr-2"
               >
                 <div className="flex gap-3 items-center">
                   <img
