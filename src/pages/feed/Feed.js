@@ -31,7 +31,7 @@ export const Feed = () => {
     setFilterLoggedUserPost(() => filteredPost);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userData]);
+  }, [postData]);
 
   const sortedFeedData =
     activeSortBtn === "latest"
@@ -75,7 +75,7 @@ export const Feed = () => {
             <BsEmojiSunglasses />
           </div>
           <button
-            className="w-24 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full shadow-md border-none"
+            className="w-24 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full shadow-md"
             onClick={() =>
               createPost({
                 content: "Wandering through ",
