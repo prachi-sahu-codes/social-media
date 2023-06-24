@@ -69,7 +69,6 @@ export const PostProvider = ({ children }) => {
       const res = await likePostService(postId, token);
       if (res.status === 200 || res.status === 201) {
         setPostData(() => res?.data?.posts);
-        console.log("like", res.data.posts);
       }
     } catch (e) {
       console.log("Error:", e?.message);
