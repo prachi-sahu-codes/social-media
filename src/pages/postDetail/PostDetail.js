@@ -6,12 +6,12 @@ import { PostCard } from "../../components/postCard/PostCard";
 
 export const PostDetail = () => {
   const { postId } = useParams();
-  const { postDetail, getPostDetail } = usePost();
+  const { postData, postDetail, getPostDetail } = usePost();
 
   useEffect(() => {
     getPostDetail(postId);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [postData]);
 
   return (
     <div className="w-full py-7 px-6 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-50">
