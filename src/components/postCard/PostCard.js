@@ -77,7 +77,7 @@ export const PostCard = ({ post, noDetail }) => {
               }}
             />
             <div
-              className={`absolute top-6 right-2 shadow-md bg-slate-50 rounded-md p-3 ${
+              className={`absolute top-6 right-2 shadow-md bg-slate-100 rounded-md p-3 ${
                 showModal ? "block" : "hidden"
               }`}
             >
