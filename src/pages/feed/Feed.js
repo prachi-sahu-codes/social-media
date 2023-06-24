@@ -1,17 +1,17 @@
 import React from "react";
-import { usePost } from "../../context/postContext/PostContext";
-import { PostCard } from "../../components/postCard/PostCard";
-import { useAuth } from "../../context/authContext/AuthContext";
+import { useState, useEffect } from "react";
 import { FiImage } from "react-icons/fi";
 import { BsEmojiSunglasses } from "react-icons/bs";
+import { usePost } from "../../context/postContext/PostContext";
+import { useAuth } from "../../context/authContext/AuthContext";
 import { useUser } from "../../context/userContext/UserContext";
-import { useState } from "react";
-import { useEffect } from "react";
+import { PostCard } from "../../components/postCard/PostCard";
 
 export const Feed = () => {
-  const { postData, activeSortBtn, createPost } = usePost();
+  const { postData, activeSortBtn, newPostState, newPostDispatch, createPost } =
+    usePost();
   const { userData } = useUser();
-  const { loggedUser } = useAuth();
+  const { loggedUser, notifyToast } = useAuth();
 
   const [filterLoggedUserPost, setFilterLoggedUserPost] = useState([]);
 
@@ -42,6 +42,19 @@ export const Feed = () => {
           (a, b) => b.likes.likeCount - a.likes.likeCount
         );
 
+  const addPostHandler = () => {
+    if (newPostState.content.length > 0) {
+      newPostState.profileImage = loggedUser?.profileImage
+        ? loggedUser?.profileImage
+        : "https://i.imgur.com/qMW3Cze.png";
+
+      createPost(newPostState);
+      newPostDispatch({ type: "CLEAR" });
+    } else {
+      notifyToast("error", "Please add content to post!");
+    }
+  };
+
   return (
     <div className="w-full py-7 px-6 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-50">
       <div className="flex flex-col gap-4 max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6 ">
@@ -64,6 +77,10 @@ export const Feed = () => {
             placeholder="Share your thoughts..."
             className="border-none py-2 px-3 h-24"
             rows="3"
+            value={newPostState.content}
+            onChange={(e) =>
+              newPostDispatch({ type: "CONTENT", payload: e.target.value })
+            }
           ></textarea>
         </div>
 
@@ -76,13 +93,7 @@ export const Feed = () => {
           </div>
           <button
             className="w-24 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full shadow-md"
-            onClick={() =>
-              createPost({
-                content: "Wandering through ",
-                contentImage: "",
-                profileImage: "https://i.imgur.com/RUgHMHR.png",
-              })
-            }
+            onClick={() => addPostHandler()}
           >
             Post
           </button>

@@ -1,4 +1,10 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from "react";
 import {
   postsService,
   createPostService,
@@ -8,16 +14,25 @@ import {
   dislikePostService,
 } from "../../api/services/postServices";
 import { useAuth } from "../authContext/AuthContext";
+import { newPostReducerFunc } from "../../reducer";
+import { useLocation } from "react-router";
 
 const PostContext = createContext();
 
 export const PostProvider = ({ children }) => {
+  const location = useLocation();
   const { token, notifyToast } = useAuth();
   const [postData, setPostData] = useState([]);
   const [postDetail, setPostDetail] = useState([]);
   const [singleUserPosts, setSingleUserPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [activeSortBtn, setActiveSortBtn] = useState("latest");
+
+  const [newPostState, newPostDispatch] = useReducer(newPostReducerFunc, {
+    content: "",
+    contentImage: "",
+    profileImage: "",
+  });
 
   const getPostData = async () => {
     try {
@@ -98,11 +113,19 @@ export const PostProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    if (location.pathname !== "/feed") {
+      newPostDispatch({ type: "CLEAR" });
+    }
+  }, [location.pathname]);
+
   return (
     <PostContext.Provider
       value={{
         loading,
         setLoading,
+        newPostState,
+        newPostDispatch,
         activeSortBtn,
         setActiveSortBtn,
         postData,

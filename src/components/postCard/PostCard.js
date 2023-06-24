@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import {
   FaRegHeart,
@@ -18,8 +18,8 @@ export const PostCard = ({ post, noDetail }) => {
   const { loggedUser, notifyToast } = useAuth();
   const { likePost, dislikePost } = usePost();
   const { bookmarkPost, removeBookmark, bookmarkArr } = useUser();
-
   const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
 
   const checkUser = loggedUser?.username !== post?.username;
 
@@ -68,12 +68,37 @@ export const PostCard = ({ post, noDetail }) => {
         {checkUser ? (
           ""
         ) : (
-          <BsThreeDotsVertical
-            className="text-xl cursor-pointer"
-            onClick={(e) => {
-              e.stopPropagation();
-            }}
-          />
+          <div className="relative">
+            <BsThreeDotsVertical
+              className="text-xl cursor-pointer"
+              onClick={(e) => {
+                setShowModal((s) => !s);
+                e.stopPropagation();
+              }}
+            />
+            <div
+              className={`absolute top-6 right-2 shadow-md bg-slate-50 rounded-md p-3 ${
+                showModal ? "block" : "hidden"
+              }`}
+            >
+              <button
+                className="py-1 px-4 text-left rounded-md hover:text-blue-500 hover:bg-white active:bg-slate-50 w-full"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
+                Edit
+              </button>
+              <button
+                className="p-1 px-4 text-left rounded-md hover:text-red-600 hover:bg-white active:bg-slate-50 w-full"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
+                Delete
+              </button>
+            </div>
+          </div>
         )}
       </div>
 
