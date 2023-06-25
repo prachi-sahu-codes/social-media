@@ -12,7 +12,6 @@ export const postsService = () => axios.get(POSTS_URL);
 export const postDetailService = (postId) =>
   axios.get(`${POSTS_URL}/${postId}`);
 
-//to be checked
 export const createPostService = (postData, token) =>
   axios.post(
     POSTS_URL,
@@ -24,7 +23,13 @@ export const createPostService = (postData, token) =>
     }
   );
 
-//
+export const deletePostService = (postId, token) =>
+  axios.delete(`${POSTS_URL}/${postId}`, {
+    headers: {
+      authorization: token,
+    },
+  });
+
 export const postByUsernameService = (username) =>
   axios.get(`${POST_BY_USERNAME_URL}/${username}`);
 

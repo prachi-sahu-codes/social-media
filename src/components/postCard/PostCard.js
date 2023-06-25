@@ -13,12 +13,14 @@ import { useAuth } from "../../context/authContext/AuthContext";
 import { usePost } from "../../context/postContext/PostContext";
 import { useUser } from "../../context/userContext/UserContext";
 import { useNavigate } from "react-router";
+import ClickOutside from "../clickOutside/ClickOutside";
 
 export const PostCard = ({ post, noDetail }) => {
   const { loggedUser, notifyToast } = useAuth();
-  const { likePost, dislikePost } = usePost();
+  const { deletePost, likePost, dislikePost } = usePost();
   const { bookmarkPost, removeBookmark, bookmarkArr } = useUser();
   const navigate = useNavigate();
+
   const [showModal, setShowModal] = useState(false);
 
   const checkUser = loggedUser?.username !== post?.username;
@@ -32,6 +34,7 @@ export const PostCard = ({ post, noDetail }) => {
   const isBookmarked = !!bookmarkArr?.find((postId) => postId === post?._id);
 
   const copyLinkHandler = () => {
+    setShowModal(() => false);
     navigator.clipboard.writeText(
       `https://whizverse.netlify.app/post/${post._id}`
     );
@@ -76,28 +79,31 @@ export const PostCard = ({ post, noDetail }) => {
                 e.stopPropagation();
               }}
             />
-            <div
-              className={`absolute top-6 right-2 shadow-md bg-slate-100 rounded-md p-3 ${
-                showModal ? "block" : "hidden"
-              }`}
-            >
-              <button
-                className="py-1 px-4 text-left rounded-md hover:text-blue-500 hover:bg-white active:bg-slate-50 w-full"
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
+            <ClickOutside onClickOutside={() => setShowModal(() => false)}>
+              <div
+                className={`absolute top-6 right-2 shadow-md bg-slate-100 rounded-md p-1 ${
+                  showModal ? "block" : "hidden"
+                }`}
               >
-                Edit
-              </button>
-              <button
-                className="p-1 px-4 text-left rounded-md hover:text-red-600 hover:bg-white active:bg-slate-50 w-full"
-                onClick={(e) => {
-                  e.stopPropagation();
-                }}
-              >
-                Delete
-              </button>
-            </div>
+                <button
+                  className="py-1 px-4 text-left rounded-md hover:text-blue-500 hover:bg-white active:bg-slate-50 w-full"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                  }}
+                >
+                  Edit
+                </button>
+                <button
+                  className="p-1 px-4 text-left rounded-md hover:text-red-600 hover:bg-white active:bg-slate-50 w-full"
+                  onClick={(e) => {
+                    deletePost(post._id);
+                    e.stopPropagation();
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
+            </ClickOutside>
           </div>
         )}
       </div>
@@ -119,6 +125,7 @@ export const PostCard = ({ post, noDetail }) => {
           <div
             className="flex gap-2 cursor-pointer"
             onClick={(e) => {
+              setShowModal(() => false);
               likePost(post?._id);
               e.stopPropagation();
             }}
@@ -131,6 +138,7 @@ export const PostCard = ({ post, noDetail }) => {
           <div
             className="flex gap-2 cursor-pointer"
             onClick={(e) => {
+              setShowModal(() => false);
               dislikePost(post?._id);
               e.stopPropagation();
             }}
@@ -140,7 +148,13 @@ export const PostCard = ({ post, noDetail }) => {
           </div>
         )}
 
-        <div className="flex gap-2 cursor-pointer">
+        <div
+          className="flex gap-2 cursor-pointer"
+          onClick={(e) => {
+            setShowModal(() => false);
+            e.stopPropagation();
+          }}
+        >
           <FaRegComment />
           <span className="text-sm">
             {post?.comments?.length === 0 ? "" : post?.comments?.length} Comment
@@ -162,6 +176,7 @@ export const PostCard = ({ post, noDetail }) => {
           <div
             className="flex gap-2 cursor-pointer"
             onClick={(e) => {
+              setShowModal(() => false);
               bookmarkPost(post?._id);
               e.stopPropagation();
             }}
@@ -173,6 +188,7 @@ export const PostCard = ({ post, noDetail }) => {
           <div
             className="flex gap-2 cursor-pointer"
             onClick={(e) => {
+              setShowModal(() => false);
               removeBookmark(post?._id);
               e.stopPropagation();
             }}

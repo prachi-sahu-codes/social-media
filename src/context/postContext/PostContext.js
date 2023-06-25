@@ -8,6 +8,7 @@ import {
 import {
   postsService,
   createPostService,
+  deletePostService,
   postDetailService,
   postByUsernameService,
   likePostService,
@@ -15,7 +16,7 @@ import {
 } from "../../api/services/postServices";
 import { useAuth } from "../authContext/AuthContext";
 import { newPostReducerFunc } from "../../reducer";
-import { useLocation } from "react-router";
+import { useLocation } from "react-router-dom";
 
 const PostContext = createContext();
 
@@ -113,6 +114,21 @@ export const PostProvider = ({ children }) => {
     }
   };
 
+  const deletePost = async (postId) => {
+    try {
+      const res = await deletePostService(postId, token);
+      if (res.status === 200 || res.status === 201) {
+        setPostData(() => res?.data?.posts);
+        if (location.pathname === `/posts/${postId}`) {
+          window.history.back();
+        }
+        notifyToast("success", "Post deleted successfully!!");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
     if (location.pathname !== "/feed") {
       newPostDispatch({ type: "CLEAR" });
@@ -136,6 +152,7 @@ export const PostProvider = ({ children }) => {
         likePost,
         dislikePost,
         createPost,
+        deletePost,
       }}
     >
       {children}
