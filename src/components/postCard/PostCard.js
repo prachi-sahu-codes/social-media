@@ -112,7 +112,7 @@ export const PostCard = ({ post, noDetail }) => {
         <div className="h-96 mt-5 rounded-lg">
           <img
             src={post?.contentImage}
-            alt="landscape"
+            alt="post pic"
             className="w-full h-full object-cover rounded-lg"
           />
         </div>

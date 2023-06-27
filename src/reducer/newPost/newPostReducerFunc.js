@@ -3,8 +3,12 @@ export const newPostReducerFunc = (state, action) => {
     case "CONTENT":
       return { ...state, content: action.payload };
 
+    case "ADD_EMOJI":
+      const updatedContent = state.content + action.payload;
+      return { ...state, content: updatedContent };
+
     case "CONTENT_IMG":
-      return { ...state };
+      return { ...state, contentImage: action.payload };
 
     case "CLEAR":
       return { content: "", contentImage: "", profileImage: "" };
