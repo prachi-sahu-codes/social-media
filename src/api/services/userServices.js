@@ -10,8 +10,8 @@ import {
 
 export const usersService = () => axios.get(USERS_URL);
 
-export const userDetailService = (userId) =>
-  axios.get(`${USERS_URL}/${userId}`);
+export const userDetailService = (username) =>
+  axios.get(`${USERS_URL}/${username}`);
 
 export const getBookmarksService = (token) =>
   axios.get(BOOKMARK_URL, {

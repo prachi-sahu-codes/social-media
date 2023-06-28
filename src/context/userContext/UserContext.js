@@ -40,9 +40,9 @@ export const UserProvider = ({ children }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const getUserDetail = async (userId) => {
+  const getUserDetail = async (username) => {
     try {
-      const res = await userDetailService(userId);
+      const res = await userDetailService(username);
       if (res.status === 200) {
         setUserDetail(res?.data?.user);
       }
