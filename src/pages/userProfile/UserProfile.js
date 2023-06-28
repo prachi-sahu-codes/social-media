@@ -37,9 +37,13 @@ export const UserProfile = () => {
   return (
     <div className="w-full py-7 px-6 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-50">
       <img
-        src={userDetail.profileImage}
+        src={
+          userDetail.profileImage
+            ? userDetail.profileImage
+            : "https://i.imgur.com/qMW3Cze.png"
+        }
         alt="profile pic"
-        className="w-32 h-32 rounded-full -mb-20 mx-auto"
+        className="w-32 h-32 rounded-full -mb-20 mx-auto bg-white shadow-lg"
       />
 
       <div className="m-6 shadow-md bg-white rounded-lg p-6 pt-16 max-w-2xl mx-auto">
@@ -78,7 +82,7 @@ export const UserProfile = () => {
 
           <div>
             {isUserLoggedUser ? (
-              <button className="px-6 py-1 pb-0.15rem border-2 border-primary hover:opacity-90 active:opacity-80 text-primary text-lg rounded-lg shadow-md">
+              <button className="px-8 pt-0.15rem border-2 border-primary hover:opacity-90 active:opacity-80 text-primary text-lg rounded-lg shadow-md">
                 Edit
               </button>
             ) : (
@@ -86,7 +90,7 @@ export const UserProfile = () => {
                 {isFollowing ? (
                   <button
                     onClick={() => unfollowUser(findUserDetail?._id)}
-                    className="px-6 py-1 pb-0.15rem border-2 border-primary hover:opacity-90 active:opacity-80 text-primary text-lg rounded-lg shadow-md"
+                    className="px-4 pt-0.15rem border-2 border-primary hover:opacity-90 active:opacity-80 text-primary text-lg rounded-lg shadow-md"
                   >
                     Unfollow
                   </button>
