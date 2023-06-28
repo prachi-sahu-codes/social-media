@@ -8,6 +8,7 @@ import {
 import {
   postsService,
   createPostService,
+  editPostService,
   deletePostService,
   postDetailService,
   postByUsernameService,
@@ -23,12 +24,12 @@ const PostContext = createContext();
 export const PostProvider = ({ children }) => {
   const location = useLocation();
   const { token, notifyToast } = useAuth();
+  const [loading, setLoading] = useState(false);
   const [postData, setPostData] = useState([]);
   const [postDetail, setPostDetail] = useState([]);
   const [singleUserPosts, setSingleUserPosts] = useState([]);
-  const [loading, setLoading] = useState(false);
   const [activeSortBtn, setActiveSortBtn] = useState("latest");
-
+  const [showPopupPost, setShowPopupPost] = useState(false);
   const [newPostState, newPostDispatch] = useReducer(newPostReducerFunc, {
     content: "",
     contentImage: "",
@@ -114,6 +115,18 @@ export const PostProvider = ({ children }) => {
     }
   };
 
+  const editPost = async (postId, postData) => {
+    try {
+      const res = await editPostService(postId, postData, token);
+      if (res.status === 200 || res.status === 201) {
+        setPostData(() => res?.data?.posts);
+        notifyToast("success", "Post updated successfully!!");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const deletePost = async (postId) => {
     try {
       const res = await deletePostService(postId, token);
@@ -152,7 +165,10 @@ export const PostProvider = ({ children }) => {
         likePost,
         dislikePost,
         createPost,
+        editPost,
         deletePost,
+        showPopupPost,
+        setShowPopupPost,
       }}
     >
       {children}

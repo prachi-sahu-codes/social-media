@@ -2,6 +2,7 @@ import axios from "axios";
 
 import {
   POSTS_URL,
+  EDIT_POST_URL,
   POST_BY_USERNAME_URL,
   LIKE_POST_URL,
   DISLIKE_POST_URL,
@@ -15,6 +16,17 @@ export const postDetailService = (postId) =>
 export const createPostService = (postData, token) =>
   axios.post(
     POSTS_URL,
+    { postData },
+    {
+      headers: {
+        authorization: token,
+      },
+    }
+  );
+
+export const editPostService = (postId, postData, token) =>
+  axios.post(
+    `${EDIT_POST_URL}/${postId}`,
     { postData },
     {
       headers: {

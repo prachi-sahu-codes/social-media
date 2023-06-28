@@ -14,13 +14,20 @@ import { usePost } from "../../context/postContext/PostContext";
 import { useUser } from "../../context/userContext/UserContext";
 import { useNavigate } from "react-router";
 import ClickOutside from "../clickOutside/ClickOutside";
+import { PopupPost } from "../popupPost/PopupPost";
 
 export const PostCard = ({ post, noDetail }) => {
-  const { loggedUser, notifyToast } = useAuth();
-  const { deletePost, likePost, dislikePost } = usePost();
-  const { bookmarkPost, removeBookmark, bookmarkArr } = useUser();
   const navigate = useNavigate();
-
+  const { loggedUser, notifyToast } = useAuth();
+  const {
+    deletePost,
+    likePost,
+    dislikePost,
+    newPostDispatch,
+    showPopupPost,
+    setShowPopupPost,
+  } = usePost();
+  const { bookmarkPost, removeBookmark, bookmarkArr } = useUser();
   const [showModal, setShowModal] = useState(false);
 
   const checkUser = loggedUser?.username !== post?.username;
@@ -88,6 +95,16 @@ export const PostCard = ({ post, noDetail }) => {
                 <button
                   className="py-1 px-4 text-left rounded-md hover:text-blue-500 hover:bg-white active:bg-slate-50 w-full"
                   onClick={(e) => {
+                    setShowPopupPost((prev) => !prev);
+                    newPostDispatch({
+                      type: "EDIT_POST",
+                      payload: {
+                        content: post?.content,
+                        contentImage: post?.contentImage,
+                        profileImage: post?.profileImage,
+                      },
+                    });
+                    setShowModal(false);
                     e.stopPropagation();
                   }}
                 >
@@ -234,6 +251,8 @@ export const PostCard = ({ post, noDetail }) => {
         }}
         className="rounded-full bg-slate-50 w-full py-2 px-6 mt-5 border-2 border-bgColorLoad"
       />
+
+      {showPopupPost && <PopupPost post={post} />}
     </div>
   );
 };

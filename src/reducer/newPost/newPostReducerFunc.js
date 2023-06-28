@@ -11,6 +11,14 @@ export const newPostReducerFunc = (state, action) => {
       console.log(action.payload);
       return { ...state, contentImage: action.payload };
 
+    case "EDIT_POST":
+      console.log("edit");
+      return {
+        content: action.payload.content,
+        contentImage: action.payload?.contentImage,
+        profileImage: action.payload?.profileImage,
+      };
+
     case "CLEAR":
       return { content: "", contentImage: "", profileImage: "" };
 
