@@ -5,6 +5,7 @@ import { usePost } from "../../context/postContext/PostContext";
 import { PostCard } from "../../components/postCard/PostCard";
 import { useAuth } from "../../context/authContext/AuthContext";
 import { useState } from "react";
+import { ProfilePopup } from "../../components/profilePopup/ProfilePopup";
 
 export const UserProfile = () => {
   const { username } = useParams();
@@ -12,7 +13,7 @@ export const UserProfile = () => {
   const { userData, userDetail, getUserDetail, followUser, unfollowUser } =
     useUser();
   const { singleUserPosts, getPostByUsername } = usePost();
-
+  const [editModal, setEditModal] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
 
   const findUserDetail = userData?.find((user) => user.username === username);
@@ -82,7 +83,10 @@ export const UserProfile = () => {
 
           <div>
             {isUserLoggedUser ? (
-              <button className="px-8 pt-0.15rem border-2 border-primary hover:opacity-90 active:opacity-80 text-primary text-lg rounded-lg shadow-md">
+              <button
+                className="px-8 pt-0.15rem border-2 border-primary hover:opacity-90 active:opacity-80 text-primary text-lg rounded-lg shadow-md"
+                onClick={() => setEditModal((prev) => !prev)}
+              >
                 Edit
               </button>
             ) : (
@@ -116,6 +120,10 @@ export const UserProfile = () => {
             </li>
           ))}
       </ul>
+
+      {editModal && (
+        <ProfilePopup user={userDetail} setEditModal={setEditModal} />
+      )}
     </div>
   );
 };
