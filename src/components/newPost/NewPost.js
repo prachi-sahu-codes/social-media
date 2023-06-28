@@ -6,18 +6,17 @@ import Picker from "emoji-picker-react";
 import { usePost } from "../../context/postContext/PostContext";
 import { useAuth } from "../../context/authContext/AuthContext";
 import ClickOutside from "../clickOutside/ClickOutside";
+import { uploadMedia } from "./utils/uploadApi";
 
 export const NewPost = () => {
   const { newPostState, newPostDispatch, createPost } = usePost();
   const { loggedUser, notifyToast } = useAuth();
   const [media, setMedia] = useState(null);
   const [showEmojis, setShowEmojis] = useState(false);
-
+  const [loadingPost, setLoadingPost] = useState(false);
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    console.log(file);
     setMedia(file);
-    newPostDispatch({ type: "CONTENT_IMG", payload: file });
   };
 
   const onEmojiClick = (emojiObj) => {
@@ -25,14 +24,23 @@ export const NewPost = () => {
     newPostDispatch({ type: "ADD_EMOJI", payload: selectedEmoji });
   };
 
-  const addPostHandler = () => {
+  const addPostHandler = async () => {
     if (newPostState.content.length > 0) {
       newPostState.profileImage = loggedUser?.profileImage
         ? loggedUser?.profileImage
         : "https://i.imgur.com/qMW3Cze.png";
 
-      createPost(newPostState);
-      newPostDispatch({ type: "CLEAR" });
+      try {
+        setLoadingPost(true);
+        const response = await uploadMedia(media);
+        createPost({ ...newPostState, contentImage: response.url });
+        newPostDispatch({ type: "CLEAR" });
+        setMedia(null);
+      } catch (e) {
+        console.log(e);
+      } finally {
+        setLoadingPost(false);
+      }
     } else {
       notifyToast("error", "Please add content to post!");
     }
@@ -40,7 +48,7 @@ export const NewPost = () => {
 
   return (
     <div className="flex flex-col gap-4 max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6 ">
-      <div className="flex gap-3" onClick={() => setShowEmojis(false)}>
+      <div className="flex gap-3">
         {loggedUser?.profileImage ? (
           <img
             src={loggedUser?.profileImage}
@@ -126,8 +134,9 @@ export const NewPost = () => {
         <button
           className="w-24 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full shadow-md"
           onClick={() => addPostHandler()}
+          disabled={loadingPost}
         >
-          Post
+          {loadingPost ? "Posting..." : "Post"}
         </button>
       </div>
     </div>

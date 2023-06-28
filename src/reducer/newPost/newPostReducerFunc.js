@@ -8,6 +8,7 @@ export const newPostReducerFunc = (state, action) => {
       return { ...state, content: updatedContent };
 
     case "CONTENT_IMG":
+      console.log(action.payload);
       return { ...state, contentImage: action.payload };
 
     case "CLEAR":
