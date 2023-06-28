@@ -30,7 +30,7 @@ export const UserProfile = () => {
   useEffect(() => {
     getPostByUsername(username);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [username]);
 
   const isUserLoggedUser = loggedUser.username === username;
 
