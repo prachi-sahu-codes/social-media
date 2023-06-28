@@ -71,7 +71,7 @@ export const PopupPost = ({ post, setShowPopupPost }) => {
 
   return (
     <div
-      className="fixed top-0 left-0 z-50 w-full h-full bg-bgColorLoad"
+      className="fixed top-0 left-0 z-50 w-full h-full bg-bgModal"
       onClick={(e) => e.stopPropagation()}
     >
       <div className="absolute position-center">
@@ -82,9 +82,9 @@ export const PopupPost = ({ post, setShowPopupPost }) => {
               newPostDispatch({ type: "CLEAR" });
               setMedia(null);
             }}
-            className="absolute -top-3 -right-3"
+            className="absolute -top-2 -right-2"
           >
-            <MdCancel className="w-8 h-8 fill-primary bg-slate-50 rounded-full" />
+            <MdCancel className="w-7 h-7 fill-primary bg-slate-50 rounded-full" />
           </div>
           <div className="flex gap-3">
             {loggedUser?.profileImage ? (

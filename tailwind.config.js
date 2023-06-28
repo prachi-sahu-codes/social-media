@@ -42,6 +42,7 @@ module.exports = {
         lightGray: "#cfcfcf",
         mediumGray: "#979797",
         bgColorLoad: "#e2e2e2c4",
+        bgModal: "#54545488",
       },
 
       spacing: {
