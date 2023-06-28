@@ -29,7 +29,6 @@ export const PostProvider = ({ children }) => {
   const [postDetail, setPostDetail] = useState([]);
   const [singleUserPosts, setSingleUserPosts] = useState([]);
   const [activeSortBtn, setActiveSortBtn] = useState("latest");
-  const [showPopupPost, setShowPopupPost] = useState(false);
   const [newPostState, newPostDispatch] = useReducer(newPostReducerFunc, {
     content: "",
     contentImage: "",
@@ -167,8 +166,6 @@ export const PostProvider = ({ children }) => {
         createPost,
         editPost,
         deletePost,
-        showPopupPost,
-        setShowPopupPost,
       }}
     >
       {children}

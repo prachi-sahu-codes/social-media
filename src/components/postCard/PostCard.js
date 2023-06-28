@@ -19,16 +19,10 @@ import { PopupPost } from "../popupPost/PopupPost";
 export const PostCard = ({ post, noDetail }) => {
   const navigate = useNavigate();
   const { loggedUser, notifyToast } = useAuth();
-  const {
-    deletePost,
-    likePost,
-    dislikePost,
-    newPostDispatch,
-    showPopupPost,
-    setShowPopupPost,
-  } = usePost();
+  const { deletePost, likePost, dislikePost, newPostDispatch } = usePost();
   const { bookmarkPost, removeBookmark, bookmarkArr } = useUser();
   const [showModal, setShowModal] = useState(false);
+  const [showPopupPost, setShowPopupPost] = useState(false);
 
   const checkUser = loggedUser?.username !== post?.username;
 
@@ -252,7 +246,9 @@ export const PostCard = ({ post, noDetail }) => {
         className="rounded-full bg-slate-50 w-full py-2 px-6 mt-5 border-2 border-bgColorLoad"
       />
 
-      {showPopupPost && <PopupPost post={post} />}
+      {showPopupPost && (
+        <PopupPost post={post} setShowPopupPost={setShowPopupPost} />
+      )}
     </div>
   );
 };

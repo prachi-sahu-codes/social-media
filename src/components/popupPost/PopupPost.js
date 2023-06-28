@@ -8,14 +8,8 @@ import { useAuth } from "../../context/authContext/AuthContext";
 import ClickOutside from "../clickOutside/ClickOutside";
 import { uploadMedia } from "../newPost/utils/uploadApi";
 
-export const PopupPost = ({ post }) => {
-  const {
-    newPostState,
-    newPostDispatch,
-    createPost,
-    editPost,
-    setShowPopupPost,
-  } = usePost();
+export const PopupPost = ({ post, setShowPopupPost }) => {
+  const { newPostState, newPostDispatch, createPost, editPost } = usePost();
   const { loggedUser, notifyToast } = useAuth();
   const [media, setMedia] = useState(null);
   const [showEmojis, setShowEmojis] = useState(false);
@@ -31,8 +25,6 @@ export const PopupPost = ({ post }) => {
     newPostDispatch({ type: "ADD_EMOJI", payload: selectedEmoji });
   };
 
-  //   console.log(post);
-
   const addPostHandler = async () => {
     console.log(newPostState);
     if (newPostState.content.length > 0) {
@@ -41,8 +33,8 @@ export const PopupPost = ({ post }) => {
         : "https://i.imgur.com/qMW3Cze.png";
 
       try {
-        //
         if (post) {
+          console.log("ID", post._id);
           if (media) {
             console.log("edit media");
             setLoadingPost(true);
@@ -64,7 +56,6 @@ export const PopupPost = ({ post }) => {
           newPostDispatch({ type: "CLEAR" });
           setMedia(null);
         }
-        //
       } catch (e) {
         console.log(e);
       } finally {
@@ -75,12 +66,22 @@ export const PopupPost = ({ post }) => {
       notifyToast("error", "Please add content to post!");
     }
   };
+
+  console.log(post);
+
   return (
-    <div className="fixed top-0 left-0 z-50 w-full h-full bg-bgColorLoad">
+    <div
+      className="fixed top-0 left-0 z-50 w-full h-full bg-bgColorLoad"
+      onClick={(e) => e.stopPropagation()}
+    >
       <div className="absolute position-center">
         <div className="relative flex flex-col gap-4 max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6 ">
           <div
-            onClick={() => setShowPopupPost(false)}
+            onClick={() => {
+              setShowPopupPost(false);
+              newPostDispatch({ type: "CLEAR" });
+              setMedia(null);
+            }}
             className="absolute -top-3 -right-3"
           >
             <MdCancel className="w-8 h-8 fill-primary bg-slate-50 rounded-full" />
@@ -110,6 +111,27 @@ export const PopupPost = ({ post }) => {
                 e.stopPropagation();
               }}
             ></textarea>
+          </div>
+
+          <div>
+            {newPostState.contentImage && (
+              <div className="relative">
+                <img
+                  src={newPostState.contentImage}
+                  alt="post pic"
+                  className="w-28"
+                />
+
+                <div
+                  onClick={() =>
+                    newPostDispatch({ type: "CONTENT_IMG", payload: null })
+                  }
+                  className="absolute -top-2 left-24"
+                >
+                  <MdCancel className="w-6 h-6 fill-primary bg-slate-50 rounded-full" />
+                </div>
+              </div>
+            )}
           </div>
 
           <div>
