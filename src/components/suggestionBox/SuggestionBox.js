@@ -3,11 +3,13 @@ import { useUser } from "../../context/userContext/UserContext";
 import { useAuth } from "../../context/authContext/AuthContext";
 import { usePost } from "../../context/postContext/PostContext";
 import { lightGray, lightActive, fireGray, fireActive } from "../../assets";
+import { useNavigate } from "react-router";
+
 export const SuggestionBox = () => {
+  const navigate = useNavigate();
   const { userData, followUser } = useUser();
   const { loggedUser } = useAuth();
   const { activeSortBtn, setActiveSortBtn } = usePost();
-
   const [suggestionsArr, setSuggestionsArr] = useState([]);
 
   useEffect(() => {
@@ -93,6 +95,9 @@ export const SuggestionBox = () => {
                     src={profileImage}
                     alt="profile pic"
                     className="w-10 h-10 rounded-full border-2 border-solid border-primary cursor-pointer"
+                    onClick={() => {
+                      navigate(`/users/${username}`);
+                    }}
                   />
                   <div>
                     <p className=" text-sm cursor-pointer">{fullname}</p>

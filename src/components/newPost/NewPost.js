@@ -14,6 +14,7 @@ export const NewPost = () => {
   const [media, setMedia] = useState(null);
   const [showEmojis, setShowEmojis] = useState(false);
   const [loadingPost, setLoadingPost] = useState(false);
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     setMedia(file);

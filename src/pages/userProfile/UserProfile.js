@@ -18,14 +18,14 @@ export const UserProfile = () => {
   const findUserDetail = userData?.find((user) => user.username === username);
 
   useEffect(() => {
-    getUserDetail(findUserDetail?._id);
+    getUserDetail(username);
 
     const followUpdate = !!findUserDetail?.followers?.find(
       (user) => user?.username === loggedUser?.username
     );
     setIsFollowing(() => followUpdate);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [findUserDetail, loggedUser]);
+  }, [findUserDetail, loggedUser, username, userData]);
 
   useEffect(() => {
     getPostByUsername(username);

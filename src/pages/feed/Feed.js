@@ -29,7 +29,7 @@ export const Feed = () => {
     setFilterLoggedUserPost(() => filteredPost);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [postData]);
+  }, [postData, userData]);
 
   const sortedFeedData =
     activeSortBtn === "latest"
