@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 
 export const SuggestionBox = () => {
   const navigate = useNavigate();
-  const { userData, followUser } = useUser();
+  const { userData, userDetail, followUser } = useUser();
   const { loggedUser } = useAuth();
   const { activeSortBtn, setActiveSortBtn } = usePost();
   const [suggestionsArr, setSuggestionsArr] = useState([]);
@@ -28,7 +28,7 @@ export const SuggestionBox = () => {
     setSuggestionsArr(() => updatedSuggestions);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [userData]);
+  }, [userData, userDetail]);
 
   const checkPath = window.location.pathname === "/feed";
 

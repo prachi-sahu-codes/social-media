@@ -13,6 +13,7 @@ export const UserProfile = () => {
   const { loggedUser } = useAuth();
   const { userData, userDetail, getUserDetail, followUser, unfollowUser } =
     useUser();
+
   const { postData, singleUserPosts, getPostByUsername } = usePost();
   const [editModal, setEditModal] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
@@ -26,18 +27,13 @@ export const UserProfile = () => {
 
   useEffect(() => {
     getUserDetail(username);
-
+    getPostByUsername(username);
     const followUpdate = !!findUserDetail?.followers?.find(
       (user) => user?.username === loggedUser?.username
     );
     setIsFollowing(() => followUpdate);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [findUserDetail, loggedUser, username, userData]);
-
-  useEffect(() => {
-    getPostByUsername(username);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [username, postData]);
+  }, [findUserDetail, loggedUser, username, userData, postData]);
 
   const isUserLoggedUser = loggedUser.username === username;
 

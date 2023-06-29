@@ -27,8 +27,6 @@ export const ProfileModal = ({ user, setEditModal }) => {
     setFormDetails((prev) => ({ ...prev, bio: event.target.value }));
   };
 
-  console.log(typeof formDetails.profileImage);
-
   return (
     <div
       className="fixed top-0 left-0 z-50 w-full h-full bg-bgModal"

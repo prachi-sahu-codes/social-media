@@ -15,7 +15,7 @@ import {
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const { token } = useAuth();
+  const { token, setLoggedUser } = useAuth();
   const { setLoading } = usePost();
   const [userData, setUserData] = useState([]);
   const [userDetail, setUserDetail] = useState({});
@@ -52,11 +52,17 @@ export const UserProvider = ({ children }) => {
     }
   };
 
-  const editProfile = async (userData) => {
+  const editProfile = async (data) => {
     try {
-      const res = await editProfileService(userData, token);
+      const res = await editProfileService(data, token);
       if (res.status === 201) {
         setUserDetail(res?.data?.user);
+        setLoggedUser(res?.data?.user);
+
+        const updatedData = userData?.map((user) =>
+          user._id === res?.data?.user._id ? res?.data?.user : user
+        );
+        setUserData(updatedData);
       }
     } catch (err) {
       console.log(err);
