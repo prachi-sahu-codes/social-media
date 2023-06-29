@@ -1,16 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import { MdLogout } from "react-icons/md";
 import { useUser } from "../../context/userContext/UserContext";
 import { usePost } from "../../context/postContext/PostContext";
 import { PostCard } from "../../components/postCard/PostCard";
 import { useAuth } from "../../context/authContext/AuthContext";
-import { useState } from "react";
 import { ProfileModal } from "../../components/profileModal/ProfileModal";
 import { FollowModal } from "../../components/followModal/FollowModal";
 
 export const UserProfile = () => {
   const { username } = useParams();
-  const { loggedUser } = useAuth();
+  const { loggedUser, logoutHandler } = useAuth();
   const { userData, userDetail, getUserDetail, followUser, unfollowUser } =
     useUser();
 
@@ -51,7 +51,18 @@ export const UserProfile = () => {
 
       <div className="m-6 shadow-md bg-white rounded-lg p-6 pt-16 max-w-2xl mx-auto">
         <div className="text-center p-4">
-          <p className="text-lg font-bold">{userDetail.fullname}</p>
+          <div className="flex items-center justify-center">
+            <p className="text-lg font-bold">{userDetail.fullname}</p>
+            <div className="sm670:hidden text-lg py-1 hover:opacity-80 active:opacity-50 rounded-md">
+              <div
+                onClick={() => logoutHandler()}
+                className="font-semibold text-lg ml-2"
+              >
+                <MdLogout />
+              </div>
+            </div>
+          </div>
+
           <p className="text-sm font-semibold text-primary">
             @{userDetail.username}
           </p>

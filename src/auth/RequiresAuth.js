@@ -4,6 +4,7 @@ import { useAuth } from "../context/authContext/AuthContext";
 import { Navbar } from "../components/navbar/Navbar";
 import { NavigationBox } from "../components/navigationBox/NavigationBox";
 import { SuggestionBox } from "../components/suggestionBox/SuggestionBox";
+import { BottomNavigation } from "../components/bottomNavigation/BottomNavigation";
 
 export const RequiresAuth = ({ children }) => {
   const { token } = useAuth();
@@ -16,6 +17,7 @@ export const RequiresAuth = ({ children }) => {
         {children}
         <SuggestionBox />
       </div>
+      <BottomNavigation />
     </>
   ) : (
     <Navigate to="/login" state={{ from: location?.pathname }} replace />

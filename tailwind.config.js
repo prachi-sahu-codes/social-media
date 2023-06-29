@@ -10,11 +10,15 @@ module.exports = {
 
       sm570: "570px",
 
+      sm670: "670px",
+
       sm: "640px",
 
       md: "768px",
 
       md840: "840px",
+
+      md900: "900px",
 
       md970: "970px",
 
