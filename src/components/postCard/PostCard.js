@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import {
   FaRegHeart,
@@ -20,10 +20,10 @@ export const PostCard = ({ post, noDetail }) => {
   const navigate = useNavigate();
   const { loggedUser, notifyToast } = useAuth();
   const { deletePost, likePost, dislikePost, newPostDispatch } = usePost();
-  const { bookmarkPost, removeBookmark, bookmarkArr } = useUser();
+  const { userData, bookmarkPost, removeBookmark, bookmarkArr } = useUser();
   const [showModal, setShowModal] = useState(false);
   const [showPopupPost, setShowPopupPost] = useState(false);
-
+  const [user, setUser] = useState({});
   const checkUser = loggedUser?.username !== post?.username;
 
   const formattedDate = moment(post?.createdAt).format("ddd MMM DD YYYY");
@@ -45,6 +45,13 @@ export const PostCard = ({ post, noDetail }) => {
     );
   };
 
+  useEffect(() => {
+    const findUsername = userData?.find(
+      (user) => user.username === post.username
+    );
+    setUser(findUsername);
+  }, [post, userData]);
+
   return (
     <div
       className="m-6 shadow-md bg-white rounded-lg p-6 max-w-2xl mx-auto"
@@ -59,12 +66,12 @@ export const PostCard = ({ post, noDetail }) => {
           }}
         >
           <img
-            src={post?.profileImage}
+            src={user?.profileImage}
             alt="profile pic"
             className="w-12 h-12 rounded-full border-2 border-solid border-primary cursor-pointer"
           />
           <div>
-            <p className="font-semibold cursor-pointer">{post?.username}</p>
+            <p className="font-semibold cursor-pointer">{user?.username}</p>
             <p className="text-xs text-gray">{formattedDate}</p>
           </div>
         </div>
