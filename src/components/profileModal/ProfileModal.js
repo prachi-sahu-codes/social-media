@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { MdCancel } from "react-icons/md";
 import { BsFillCameraFill } from "react-icons/bs";
 import { useUser } from "../../context/userContext/UserContext";
+import { Avatar } from "./component/Avatar";
 
 export const ProfileModal = ({ user, setEditModal }) => {
   const { editProfile } = useUser();
@@ -11,13 +12,12 @@ export const ProfileModal = ({ user, setEditModal }) => {
     bio: user.bio,
     websiteLink: user.websiteLink,
   });
+  const [showAvatar, setShowAvatar] = useState(false);
 
   const updateHandler = () => {
     editProfile(formDetails);
     setEditModal(false);
   };
-
-  console.log(formDetails);
 
   const handleChange = (event) => {
     const { value } = event.target;
@@ -26,6 +26,8 @@ export const ProfileModal = ({ user, setEditModal }) => {
     }
     setFormDetails((prev) => ({ ...prev, bio: event.target.value }));
   };
+
+  console.log(typeof formDetails.profileImage);
 
   return (
     <div
@@ -46,11 +48,12 @@ export const ProfileModal = ({ user, setEditModal }) => {
           <img
             src={
               formDetails.profileImage
-                ? user.profileImage
+                ? formDetails.profileImage
                 : "https://i.imgur.com/qMW3Cze.png"
             }
             alt="profile pic"
-            className="w-24 h-24 rounded-full mx-auto bg-white  border-2 border-primary"
+            className="w-24 h-24 rounded-full mx-auto bg-white border-2 border-primary"
+            onClick={() => setShowAvatar((prev) => !prev)}
           />
           <div className="bg-white rounded-full absolute bottom-0 border-2 border-primary right-24">
             <BsFillCameraFill className="fill-primary text-md m-1 " />
@@ -103,6 +106,9 @@ export const ProfileModal = ({ user, setEditModal }) => {
           </button>
         </div>
       </div>
+      {showAvatar && (
+        <Avatar setShowAvatar={setShowAvatar} setFormDetails={setFormDetails} />
+      )}
     </div>
   );
 };
