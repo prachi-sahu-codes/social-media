@@ -6,6 +6,7 @@ import { PostCard } from "../../components/postCard/PostCard";
 import { useAuth } from "../../context/authContext/AuthContext";
 import { useState } from "react";
 import { ProfileModal } from "../../components/profileModal/ProfileModal";
+import { FollowModal } from "../../components/followModal/FollowModal";
 
 export const UserProfile = () => {
   const { username } = useParams();
@@ -15,6 +16,11 @@ export const UserProfile = () => {
   const { postData, singleUserPosts, getPostByUsername } = usePost();
   const [editModal, setEditModal] = useState(false);
   const [isFollowing, setIsFollowing] = useState(false);
+  const [showfollowModal, setShowFollowModal] = useState(false);
+  const [followModal, setFollowModal] = useState({
+    title: "",
+    arr: [],
+  });
 
   const findUserDetail = userData?.find((user) => user.username === username);
 
@@ -59,13 +65,34 @@ export const UserProfile = () => {
             <p className="text-xs font-bold uppercase text-mediumGray">Post</p>
             <p>{singleUserPosts?.length}</p>
           </div>
-          <div className="w-full text-center">
+          <div
+            className="w-full text-center"
+            onClick={() => {
+              setShowFollowModal((prev) => !prev);
+              setFollowModal((prev) => ({
+                ...prev,
+                title: "Followers",
+                arr: userDetail?.followers,
+              }));
+            }}
+          >
             <p className="text-xs font-bold uppercase text-mediumGray">
               Followers
             </p>
             <p>{userDetail?.followers?.length}</p>
           </div>
-          <div className="w-full text-center">
+
+          <div
+            className="w-full text-center"
+            onClick={() => {
+              setShowFollowModal((prev) => !prev);
+              setFollowModal((prev) => ({
+                ...prev,
+                title: "Followings",
+                arr: userDetail?.following,
+              }));
+            }}
+          >
             <p className="text-xs font-bold uppercase text-mediumGray">
               Followings
             </p>
@@ -120,6 +147,13 @@ export const UserProfile = () => {
             </li>
           ))}
       </ul>
+
+      {showfollowModal && (
+        <FollowModal
+          followModal={followModal}
+          setShowFollowModal={setShowFollowModal}
+        />
+      )}
 
       {editModal && (
         <ProfileModal user={userDetail} setEditModal={setEditModal} />
