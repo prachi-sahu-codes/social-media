@@ -7,6 +7,7 @@ export const LOGIN_URL = `${baseURL}/auth/login`;
 //users URL
 
 export const USERS_URL = `${baseURL}/users`;
+export const EDIT_USER_URL = `${baseURL}/users/edit`;
 
 // post URL
 

@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import { MdCancel } from "react-icons/md";
 import { BsFillCameraFill } from "react-icons/bs";
+import { useUser } from "../../context/userContext/UserContext";
 
 export const ProfilePopup = ({ user, setEditModal }) => {
+  const { editProfile } = useUser();
   const [formDetails, setFormDetails] = useState({
     fullname: user.fullname,
     profileImage: user.profileImage,
     bio: user.bio,
     websiteLink: user.websiteLink,
   });
+
+  const updateHandler = () => {
+    editProfile(formDetails);
+    setEditModal(false);
+  };
 
   console.log(formDetails);
 
@@ -17,6 +24,7 @@ export const ProfilePopup = ({ user, setEditModal }) => {
     if (value.length <= 150) {
       setFormDetails((prev) => ({ ...prev, bio: value }));
     }
+    setFormDetails((prev) => ({ ...prev, bio: event.target.value }));
   };
 
   return (
@@ -24,7 +32,6 @@ export const ProfilePopup = ({ user, setEditModal }) => {
       className="fixed top-0 left-0 z-50 w-full h-full bg-bgModal"
       onClick={(e) => e.stopPropagation()}
     >
-      {" "}
       <div className="absolute p-6 position-center w-80 bg-white rounded-lg">
         <div
           onClick={() => setEditModal(false)}
@@ -57,6 +64,9 @@ export const ProfilePopup = ({ user, setEditModal }) => {
           type="text"
           id="fullname"
           value={formDetails.fullname}
+          onChange={(e) =>
+            setFormDetails((prev) => ({ ...prev, fullname: e.target.value }))
+          }
           className="block border-2 border-lightGray mb-3 w-full rounded-md p-1 px-3"
         />
 
@@ -78,12 +88,18 @@ export const ProfilePopup = ({ user, setEditModal }) => {
           type="text"
           id="website"
           value={formDetails.websiteLink}
+          onChange={(e) =>
+            setFormDetails((prev) => ({ ...prev, websiteLink: e.target.value }))
+          }
           className="block border-2 border-lightGray mb-5 w-full rounded-md p-1 px-3"
         />
 
         <div className="text-right">
-          <button className="w-24 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full shadow-md">
-            Save
+          <button
+            className="w-24 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full shadow-md"
+            onClick={updateHandler}
+          >
+            Update
           </button>
         </div>
       </div>

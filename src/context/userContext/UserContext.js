@@ -4,6 +4,7 @@ import { useAuth } from "../authContext/AuthContext";
 import {
   usersService,
   userDetailService,
+  editProfileService,
   getBookmarksService,
   bookmarkService,
   removeBookmarkService,
@@ -48,6 +49,17 @@ export const UserProvider = ({ children }) => {
       }
     } catch (e) {
       console.log("Error:", e?.message);
+    }
+  };
+
+  const editProfile = async (userData) => {
+    try {
+      const res = await editProfileService(userData, token);
+      if (res.status === 201) {
+        setUserDetail(res?.data?.user);
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -130,6 +142,7 @@ export const UserProvider = ({ children }) => {
       value={{
         userData,
         userDetail,
+        editProfile,
         getUserDetail,
         bookmarkPost,
         removeBookmark,

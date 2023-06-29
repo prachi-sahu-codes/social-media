@@ -2,6 +2,7 @@ import axios from "axios";
 
 import {
   USERS_URL,
+  EDIT_USER_URL,
   BOOKMARK_URL,
   REMOVE_BOOKMARK_URL,
   FOLLOW_URL,
@@ -12,6 +13,13 @@ export const usersService = () => axios.get(USERS_URL);
 
 export const userDetailService = (username) =>
   axios.get(`${USERS_URL}/${username}`);
+
+export const editProfileService = (userData, token) =>
+  axios.post(
+    EDIT_USER_URL,
+    { userData },
+    { headers: { authorization: token } }
+  );
 
 export const getBookmarksService = (token) =>
   axios.get(BOOKMARK_URL, {
