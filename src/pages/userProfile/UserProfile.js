@@ -5,7 +5,7 @@ import { usePost } from "../../context/postContext/PostContext";
 import { PostCard } from "../../components/postCard/PostCard";
 import { useAuth } from "../../context/authContext/AuthContext";
 import { useState } from "react";
-import { ProfilePopup } from "../../components/profilePopup/ProfilePopup";
+import { ProfileModal } from "../../components/profileModal/ProfileModal";
 
 export const UserProfile = () => {
   const { username } = useParams();
@@ -122,7 +122,7 @@ export const UserProfile = () => {
       </ul>
 
       {editModal && (
-        <ProfilePopup user={userDetail} setEditModal={setEditModal} />
+        <ProfileModal user={userDetail} setEditModal={setEditModal} />
       )}
     </div>
   );

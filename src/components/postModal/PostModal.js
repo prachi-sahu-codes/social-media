@@ -8,7 +8,7 @@ import { useAuth } from "../../context/authContext/AuthContext";
 import ClickOutside from "../clickOutside/ClickOutside";
 import { uploadMedia } from "../newPost/utils/uploadApi";
 
-export const PopupPost = ({ post, setShowPopupPost }) => {
+export const PostModal = ({ post, setShowPopupPost }) => {
   const { newPostState, newPostDispatch, createPost, editPost } = usePost();
   const { loggedUser, notifyToast } = useAuth();
   const [media, setMedia] = useState(null);

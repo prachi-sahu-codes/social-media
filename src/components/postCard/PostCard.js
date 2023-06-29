@@ -14,7 +14,7 @@ import { usePost } from "../../context/postContext/PostContext";
 import { useUser } from "../../context/userContext/UserContext";
 import { useNavigate } from "react-router";
 import ClickOutside from "../clickOutside/ClickOutside";
-import { PopupPost } from "../popupPost/PopupPost";
+import { PostModal } from "../postModal/PostModal";
 
 export const PostCard = ({ post, noDetail }) => {
   const navigate = useNavigate();
@@ -247,7 +247,7 @@ export const PostCard = ({ post, noDetail }) => {
       />
 
       {showPopupPost && (
-        <PopupPost post={post} setShowPopupPost={setShowPopupPost} />
+        <PostModal post={post} setShowPopupPost={setShowPopupPost} />
       )}
     </div>
   );

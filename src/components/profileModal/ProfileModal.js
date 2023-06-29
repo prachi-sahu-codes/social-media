@@ -3,7 +3,7 @@ import { MdCancel } from "react-icons/md";
 import { BsFillCameraFill } from "react-icons/bs";
 import { useUser } from "../../context/userContext/UserContext";
 
-export const ProfilePopup = ({ user, setEditModal }) => {
+export const ProfileModal = ({ user, setEditModal }) => {
   const { editProfile } = useUser();
   const [formDetails, setFormDetails] = useState({
     fullname: user.fullname,
