@@ -15,6 +15,8 @@ export { default as lightActive } from "./icons/lightActive.png";
 export { default as fireGray } from "./icons/fireGray.png";
 export { default as fireActive } from "./icons/fireActive.png";
 export { default as createBlack } from "./icons/createBlack.png";
+export { default as plusGray } from "./icons/plusGray.png";
+export { default as plusBlack } from "./icons/plusBlack.png";
 export { default as logout } from "./icons/logout.png";
 export { default as logoutBlack } from "./icons/logoutBlack.png";
 

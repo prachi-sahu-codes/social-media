@@ -3,14 +3,14 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext/AuthContext";
 import {
   homeActive,
-  homeGray,
+  homeBlack,
   exploreActive,
-  exploreGray,
+  exploreBlack,
   bookmarkActive,
-  bookmarkGray,
+  bookmarkBlack,
   heartActive,
-  heartGray,
-  createBlack,
+  heartBlack,
+  plusBlack,
 } from "../../assets";
 import { PostModal } from "../postModal/PostModal";
 
@@ -30,9 +30,9 @@ export const BottomNavigation = () => {
       <NavLink to="/feed">
         <div className="hover:opacity-80 active:opacity-50">
           {newActiveLink === "/feed" ? (
-            <img src={homeActive} className="w-6 h-6" alt="icon" />
+            <img src={homeActive} className="w-7 h-7" alt="icon" />
           ) : (
-            <img src={homeGray} className="w-6 h-6" alt="icon" />
+            <img src={homeBlack} className="w-6 h-6" alt="icon" />
           )}
         </div>
       </NavLink>
@@ -40,18 +40,18 @@ export const BottomNavigation = () => {
       <NavLink to="/explore">
         <div className="hover:opacity-80 active:opacity-50">
           {newActiveLink === "/explore" ? (
-            <img src={exploreActive} className="w-6 h-6" alt="icon" />
+            <img src={exploreActive} className="w-7 h-7" alt="icon" />
           ) : (
-            <img src={exploreGray} className="w-5 h-5 " alt="icon" />
+            <img src={exploreBlack} className="w-5 h-5 " alt="icon" />
           )}
         </div>
       </NavLink>
 
       <div
-        className=" text-secondary"
+        className="border-2 border-black rounded-md text-secondary"
         onClick={() => setNewPostModal((prev) => !prev)}
       >
-        <img src={createBlack} className="w-5 h-5" alt="icon" />
+        <img src={plusBlack} className="w-4 h-4" alt="icon" />
       </div>
       {newPostModal && <PostModal setShowPopupPost={setNewPostModal} />}
 
@@ -60,7 +60,7 @@ export const BottomNavigation = () => {
           {newActiveLink === "/bookmark" ? (
             <img src={bookmarkActive} className="w-6 h-6" alt="icon" />
           ) : (
-            <img src={bookmarkGray} className="w-6 h-6" alt="icon" />
+            <img src={bookmarkBlack} className="w-5 h-5" alt="icon" />
           )}
         </div>
       </NavLink>
@@ -68,9 +68,9 @@ export const BottomNavigation = () => {
       <NavLink to="/favourite">
         <div className="hover:opacity-80 active:opacity-50">
           {newActiveLink === "/favourite" ? (
-            <img src={heartActive} className="w-6 h-6" alt="icon" />
+            <img src={heartActive} className="w-7 h-7" alt="icon" />
           ) : (
-            <img src={heartGray} className="w-6 h-6" alt="icon" />
+            <img src={heartBlack} className="w-6 h-6" alt="icon" />
           )}
         </div>
       </NavLink>
