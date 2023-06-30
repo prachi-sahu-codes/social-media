@@ -8,6 +8,7 @@ import {
   FaRegBookmark,
 } from "react-icons/fa";
 import { HiOutlineShare } from "react-icons/hi";
+import { BsFillSendFill } from "react-icons/bs";
 import moment from "moment";
 import { useAuth } from "../../context/authContext/AuthContext";
 import { usePost } from "../../context/postContext/PostContext";
@@ -15,15 +16,18 @@ import { useUser } from "../../context/userContext/UserContext";
 import { useNavigate } from "react-router";
 import ClickOutside from "../clickOutside/ClickOutside";
 import { PostModal } from "../postModal/PostModal";
+import { useComment } from "../../context/commentContext/CommentContext";
 
 export const PostCard = ({ post, noDetail }) => {
   const navigate = useNavigate();
   const { loggedUser, notifyToast } = useAuth();
   const { deletePost, likePost, dislikePost, newPostDispatch } = usePost();
   const { userData, bookmarkPost, removeBookmark, bookmarkArr } = useUser();
+  const { newComment, setNewComment, addComment } = useComment();
   const [showModal, setShowModal] = useState(false);
   const [showPopupPost, setShowPopupPost] = useState(false);
   const [user, setUser] = useState({});
+
   const checkUser = loggedUser?.username !== post?.username;
 
   const formattedDate = moment(post?.createdAt).format("ddd MMM DD YYYY");
@@ -181,7 +185,6 @@ export const PostCard = ({ post, noDetail }) => {
           className="flex gap-2 cursor-pointer"
           onClick={(e) => {
             setShowModal(() => false);
-            e.stopPropagation();
           }}
         >
           <FaRegComment />
@@ -256,14 +259,26 @@ export const PostCard = ({ post, noDetail }) => {
         </div>
       )}
 
-      <input
-        type="text"
-        placeholder="Write your comment..."
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-        className="rounded-full bg-slate-50 w-full py-2 px-6 mt-5 border-2 border-bgColorLoad"
-      />
+      <div className="flex rounded-full border-2 border-bgColorLoad bg-slate-50 w-full mt-5 pl-6">
+        <input
+          type="text"
+          placeholder="Write your comment..."
+          onChange={(e) => {
+            setNewComment((prev) => ({ ...prev, text: e.target.value }));
+            e.stopPropagation();
+          }}
+          className="w-full py-2 bg-slate-50 outline-none"
+        />
+        <button
+          className="font-semibold text-lg bg-white px-4 hover:opacity-80 rounded-r-full"
+          onClick={() => {
+            newComment.text.length > 0 && addComment(post._id, newComment);
+            setNewComment({ text: "" });
+          }}
+        >
+          <BsFillSendFill className="rotate-45 fill-primary" />
+        </button>
+      </div>
 
       {showPopupPost && (
         <PostModal post={post} setShowPopupPost={setShowPopupPost} />
