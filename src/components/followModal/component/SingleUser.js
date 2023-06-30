@@ -26,7 +26,11 @@ export const SingleUser = ({ user, setShowFollowModal }) => {
   return (
     <div className="flex gap-3 items-center">
       <img
-        src={followUser.profileImage}
+        src={
+          followUser.profileImage !== ""
+            ? followUser.profileImage
+            : "https://i.imgur.com/qMW3Cze.png"
+        }
         alt="profile pic"
         className="w-10 h-10 rounded-full border-2 border-solid border-primary cursor-pointer"
         onClick={() => {
