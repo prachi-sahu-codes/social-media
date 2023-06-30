@@ -1,9 +1,8 @@
 import React from "react";
 import { MdCancel } from "react-icons/md";
-import { useNavigate } from "react-router";
+import { SingleUser } from "./component/SingleUser";
 
 export const FollowModal = ({ followModal, setShowFollowModal }) => {
-  const navigate = useNavigate();
   return (
     <div className="fixed top-0 left-0 z-50 w-full h-full bg-bgModal">
       <div className="absolute position-center">
@@ -18,34 +17,21 @@ export const FollowModal = ({ followModal, setShowFollowModal }) => {
           <hr className="text-lightGray" />
           {followModal?.arr.length > 0 ? (
             <ul>
-              {followModal?.arr.map(
-                ({ _id, profileImage, fullname, username }) => (
-                  <li
-                    key={_id}
-                    className="flex gap-3 justify-between items-center mb-5 w-60 pr-2"
-                  >
-                    <div className="flex gap-3 items-center">
-                      <img
-                        src={profileImage}
-                        alt="profile pic"
-                        className="w-10 h-10 rounded-full border-2 border-solid border-primary cursor-pointer"
-                        onClick={() => {
-                          navigate(`/users/${username}`);
-                          setShowFollowModal(false);
-                        }}
-                      />
-                      <div>
-                        <p className=" text-sm cursor-pointer">{fullname}</p>
-                        <p className="text-xs text-gray">@{username}</p>
-                      </div>
-                    </div>
-                  </li>
-                )
-              )}
+              {followModal?.arr.map((user) => (
+                <li
+                  key={user._id}
+                  className="flex gap-3 justify-between items-center mb-5 w-60 pr-2"
+                >
+                  <SingleUser
+                    user={user}
+                    setShowFollowModal={setShowFollowModal}
+                  />
+                </li>
+              ))}
             </ul>
           ) : (
             <div>No {followModal?.title} yet</div>
-          )}{" "}
+          )}
         </div>
       </div>
     </div>
