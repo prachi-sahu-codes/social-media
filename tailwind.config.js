@@ -8,6 +8,8 @@ module.exports = {
     screens: {
       sm360: "360px",
 
+      sm390: "390px",
+
       sm570: "570px",
 
       sm670: "670px",
@@ -54,6 +56,7 @@ module.exports = {
         "1.3rem": "1.3rem",
         "0.15rem": "0.15rem",
         "0.1rem": "0.1rem",
+        "30rem": "30rem",
       },
     },
   },

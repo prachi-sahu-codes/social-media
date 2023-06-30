@@ -74,8 +74,8 @@ export const PostModal = ({ post, setShowPopupPost }) => {
       className="fixed top-0 left-0 z-50 w-full h-full bg-bgModal"
       onClick={(e) => e.stopPropagation()}
     >
-      <div className="absolute position-center">
-        <div className="relative flex flex-col gap-4 max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6 ">
+      <div className="absolute position-center w-72 sm390:w-80 sm570:w-96 md840:w-30rem">
+        <div className="relative flex flex-col gap-4 mx-auto bg-white shadow-md rounded-lg p-6 ">
           <div
             onClick={() => {
               setShowPopupPost(false);
@@ -113,26 +113,24 @@ export const PostModal = ({ post, setShowPopupPost }) => {
             ></textarea>
           </div>
 
-          <div>
-            {newPostState.contentImage && (
-              <div className="relative">
-                <img
-                  src={newPostState.contentImage}
-                  alt="post pic"
-                  className="w-28"
-                />
+          {newPostState.contentImage && (
+            <div className="relative">
+              <img
+                src={newPostState.contentImage}
+                alt="post pic"
+                className="w-28"
+              />
 
-                <div
-                  onClick={() =>
-                    newPostDispatch({ type: "CONTENT_IMG", payload: null })
-                  }
-                  className="absolute -top-2 left-24"
-                >
-                  <MdCancel className="w-6 h-6 fill-primary bg-slate-50 rounded-full" />
-                </div>
+              <div
+                onClick={() =>
+                  newPostDispatch({ type: "CONTENT_IMG", payload: null })
+                }
+                className="absolute -top-2 left-24"
+              >
+                <MdCancel className="w-6 h-6 fill-primary bg-slate-50 rounded-full" />
               </div>
-            )}
-          </div>
+            </div>
+          )}
 
           <div>
             {media && (
