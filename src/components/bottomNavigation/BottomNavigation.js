@@ -28,21 +28,21 @@ export const BottomNavigation = () => {
   return (
     <div className="absolute bottom-0 sm670:hidden py-7 w-full flex justify-between items-center h-10 bg-white px-3 shadow-inner">
       <NavLink to="/feed">
-        <div className="hover:opacity-80 active:opacity-50">
+        <div className="hover:opacity-80 active:opacity-50 w-7">
           {newActiveLink === "/feed" ? (
             <img src={homeActive} className="w-7 h-7" alt="icon" />
           ) : (
-            <img src={homeBlack} className="w-6 h-6" alt="icon" />
+            <img src={homeBlack} className="w-6 h-6 ml-1" alt="icon" />
           )}
         </div>
       </NavLink>
 
       <NavLink to="/explore">
-        <div className="hover:opacity-80 active:opacity-50">
+        <div className="hover:opacity-80 active:opacity-50 w-7">
           {newActiveLink === "/explore" ? (
             <img src={exploreActive} className="w-7 h-7" alt="icon" />
           ) : (
-            <img src={exploreBlack} className="w-5 h-5 " alt="icon" />
+            <img src={exploreBlack} className="w-5 h-5 ml-1" alt="icon" />
           )}
         </div>
       </NavLink>
@@ -56,21 +56,21 @@ export const BottomNavigation = () => {
       {newPostModal && <PostModal setShowPopupPost={setNewPostModal} />}
 
       <NavLink to="/bookmark">
-        <div className="hover:opacity-80 active:opacity-50">
+        <div className="hover:opacity-80 active:opacity-50 w-6">
           {newActiveLink === "/bookmark" ? (
             <img src={bookmarkActive} className="w-6 h-6" alt="icon" />
           ) : (
-            <img src={bookmarkBlack} className="w-5 h-5" alt="icon" />
+            <img src={bookmarkBlack} className="w-5 h-5 ml-1" alt="icon" />
           )}
         </div>
       </NavLink>
 
       <NavLink to="/favourite">
-        <div className="hover:opacity-80 active:opacity-50">
+        <div className="hover:opacity-80 active:opacity-50 w-7">
           {newActiveLink === "/favourite" ? (
             <img src={heartActive} className="w-7 h-7" alt="icon" />
           ) : (
-            <img src={heartBlack} className="w-6 h-6" alt="icon" />
+            <img src={heartBlack} className="w-6 h-6 ml-1" alt="icon" />
           )}
         </div>
       </NavLink>
