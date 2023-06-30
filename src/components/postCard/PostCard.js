@@ -46,10 +46,15 @@ export const PostCard = ({ post, noDetail }) => {
   };
 
   useEffect(() => {
-    const findUsername = userData?.find(
-      (user) => user.username === post.username
-    );
-    setUser(findUsername);
+    if (post.username === loggedUser.username) {
+      setUser(loggedUser);
+    } else {
+      const findUsername = userData?.find(
+        (user) => user.username === post.username
+      );
+      setUser(findUsername);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [post, userData]);
 
   return (
