@@ -155,7 +155,10 @@ export const PostCard = ({ post, noDetail }) => {
           >
             <FaRegHeart />
 
-            <span className="text-sm">{post?.likes?.likeCount} Likes</span>
+            <span className="flex gap-1 text-sm">
+              {post?.likes?.likeCount}{" "}
+              <span className="hidden sm500:block">Likes</span>
+            </span>
           </div>
         ) : (
           <div
@@ -167,7 +170,10 @@ export const PostCard = ({ post, noDetail }) => {
             }}
           >
             <FaHeart className="fill-red-600" />
-            <span className="text-sm">{post?.likes?.likeCount} Likes</span>
+            <span className="flex gap-1 text-sm">
+              {post?.likes?.likeCount}
+              <span className="hidden sm500:block">Likes</span>
+            </span>
           </div>
         )}
 
@@ -179,8 +185,9 @@ export const PostCard = ({ post, noDetail }) => {
           }}
         >
           <FaRegComment />
-          <span className="text-sm">
-            {post?.comments?.length === 0 ? "" : post?.comments?.length} Comment
+          <span className="flex gap-1 text-sm">
+            {post?.comments?.length === 0 ? "" : post?.comments?.length}{" "}
+            <span className="hidden sm500:block">Comment</span>
           </span>
         </div>
 
@@ -192,7 +199,7 @@ export const PostCard = ({ post, noDetail }) => {
           }}
         >
           <HiOutlineShare />
-          <span className="text-sm">Share</span>
+          <span className="hidden sm500:block text-sm">Share</span>
         </div>
 
         {!isBookmarked ? (
@@ -205,7 +212,7 @@ export const PostCard = ({ post, noDetail }) => {
             }}
           >
             <FaRegBookmark />
-            <span className="text-sm">Bookmark</span>
+            <span className="text-sm hidden sm500:block">Bookmark</span>
           </div>
         ) : (
           <div
@@ -217,7 +224,7 @@ export const PostCard = ({ post, noDetail }) => {
             }}
           >
             <FaBookmark />
-            <span className="text-sm">Bookmark</span>{" "}
+            <span className="hidden sm500:block text-sm">Bookmark</span>{" "}
           </div>
         )}
       </div>

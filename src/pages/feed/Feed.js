@@ -53,7 +53,7 @@ export const Feed = () => {
         </ul>
       ) : (
         <div className="py-5">
-          <h1 className="text-center text-2xl my-10 max-w-2xl m-auto">
+          <h1 className="text-center text-lg sm500:text-2xl my-10 max-w-2xl m-auto">
             No posts yet. Start sharing your own creations and follow other
             artists to see their amazing posts!!
           </h1>

@@ -25,7 +25,7 @@ export const Favourite = () => {
       ) : (
         <div className="flex flex-col items-center justify-center gap-10 py-7">
           <img src={likingNow} alt="girl posting" className="w-96" />
-          <h1 className="text-center text-2xl my-10 max-w-2xl m-auto">
+          <h1 className="text-center text-lg sm500:text-2xl my-10 max-w-2xl m-auto">
             No favorites yet. Start saving posts that inspire you!!
           </h1>
         </div>

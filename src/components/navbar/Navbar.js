@@ -23,7 +23,7 @@ export const Navbar = () => {
           type="text"
           placeholder="Search Users"
           value={searchTerm}
-          className="px-2 bg-slate-100 py-1 w-60 outline-none"
+          className="px-2 bg-slate-100 py-1 w-16 sm390:w-40 sm570:w-60 outline-none"
           onChange={(e) => {
             setSearchTerm(e.target.value);
             setUserModal(true);
