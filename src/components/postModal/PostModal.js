@@ -6,7 +6,7 @@ import Picker from "emoji-picker-react";
 import { usePost } from "../../context/postContext/PostContext";
 import { useAuth } from "../../context/authContext/AuthContext";
 import ClickOutside from "../clickOutside/ClickOutside";
-import { uploadMedia } from "../newPost/utils/uploadApi";
+import { uploadMedia } from "./utils/uploadApi";
 
 export const PostModal = ({ post, setShowPopupPost }) => {
   const { newPostState, newPostDispatch, createPost, editPost } = usePost();
