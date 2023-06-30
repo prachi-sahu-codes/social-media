@@ -33,7 +33,7 @@ export const SuggestionBox = () => {
   const checkPath = window.location.pathname === "/feed";
 
   return (
-    <div className="w-96 hidden md900:block py-7 px-5 h-calc-nav text-center">
+    <div className="w-96 hidden lg:block py-7 px-5 h-calc-nav text-center">
       {checkPath && (
         <>
           <h1 className="mt-4 text-left text-lg font-semibold">

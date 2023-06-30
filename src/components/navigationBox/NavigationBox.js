@@ -25,7 +25,7 @@ export const NavigationBox = () => {
   }, [path]);
 
   return (
-    <div className="hidden sm670:flex w-64 py-7 px-4 flex-col gap-2 items-center border-r-2 border-bgColorLoad h-calc-nav">
+    <div className="hidden md730:flex w-64 py-7 px-4 flex-col gap-2 items-center border-r-2 border-bgColorLoad h-calc-nav">
       <div
         className="flex flex-col items-center justify-center mx-3"
         onClick={(e) => {
