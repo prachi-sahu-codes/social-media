@@ -22,7 +22,14 @@ export const DISLIKE_POST_URL = `${baseURL}/posts/dislike`;
 export const BOOKMARK_URL = `${baseURL}/users/bookmark`;
 export const REMOVE_BOOKMARK_URL = `${baseURL}/users/remove-bookmark`;
 
-//follow-unfollow
+//follow-unfollow URL
 
 export const FOLLOW_URL = `${baseURL}/users/follow`;
 export const UNFOLLOW_URL = `${baseURL}/users/unfollow`;
+
+//comments URL
+
+export const ALL_COMMENTS_URL = `${baseURL}/comments`;
+export const ADD_COMMENT_URL = `${baseURL}/comments/add`;
+export const EDIT_COMMENT_URL = `${baseURL}/comments/edit`;
+export const DELETE_COMMENT_URL = `${baseURL}/comments/delete`;
