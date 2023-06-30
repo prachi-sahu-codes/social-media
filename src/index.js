@@ -7,6 +7,7 @@ import { AuthProvider } from "./context/authContext/AuthContext";
 import { PostProvider } from "./context/postContext/PostContext";
 import { UserProvider } from "./context/userContext/UserContext";
 import "./index.css";
+import { CommentProvider } from "./context/commentContext/CommentContext";
 
 makeServer();
 
@@ -17,7 +18,9 @@ root.render(
       <AuthProvider>
         <PostProvider>
           <UserProvider>
-            <App />
+            <CommentProvider>
+              <App />
+            </CommentProvider>
           </UserProvider>
         </PostProvider>
       </AuthProvider>
