@@ -10,13 +10,15 @@ import {
   bookmarkGray,
   heartActive,
   heartGray,
+  createBlack,
 } from "../../assets";
+import { PostModal } from "../postModal/PostModal";
 
 export const BottomNavigation = () => {
   const { loggedUser } = useAuth();
   const navigate = useNavigate();
   const path = window.location.pathname;
-
+  const [newPostModal, setNewPostModal] = useState(false);
   const [newActiveLink, setNewActiveLink] = useState(path);
 
   useEffect(() => {
@@ -24,7 +26,7 @@ export const BottomNavigation = () => {
   }, [path]);
 
   return (
-    <div className="absolute bottom-0 sm670:hidden py-7 w-full flex justify-between items-center h-10 bg-white px-3 shadow-md">
+    <div className="absolute bottom-0 sm670:hidden py-7 w-full flex justify-between items-center h-10 bg-white px-3 shadow-inner">
       <NavLink to="/feed">
         <div className="hover:opacity-80 active:opacity-50">
           {newActiveLink === "/feed" ? (
@@ -44,6 +46,15 @@ export const BottomNavigation = () => {
           )}
         </div>
       </NavLink>
+
+      <div
+        className=" text-secondary"
+        onClick={() => setNewPostModal((prev) => !prev)}
+      >
+        <img src={createBlack} className="w-5 h-5" alt="icon" />
+      </div>
+      {newPostModal && <PostModal setShowPopupPost={setNewPostModal} />}
+
       <NavLink to="/bookmark">
         <div className="hover:opacity-80 active:opacity-50">
           {newActiveLink === "/bookmark" ? (

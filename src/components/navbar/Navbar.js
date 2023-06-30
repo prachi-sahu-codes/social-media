@@ -39,7 +39,7 @@ export const Navbar = () => {
       </div>
 
       <button
-        className="px-4 py-1 border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full"
+        className="px-4 py-1 hidden sm670:block border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full"
         onClick={() => setNewPostModal((prev) => !prev)}
       >
         <span className="font-extrabold text-white text-xl"> &#xFF0B;</span>{" "}
