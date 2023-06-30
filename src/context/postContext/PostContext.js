@@ -157,6 +157,7 @@ export const PostProvider = ({ children }) => {
         activeSortBtn,
         setActiveSortBtn,
         postData,
+        setPostData,
         postDetail,
         getPostDetail,
         singleUserPosts,

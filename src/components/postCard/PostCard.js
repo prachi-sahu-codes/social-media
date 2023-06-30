@@ -17,6 +17,7 @@ import { useNavigate } from "react-router";
 import ClickOutside from "../clickOutside/ClickOutside";
 import { PostModal } from "../postModal/PostModal";
 import { useComment } from "../../context/commentContext/CommentContext";
+import { UserComment } from "./component/UserComment";
 
 export const PostCard = ({ post, noDetail }) => {
   const navigate = useNavigate();
@@ -236,23 +237,11 @@ export const PostCard = ({ post, noDetail }) => {
 
       {noDetail && post?.comments?.length > 0 && (
         <div className="bg-slate-50 mt-5 rounded-lg">
-          <p className="pt-4 px-2">Comments</p>
+          <p className="pt-4 px-2 pb-4">Comments</p>
           <div>
             {post?.comments?.map((comment, index) => (
-              <li key={index} className="list-none py-6 px-2">
-                <div className="flex gap-3 items-center">
-                  <img
-                    src={comment?.profileImage}
-                    alt="profile pic"
-                    className="w-12 h-12 rounded-full border-2 border-solid border-primary cursor-pointer"
-                  />
-                  <div>
-                    <p className="font-semibold cursor-pointer">
-                      {comment?.username}
-                    </p>
-                  </div>
-                </div>
-                <p className="p-2">{comment?.text}</p>
+              <li key={index} className="list-none">
+                <UserComment comment={comment} />
               </li>
             ))}
           </div>
@@ -263,8 +252,9 @@ export const PostCard = ({ post, noDetail }) => {
         <input
           type="text"
           placeholder="Write your comment..."
+          value={newComment}
           onChange={(e) => {
-            setNewComment((prev) => ({ ...prev, text: e.target.value }));
+            setNewComment(() => e.target.value);
             e.stopPropagation();
           }}
           className="w-full py-2 bg-slate-50 outline-none"
@@ -272,8 +262,8 @@ export const PostCard = ({ post, noDetail }) => {
         <button
           className="font-semibold text-lg bg-white px-4 hover:opacity-80 rounded-r-full"
           onClick={() => {
-            newComment.text.length > 0 && addComment(post._id, newComment);
-            setNewComment({ text: "" });
+            newComment.length > 0 && addComment(post._id, newComment);
+            setNewComment(() => "");
           }}
         >
           <BsFillSendFill className="rotate-45 fill-primary" />
