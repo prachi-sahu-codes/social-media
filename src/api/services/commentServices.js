@@ -32,10 +32,10 @@ export const editCommentService = (postId, commentId, commentData, token) =>
     }
   );
 
-export const deleteCommentService = (postId, commentId, commentData, token) =>
+export const deleteCommentService = (postId, commentId, token) =>
   axios.post(
     `${DELETE_COMMENT_URL}/${postId}/${commentId}`,
-    { commentData },
+    {},
     {
       headers: {
         authorization: token,

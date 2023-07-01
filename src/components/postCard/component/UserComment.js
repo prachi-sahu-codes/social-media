@@ -3,10 +3,12 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { useAuth } from "../../../context/authContext/AuthContext";
 import { useUser } from "../../../context/userContext/UserContext";
 import ClickOutside from "../../clickOutside/ClickOutside";
+import { useComment } from "../../../context/commentContext/CommentContext";
 
-export const UserComment = ({ comment }) => {
+export const UserComment = ({ comment, post }) => {
   const { loggedUser } = useAuth();
   const { userData } = useUser();
+  const { setCommentId, setNewComment, deleteComment } = useComment();
   const [user, setUser] = useState({});
   const [commentModal, setCommentModal] = useState(false);
 
@@ -57,6 +59,8 @@ export const UserComment = ({ comment }) => {
                   className="py-1 px-4 text-left rounded-md hover:text-blue-500 hover:bg-white active:bg-slate-50 w-full"
                   onClick={(e) => {
                     setCommentModal(false);
+                    setCommentId(comment?._id);
+                    setNewComment(comment?.text);
                     e.stopPropagation();
                   }}
                 >
@@ -66,6 +70,7 @@ export const UserComment = ({ comment }) => {
                   className="p-1 px-4 text-left rounded-md hover:text-red-600 hover:bg-white active:bg-slate-50 w-full"
                   onClick={(e) => {
                     setCommentModal(false);
+                    deleteComment(post?._id, comment?._id);
                     e.stopPropagation();
                   }}
                 >

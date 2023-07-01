@@ -1,5 +1,9 @@
 import { createContext, useContext } from "react";
-import { addCommentService } from "../../api/services/commentServices";
+import {
+  addCommentService,
+  editCommentService,
+  deleteCommentService,
+} from "../../api/services/commentServices";
 import { useAuth } from "../authContext/AuthContext";
 import { useState } from "react";
 import { usePost } from "../postContext/PostContext";
@@ -10,10 +14,38 @@ export const CommentProvider = ({ children }) => {
   const { token } = useAuth();
   const { setPostData } = usePost();
   const [newComment, setNewComment] = useState("");
+  const [commentId, setCommentId] = useState("");
 
   const addComment = async (postId, commentData) => {
     try {
       const res = await addCommentService(postId, commentData, token);
+      if (res.status === 201) {
+        setPostData(res.data.posts);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const editComment = async (postId, commentId, commentData) => {
+    try {
+      const res = await editCommentService(
+        postId,
+        commentId,
+        commentData,
+        token
+      );
+      if (res.status === 201) {
+        setPostData(res.data.posts);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const deleteComment = async (postId, commentId) => {
+    try {
+      const res = await deleteCommentService(postId, commentId, token);
       console.log(res);
       if (res.status === 201) {
         setPostData(res.data.posts);
@@ -24,7 +56,17 @@ export const CommentProvider = ({ children }) => {
   };
 
   return (
-    <CommentContext.Provider value={{ newComment, setNewComment, addComment }}>
+    <CommentContext.Provider
+      value={{
+        newComment,
+        setNewComment,
+        commentId,
+        setCommentId,
+        addComment,
+        editComment,
+        deleteComment,
+      }}
+    >
       {children}
     </CommentContext.Provider>
   );

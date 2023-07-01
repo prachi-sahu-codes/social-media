@@ -24,7 +24,14 @@ export const PostCard = ({ post, noDetail }) => {
   const { loggedUser, notifyToast } = useAuth();
   const { deletePost, likePost, dislikePost, newPostDispatch } = usePost();
   const { userData, bookmarkPost, removeBookmark, bookmarkArr } = useUser();
-  const { newComment, setNewComment, addComment } = useComment();
+  const {
+    newComment,
+    setNewComment,
+    commentId,
+    setCommentId,
+    addComment,
+    editComment,
+  } = useComment();
   const [showModal, setShowModal] = useState(false);
   const [showPopupPost, setShowPopupPost] = useState(false);
   const [user, setUser] = useState({});
@@ -61,6 +68,17 @@ export const PostCard = ({ post, noDetail }) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [post, userData]);
+
+  const sendCommentHandler = () => {
+    if (newComment.length > 0) {
+      if (commentId) {
+        editComment(post._id, commentId, newComment);
+        setCommentId("");
+      } else {
+        addComment(post._id, newComment);
+      }
+    }
+  };
 
   return (
     <div
@@ -236,19 +254,22 @@ export const PostCard = ({ post, noDetail }) => {
       <hr className="text-bgColorLoad mt-5" />
 
       {noDetail && post?.comments?.length > 0 && (
-        <div className="bg-slate-50 mt-5 rounded-lg">
+        <div className="bg-slate-100 mt-5 rounded-lg">
           <p className="pt-4 px-2 pb-4">Comments</p>
           <div>
             {post?.comments?.map((comment, index) => (
               <li key={index} className="list-none">
-                <UserComment comment={comment} />
+                <UserComment comment={comment} post={post} />
               </li>
             ))}
           </div>
         </div>
       )}
 
-      <div className="flex rounded-full border-2 border-bgColorLoad bg-slate-50 w-full mt-5 pl-6">
+      <div
+        className="flex rounded-full border-2 border-bgColorLoad bg-slate-50 w-full mt-5 pl-6"
+        onClick={(e) => e.stopPropagation()}
+      >
         <input
           type="text"
           placeholder="Write your comment..."
@@ -262,8 +283,8 @@ export const PostCard = ({ post, noDetail }) => {
         <button
           className="font-semibold text-lg bg-white px-4 hover:opacity-80 rounded-r-full"
           onClick={() => {
-            newComment.length > 0 && addComment(post._id, newComment);
-            setNewComment(() => "");
+            sendCommentHandler();
+            setNewComment("");
           }}
         >
           <BsFillSendFill className="rotate-45 fill-primary" />
