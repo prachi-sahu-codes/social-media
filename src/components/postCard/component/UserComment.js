@@ -30,7 +30,11 @@ export const UserComment = ({ comment, post }) => {
       <div className="flex justify-between">
         <div className="flex gap-3 items-center">
           <img
-            src={user?.profileImage}
+            src={
+              user?.profileImage
+                ? user?.profileImage
+                : "https://i.imgur.com/qMW3Cze.png"
+            }
             alt="profile pic"
             className="w-12 h-12 rounded-full border-2 border-solid border-primary cursor-pointer"
           />
