@@ -25,7 +25,7 @@ export const SearchUserModal = ({
   };
 
   return (
-    <div className="absolute top-11 -left-2 bg-white px-8 py-4 pt-8 shadow-lg rounded-md">
+    <div className="absolute top-11 -left-48 sm390:-left-28 sm570:-left-2 bg-white px-8 py-4 pt-8 shadow-lg rounded-md max-h-96 overflow-x-hidden overflow-y-scroll">
       <div className="absolute right-4 top-2" onClick={() => reset()}>
         <RxCross2 />
       </div>
