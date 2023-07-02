@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { MdCancel } from "react-icons/md";
+import { avatars } from "./data/data";
 
-const avatars = [
-  "https://i.imgur.com/pFSWkOJ.png",
-  "https://i.imgur.com/YmpQzMV.png",
-  "https://i.imgur.com/q9SooZP.png",
-  "https://i.imgur.com/j7qqclx.png",
-  "https://i.imgur.com/QMLVJAg.png",
-  "https://i.imgur.com/kTCO0qa.png",
-  "https://i.imgur.com/rq3yabN.png",
-  "https://i.imgur.com/xblabjC.png",
-  "https://i.imgur.com/fqiSfaN.png",
-];
 export const Avatar = ({ setShowAvatar, setFormDetails }) => {
+  const [selectAvatar, setSelectAvatar] = useState("");
+
+  const addAvatarHandler = () => {
+    if (selectAvatar) {
+      setFormDetails((prev) => ({ ...prev, profileImage: selectAvatar }));
+      setShowAvatar(false);
+    } else {
+      setShowAvatar(false);
+    }
+  };
+
   return (
     <div
       className="fixed top-0 left-0 z-50 w-full h-full bg-bgModal"
@@ -28,20 +29,23 @@ export const Avatar = ({ setShowAvatar, setFormDetails }) => {
         <h2 className="font-bold text-xl pb-4">Profile Image</h2>
         <ul className=" flex flex-wrap gap-2">
           {avatars.map((pic, index) => (
-            <li
-              key={index}
-              onClick={() =>
-                setFormDetails((prev) => ({ ...prev, profileImage: pic }))
-              }
-            >
+            <li key={index} onClick={() => setSelectAvatar(pic)}>
               <img
                 src={pic}
                 alt="profile pic"
-                className="w-20 h-20 rounded-full border-2 border-solid border-primary cursor-pointer"
+                className="w-20 h-20 rounded-full border-2 hover:border-black hover:shadow-lg active:border-primary border-solid border-primary cursor-pointer"
               />
             </li>
           ))}
         </ul>
+        <div className="text-right mt-5">
+          <button
+            className="w-24 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full shadow-md"
+            onClick={() => addAvatarHandler()}
+          >
+            Save
+          </button>
+        </div>
       </div>
     </div>
   );
