@@ -5,7 +5,6 @@ import {
   deleteCommentService,
 } from "../../api/services/commentServices";
 import { useAuth } from "../authContext/AuthContext";
-import { useState } from "react";
 import { usePost } from "../postContext/PostContext";
 
 const CommentContext = createContext();
@@ -13,8 +12,6 @@ const CommentContext = createContext();
 export const CommentProvider = ({ children }) => {
   const { token } = useAuth();
   const { setPostData } = usePost();
-  const [newComment, setNewComment] = useState("");
-  const [commentId, setCommentId] = useState("");
 
   const addComment = async (postId, commentData) => {
     try {
@@ -58,10 +55,6 @@ export const CommentProvider = ({ children }) => {
   return (
     <CommentContext.Provider
       value={{
-        newComment,
-        setNewComment,
-        commentId,
-        setCommentId,
         addComment,
         editComment,
         deleteComment,

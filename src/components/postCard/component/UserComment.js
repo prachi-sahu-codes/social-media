@@ -5,10 +5,10 @@ import { useUser } from "../../../context/userContext/UserContext";
 import ClickOutside from "../../clickOutside/ClickOutside";
 import { useComment } from "../../../context/commentContext/CommentContext";
 
-export const UserComment = ({ comment, post }) => {
+export const UserComment = ({ comment, post, setCommentId, setNewComment }) => {
   const { loggedUser } = useAuth();
   const { userData } = useUser();
-  const { setCommentId, setNewComment, deleteComment } = useComment();
+  const { deleteComment } = useComment();
   const [user, setUser] = useState({});
   const [commentModal, setCommentModal] = useState(false);
 

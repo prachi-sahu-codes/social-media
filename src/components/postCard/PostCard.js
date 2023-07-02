@@ -24,14 +24,9 @@ export const PostCard = ({ post, noDetail }) => {
   const { loggedUser, notifyToast } = useAuth();
   const { deletePost, likePost, dislikePost, newPostDispatch } = usePost();
   const { userData, bookmarkPost, removeBookmark, bookmarkArr } = useUser();
-  const {
-    newComment,
-    setNewComment,
-    commentId,
-    setCommentId,
-    addComment,
-    editComment,
-  } = useComment();
+  const { addComment, editComment } = useComment();
+  const [newComment, setNewComment] = useState("");
+  const [commentId, setCommentId] = useState("");
   const [showModal, setShowModal] = useState(false);
   const [showPopupPost, setShowPopupPost] = useState(false);
   const [user, setUser] = useState({});
@@ -259,7 +254,12 @@ export const PostCard = ({ post, noDetail }) => {
           <div>
             {post?.comments?.map((comment, index) => (
               <li key={index} className="list-none">
-                <UserComment comment={comment} post={post} />
+                <UserComment
+                  comment={comment}
+                  post={post}
+                  setCommentId={setCommentId}
+                  setNewComment={setNewComment}
+                />
               </li>
             ))}
           </div>
