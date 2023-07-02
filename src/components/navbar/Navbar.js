@@ -17,7 +17,7 @@ export const Navbar = () => {
         <span className="cursor-pointer text-xl font-cursive"> WhizVerse</span>
       </div>
 
-      <div className="relative flex items-center mx-4 bg-slate-100 px-2 rounded-full">
+      <div className="relative flex items-center mx-4 bg-slate-100 px-2 rounded-full shadow-sm">
         <FiSearch />
         <input
           type="text"
@@ -39,7 +39,7 @@ export const Navbar = () => {
       </div>
 
       <button
-        className="px-4 py-1 hidden sm670:block border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full"
+        className="px-4 py-1 hidden sm670:block border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full shadow-md"
         onClick={() => setNewPostModal((prev) => !prev)}
       >
         <span className="font-extrabold text-white text-xl"> &#xFF0B;</span>{" "}
