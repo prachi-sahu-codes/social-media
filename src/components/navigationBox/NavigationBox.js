@@ -45,8 +45,12 @@ export const NavigationBox = () => {
             className="w-20 rounded-full border-2 my-2 border-solid border-primary"
           />
         )}
-        <div className="pt-2 font-semibold">{loggedUser?.fullname}</div>
-        <div className="pb-4 text-sm text-gray">{loggedUser?.bio}</div>
+        <div className="pt-2 font-semibold w-36 whitespace-nowrap overflow-hidden text-ellipsis">
+          {loggedUser?.fullname}
+        </div>
+        <div className="pb-4 w-36 whitespace-nowrap overflow-hidden text-ellipsis text-sm text-gray">
+          {loggedUser?.bio}
+        </div>
       </div>
       <div className="flex flex-col gap-5 mx-3">
         <hr className="text-bgColorLoad" />
