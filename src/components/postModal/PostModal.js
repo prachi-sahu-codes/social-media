@@ -26,7 +26,6 @@ export const PostModal = ({ post, setShowPopupPost }) => {
   };
 
   const addPostHandler = async () => {
-    console.log(newPostState);
     if (newPostState.content.length > 0) {
       newPostState.profileImage = loggedUser?.profileImage
         ? loggedUser?.profileImage
@@ -34,22 +33,18 @@ export const PostModal = ({ post, setShowPopupPost }) => {
 
       try {
         if (post) {
-          console.log("ID", post._id);
           if (media) {
-            console.log("edit media");
             setLoadingPost(true);
             const response = await uploadMedia(media);
             editPost(post._id, { ...newPostState, contentImage: response.url });
             newPostDispatch({ type: "CLEAR" });
             setMedia(null);
           } else {
-            console.log("edit without media");
             editPost(post._id, newPostState);
             newPostDispatch({ type: "CLEAR" });
             setMedia(null);
           }
         } else {
-          console.log("create media");
           setLoadingPost(true);
           const response = await uploadMedia(media);
           createPost({ ...newPostState, contentImage: response.url });
@@ -66,8 +61,6 @@ export const PostModal = ({ post, setShowPopupPost }) => {
       notifyToast("error", "Please add content to post!");
     }
   };
-
-  console.log(post);
 
   return (
     <div
