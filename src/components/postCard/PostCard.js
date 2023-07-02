@@ -77,7 +77,7 @@ export const PostCard = ({ post, noDetail }) => {
 
   return (
     <div
-      className="m-6 shadow-md bg-white rounded-lg p-6 max-w-2xl mx-auto"
+      className="m-6 shadow-md bg-white rounded-lg p-3 sm570:p-6 w-64 sm450:w-96 sm570:w-30rem md840:w-36rem lg:w-30rem lg1120:w-36rem mx-auto"
       onClick={() => navigate(`/posts/${post._id}`)}
     >
       <div className="flex justify-between items-center">
@@ -149,8 +149,10 @@ export const PostCard = ({ post, noDetail }) => {
         )}
       </div>
 
+      <p className=" mt-4 sm570:mt-6">{post?.content}</p>
+
       {post?.contentImage && (
-        <div className="h-96 mt-5 rounded-lg">
+        <div className="h-52 sm450:h-80 sm570:h-96 md840:h-30rem mt-2 sm570:mt-5 rounded-lg">
           <img
             src={post?.contentImage}
             alt="post pic"
@@ -159,9 +161,7 @@ export const PostCard = ({ post, noDetail }) => {
         </div>
       )}
 
-      <p className="mt-6">{post?.content}</p>
-
-      <div className="flex justify-between items-center mt-5 text-lg ">
+      <div className="flex justify-between items-center mt-4 sm570:mt-5 text-lg ">
         {!isLiked ? (
           <div
             className="flex gap-2 cursor-pointer"
@@ -175,7 +175,7 @@ export const PostCard = ({ post, noDetail }) => {
 
             <span className="flex gap-1 text-sm">
               {post?.likes?.likeCount}{" "}
-              <span className="hidden sm500:block">Likes</span>
+              <span className="hidden sm570:block">Likes</span>
             </span>
           </div>
         ) : (
@@ -190,7 +190,7 @@ export const PostCard = ({ post, noDetail }) => {
             <FaHeart className="fill-red-600" />
             <span className="flex gap-1 text-sm">
               {post?.likes?.likeCount}
-              <span className="hidden sm500:block">Likes</span>
+              <span className="hidden sm570:block">Likes</span>
             </span>
           </div>
         )}
@@ -204,7 +204,7 @@ export const PostCard = ({ post, noDetail }) => {
           <FaRegComment />
           <span className="flex gap-1 text-sm">
             {post?.comments?.length === 0 ? "" : post?.comments?.length}{" "}
-            <span className="hidden sm500:block">Comment</span>
+            <span className="hidden sm570:block">Comment</span>
           </span>
         </div>
 
@@ -216,7 +216,7 @@ export const PostCard = ({ post, noDetail }) => {
           }}
         >
           <HiOutlineShare />
-          <span className="hidden sm500:block text-sm">Share</span>
+          <span className="hidden sm570:block text-sm">Share</span>
         </div>
 
         {!isBookmarked ? (
@@ -229,7 +229,7 @@ export const PostCard = ({ post, noDetail }) => {
             }}
           >
             <FaRegBookmark />
-            <span className="text-sm hidden sm500:block">Bookmark</span>
+            <span className="text-sm hidden sm570:block">Bookmark</span>
           </div>
         ) : (
           <div
@@ -241,15 +241,15 @@ export const PostCard = ({ post, noDetail }) => {
             }}
           >
             <FaBookmark />
-            <span className="hidden sm500:block text-sm">Bookmark</span>{" "}
+            <span className="hidden sm570:block text-sm">Bookmark</span>{" "}
           </div>
         )}
       </div>
 
-      <hr className="text-bgColorLoad mt-5" />
+      <hr className="text-bgColorLoad mt-3 sm570:mt-5" />
 
       {noDetail && post?.comments?.length > 0 && (
-        <div className="bg-slate-100 mt-5 rounded-lg">
+        <div className="bg-slate-100 mt-3 sm570:mt-5 rounded-lg">
           <p className="pt-4 px-2 pb-4">Comments</p>
           <div>
             {post?.comments?.map((comment, index) => (
@@ -267,7 +267,7 @@ export const PostCard = ({ post, noDetail }) => {
       )}
 
       <div
-        className="flex rounded-full border-2 border-bgColorLoad bg-slate-50 w-full mt-5 pl-6"
+        className="flex rounded-full border-2 border-bgColorLoad bg-slate-50 w-full mt-3 sm570:mt-5 pl-6"
         onClick={(e) => e.stopPropagation()}
       >
         <input

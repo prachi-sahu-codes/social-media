@@ -10,6 +10,8 @@ module.exports = {
 
       sm390: "390px",
 
+      sm450: "450px",
+
       sm500: "500px",
 
       sm570: "570px",
@@ -29,6 +31,8 @@ module.exports = {
       md970: "970px",
 
       lg: "1024px",
+
+      lg1120: "1120px",
 
       xl: "1280px",
 
@@ -61,6 +65,8 @@ module.exports = {
         "0.15rem": "0.15rem",
         "0.1rem": "0.1rem",
         "30rem": "30rem",
+        "32rem": "32rem",
+        "36rem": "36rem",
       },
     },
   },

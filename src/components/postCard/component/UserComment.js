@@ -26,7 +26,7 @@ export const UserComment = ({ comment, post, setCommentId, setNewComment }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [comment, userData]);
   return (
-    <div className="py-4 px-2">
+    <div className="py-1 sm570:py-3 px-2">
       <div className="flex justify-between">
         <div className="flex gap-3 items-center">
           <img
