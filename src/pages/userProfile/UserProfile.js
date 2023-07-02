@@ -46,12 +46,52 @@ export const UserProfile = () => {
             : "https://i.imgur.com/qMW3Cze.png"
         }
         alt="profile pic"
-        className="w-32 h-32 rounded-full -mb-20 mx-auto bg-white shadow-lg"
+        className="hidden sm450:block w-32 sm450:h-32 sm450:-mb-20 rounded-full mx-auto bg-white shadow-lg"
       />
 
-      <div className="m-6 shadow-md bg-white rounded-lg p-6 pt-16 max-w-2xl mx-auto">
-        <div className="text-center p-4">
-          <div className="flex items-center justify-center">
+      <div className="m-6 shadow-md bg-white rounded-lg p-6 sm450:pt-16 w-64 sm450:w-96 sm570:w-30rem md840:w-36rem lg:w-30rem lg1120:w-36rem mx-auto">
+        <div className="flex items-center justify-between sm450:hidden">
+          <img
+            src={
+              userDetail.profileImage
+                ? userDetail.profileImage
+                : "https://i.imgur.com/qMW3Cze.png"
+            }
+            alt="profile pic"
+            className="w-16 h-16 rounded-full bg-white border-2 border-primary shadow-lg"
+          />
+          <div className="">
+            {isUserLoggedUser ? (
+              <button
+                className="px-3 pt-0.15rem border-2 border-primary hover:opacity-90 active:opacity-80 text-primary rounded-lg shadow-md"
+                onClick={() => setEditModal((prev) => !prev)}
+              >
+                Edit
+              </button>
+            ) : (
+              <div>
+                {isFollowing ? (
+                  <button
+                    onClick={() => unfollowUser(findUserDetail?._id)}
+                    className="px-2 pt-0.15rem border-2 border-primary hover:opacity-90 active:opacity-80 text-primary rounded-lg shadow-md"
+                  >
+                    Unfollow
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => followUser(findUserDetail?._id)}
+                    className="px-3 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white rounded-lg shadow-md"
+                  >
+                    Follow
+                  </button>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="sm450:text-center py-4 sm450:p-4">
+          <div className="flex items-center justify-between sm450:justify-center">
             <p className="text-lg font-bold">{userDetail.fullname}</p>
             <div className="sm670:hidden text-lg py-1 hover:opacity-80 active:opacity-50 rounded-md">
               <div
@@ -109,16 +149,16 @@ export const UserProfile = () => {
 
         <hr className="text-bgColorLoad my-5" />
 
-        <div className="flex justify-between">
+        <div className="flex gap-2 justify-between">
           <div>
             <p>{userDetail.bio}</p>
             <p className="text-sky-500">{userDetail.websiteLink}</p>
           </div>
 
-          <div>
+          <div className="hidden sm450:block">
             {isUserLoggedUser ? (
               <button
-                className="px-8 pt-0.15rem border-2 border-primary hover:opacity-90 active:opacity-80 text-primary text-lg rounded-lg shadow-md"
+                className="px-7 pt-0.15rem border-2 border-primary hover:opacity-90 active:opacity-80 text-primary text-lg rounded-lg shadow-md"
                 onClick={() => setEditModal((prev) => !prev)}
               >
                 Edit
