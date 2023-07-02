@@ -44,7 +44,7 @@ export const PostCard = ({ post, noDetail }) => {
   const copyLinkHandler = () => {
     setShowModal(() => false);
     navigator.clipboard.writeText(
-      `https://whizverse.netlify.app/post/${post._id}`
+      `https://whizverse.netlify.app/posts/${post._id}`
     );
     notifyToast(
       "info",
