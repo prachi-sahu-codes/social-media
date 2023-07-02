@@ -15,6 +15,7 @@ import { Bookmark } from "./pages/bookmark/Bookmark";
 import { Favourite } from "./pages/favourite/Favourite";
 import { PostDetail } from "./pages/postDetail/PostDetail";
 import { UserProfile } from "./pages/userProfile/UserProfile";
+import { NotFound } from "./pages/notfound/NotFound.js";
 
 function App() {
   const { loading } = usePost();
@@ -93,6 +94,7 @@ function App() {
             </RequiresAuth>
           }
         />
+        <Route path="*" element={<NotFound />} />
         <Route path="/mockman" element={<Mockman />} />
       </Routes>
     </div>
