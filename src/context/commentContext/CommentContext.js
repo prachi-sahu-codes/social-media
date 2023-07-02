@@ -10,7 +10,7 @@ import { usePost } from "../postContext/PostContext";
 const CommentContext = createContext();
 
 export const CommentProvider = ({ children }) => {
-  const { token } = useAuth();
+  const { token, notifyToast } = useAuth();
   const { setPostData } = usePost();
 
   const addComment = async (postId, commentData) => {
@@ -18,6 +18,7 @@ export const CommentProvider = ({ children }) => {
       const res = await addCommentService(postId, commentData, token);
       if (res.status === 201) {
         setPostData(res.data.posts);
+        notifyToast("success", "New Comment Added!");
       }
     } catch (err) {
       console.log(err);
@@ -34,6 +35,7 @@ export const CommentProvider = ({ children }) => {
       );
       if (res.status === 201) {
         setPostData(res.data.posts);
+        notifyToast("success", "Comment Updated Successfully!");
       }
     } catch (err) {
       console.log(err);
@@ -46,6 +48,7 @@ export const CommentProvider = ({ children }) => {
       console.log(res);
       if (res.status === 201) {
         setPostData(res.data.posts);
+        notifyToast("success", "Comment Deleted Successfully!");
       }
     } catch (err) {
       console.log(err);

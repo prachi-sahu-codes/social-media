@@ -15,7 +15,7 @@ import {
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const { token, setLoggedUser } = useAuth();
+  const { token, setLoggedUser, notifyToast } = useAuth();
   const { setLoading } = usePost();
   const [userData, setUserData] = useState([]);
   const [userDetail, setUserDetail] = useState({});
@@ -58,7 +58,7 @@ export const UserProvider = ({ children }) => {
       if (res.status === 201) {
         setUserDetail(res?.data?.user);
         setLoggedUser(res?.data?.user);
-
+        notifyToast("success", "Profile Updated Successfully!");
         const updatedData = userData?.map((user) =>
           user._id === res?.data?.user._id ? res?.data?.user : user
         );
