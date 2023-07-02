@@ -45,10 +45,10 @@ export const NavigationBox = () => {
             className="w-20 rounded-full border-2 my-2 border-solid border-primary"
           />
         )}
-        <div className="pt-2 font-semibold w-36 whitespace-nowrap overflow-hidden text-ellipsis">
+        <div className="pt-2 font-semibold w-36 whitespace-nowrap overflow-hidden text-ellipsis text-center">
           {loggedUser?.fullname}
         </div>
-        <div className="pb-4 w-36 whitespace-nowrap overflow-hidden text-ellipsis text-sm text-gray">
+        <div className="pb-4 w-36 whitespace-nowrap overflow-hidden text-ellipsis text-sm text-gray text-center">
           {loggedUser?.bio}
         </div>
       </div>
