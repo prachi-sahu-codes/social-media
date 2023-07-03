@@ -267,7 +267,7 @@ export const PostCard = ({ post, noDetail }) => {
       )}
 
       <div
-        className="flex rounded-full border-2 border-bgColorLoad bg-slate-50 w-full mt-3 sm570:mt-5 pl-6"
+        className="flex rounded-full border-2 border-bgColorLoad bg-slate-50 w-full mt-3 sm570:mt-5 pl-3 sm360:pl-6"
         onClick={(e) => e.stopPropagation()}
       >
         <input
@@ -281,7 +281,7 @@ export const PostCard = ({ post, noDetail }) => {
           className="w-full py-2 bg-slate-50 outline-none"
         />
         <button
-          className="font-semibold text-lg bg-white px-4 hover:opacity-80 rounded-r-full"
+          className="font-semibold text-lg bg-white px-3 sm360:px-4 hover:opacity-80 rounded-r-full"
           onClick={() => {
             sendCommentHandler();
             setNewComment("");
