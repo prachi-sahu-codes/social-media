@@ -77,7 +77,7 @@ export const PostCard = ({ post, noDetail }) => {
 
   return (
     <div
-      className="m-6 shadow-md bg-white rounded-lg p-3 sm570:p-6 w-64 sm450:w-96 sm570:w-30rem md840:w-36rem lg:w-30rem lg1120:w-36rem mx-auto"
+      className="m-6 shadow-md bg-white rounded-lg p-3 sm570:p-6 w-64 sm360:w-80 sm450:w-96 sm570:w-30rem md840:w-36rem lg:w-30rem lg1120:w-36rem mx-auto"
       onClick={() => navigate(`/posts/${post._id}`)}
     >
       <div className="flex justify-between items-center">
