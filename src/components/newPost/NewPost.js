@@ -29,7 +29,7 @@ export const NewPost = () => {
         <input
           type="text"
           placeholder={`Share your thoughts...  ${loggedUser?.username}`}
-          className="border-none py-2 text-xs sm450:text-sm sm570:text-base sm570:px-3 w-full outline-none"
+          className="border-none py-2 text-xs sm360:text-sm sm570:text-base sm570:px-3 w-full outline-none"
           readOnly
         ></input>
 
