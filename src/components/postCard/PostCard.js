@@ -152,7 +152,7 @@ export const PostCard = ({ post, noDetail }) => {
       <p className=" mt-4 sm570:mt-6">{post?.content}</p>
 
       {post?.contentImage && (
-        <div className="h-52 sm450:h-80 sm570:h-96 md840:h-30rem mt-2 sm570:mt-5 rounded-lg">
+        <div className="h-52 sm360:h-64 sm450:h-80 sm570:h-96 md840:h-30rem mt-2 sm570:mt-5 rounded-lg">
           <img
             src={post?.contentImage}
             alt="post pic"
