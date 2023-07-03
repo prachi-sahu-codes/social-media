@@ -38,7 +38,7 @@ export const UserProfile = () => {
   const isUserLoggedUser = loggedUser.username === username;
 
   return (
-    <div className="w-full py-7 px-6 pb-11 sm670:pb-5 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-50">
+    <div className="w-full py-7 px-6 pb-11 sm670:pb-5 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-100">
       <img
         src={
           userDetail.profileImage

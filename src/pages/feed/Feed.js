@@ -41,7 +41,7 @@ export const Feed = () => {
         );
 
   return (
-    <div className="w-full pb-14 pt-4 sm670:pt-6 px-6 sm670:pb-5 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-50">
+    <div className="w-full pb-14 pt-4 sm670:pt-6 px-6 sm670:pb-5 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-100">
       <NewPost />
       {sortedFeedData.length !== 0 ? (
         <ul>

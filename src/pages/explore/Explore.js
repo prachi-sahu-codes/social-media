@@ -11,7 +11,7 @@ export const Explore = () => {
   );
 
   return (
-    <div className="w-full px-6 pb-14 pt-4 sm670:pt-6 sm670:pb-5 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-50">
+    <div className="w-full px-6 pb-14 pt-4 sm670:pt-6 sm670:pb-5 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-100">
       <ul>
         {filterLoggedUserPost.map((post) => (
           <li key={post._id}>
