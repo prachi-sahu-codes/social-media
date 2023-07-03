@@ -49,7 +49,7 @@ export const UserProfile = () => {
         className="hidden sm450:block w-32 sm450:h-32 sm450:-mb-20 rounded-full mx-auto bg-white shadow-lg"
       />
 
-      <div className="m-6 shadow-md bg-white rounded-lg p-6 sm450:pt-16 w-64 sm450:w-96 sm570:w-30rem md840:w-36rem lg:w-30rem lg1120:w-36rem mx-auto">
+      <div className="m-6 shadow-md bg-white rounded-lg p-6 sm450:pt-16 w-64 sm360:w-80 sm450:w-96 sm570:w-30rem md840:w-36rem lg:w-30rem lg1120:w-36rem mx-auto">
         <div className="flex items-center justify-between sm450:hidden">
           <img
             src={

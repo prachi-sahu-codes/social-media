@@ -9,7 +9,7 @@ export const NewPost = () => {
 
   return (
     <div
-      className="flex flex-col gap-4 p-3 sm570:p-6 w-64 sm450:w-96 sm570:w-30rem md840:w-36rem lg:w-30rem lg1120:w-36rem mt-6 mx-auto bg-white shadow-md rounded-lg"
+      className="flex flex-col gap-4 p-3 sm570:p-6 w-64 sm360:w-80 sm450:w-96 sm570:w-30rem md840:w-36rem lg:w-30rem lg1120:w-36rem mt-6 mx-auto bg-white shadow-md rounded-lg"
       onClick={() => setNewPostModal((prev) => !prev)}
     >
       <div className="flex items-center gap-1 sm500:gap-5 ">
