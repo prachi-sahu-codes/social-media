@@ -41,6 +41,7 @@ module.exports = {
     },
     extend: {
       height: {
+        "4.5rem": "4.5rem",
         "calc-nav": "calc(100vh - 48px)",
         "calc-img": "calc(100% - 2rem)",
       },

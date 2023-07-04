@@ -6,40 +6,67 @@ export const PostContent = ({ content, image }) => {
   const [hideFullContent, setHideFullContent] = useState(true);
 
   useEffect(() => {
-    const cardElement = cardRef.current;
-    const cardWidth = cardElement.offsetWidth;
+    const cardElement = cardRef?.current;
+    const cardWidth = cardElement?.offsetWidth;
 
     const excludedCharsRegex = /[,'".]/g;
     const cleanLine = content?.replace(excludedCharsRegex, "");
-    console.log(cleanLine?.length, cardWidth / 7.6);
+    console.log(content?.length);
     setIsContentOverflowing(cleanLine?.length > cardWidth / 7.6 + 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <div
-      className={`mt-4 sm570:mt-6 ${hideFullContent && "flex items-center"}`}
-    >
-      <span
-        ref={cardRef}
-        className={`w-calc-content ${
-          hideFullContent && "whitespace-nowrap overflow-hidden text-ellipsis"
-        }`}
-      >
-        {content}
-      </span>
+    <div className="mt-4 sm570:mt-6">
+      {image ? (
+        <div className={`${hideFullContent && "flex items-center"}`}>
+          <span
+            ref={cardRef}
+            className={`w-calc-content ${
+              hideFullContent &&
+              "whitespace-nowrap overflow-hidden text-ellipsis"
+            }`}
+          >
+            {content}
+          </span>
 
-      {isContentOverflowing && (
-        <span
-          onClick={(e) => {
-            setHideFullContent((prev) => !prev);
-            e.stopPropagation();
-          }}
-          className={`w-20 text-primary cursor-pointer `}
-        >
-          {" "}
-          Show {hideFullContent ? "more" : "less"}
-        </span>
+          {isContentOverflowing && (
+            <span
+              onClick={(e) => {
+                setHideFullContent((prev) => !prev);
+                e.stopPropagation();
+              }}
+              className={`w-20 text-primary cursor-pointer `}
+            >
+              {" "}
+              Show {hideFullContent ? "more" : "less"}
+            </span>
+          )}
+        </div>
+      ) : (
+        <div>
+          <span
+            className={`${
+              content?.length > 220 &&
+              hideFullContent &&
+              " block h-4.5rem overflow-y-hidden"
+            }`}
+          >
+            {content}
+          </span>
+          {content?.length > 220 && (
+            <span
+              onClick={(e) => {
+                setHideFullContent((prev) => !prev);
+                e.stopPropagation();
+              }}
+              className={`text-primary cursor-pointer flex flex-wrap`}
+            >
+              {" "}
+              Show {hideFullContent ? "more" : "less"}
+            </span>
+          )}
+        </div>
       )}
     </div>
   );
