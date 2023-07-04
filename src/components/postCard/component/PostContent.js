@@ -11,7 +11,7 @@ export const PostContent = ({ content, image }) => {
 
     const excludedCharsRegex = /[,'".]/g;
     const cleanLine = content?.replace(excludedCharsRegex, "");
-    console.log(content?.length);
+
     setIsContentOverflowing(cleanLine?.length > cardWidth / 7.6 + 1);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
