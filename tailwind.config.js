@@ -67,6 +67,7 @@ module.exports = {
         "30rem": "30rem",
         "32rem": "32rem",
         "36rem": "36rem",
+        "calc-content": "calc(100% - 80px)",
       },
     },
   },

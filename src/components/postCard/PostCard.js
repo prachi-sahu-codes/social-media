@@ -18,6 +18,7 @@ import ClickOutside from "../clickOutside/ClickOutside";
 import { PostModal } from "../postModal/PostModal";
 import { useComment } from "../../context/commentContext/CommentContext";
 import { UserComment } from "./component/UserComment";
+import { PostContent } from "./component/PostContent";
 
 export const PostCard = ({ post, noDetail }) => {
   const navigate = useNavigate();
@@ -149,7 +150,7 @@ export const PostCard = ({ post, noDetail }) => {
         )}
       </div>
 
-      <p className=" mt-4 sm570:mt-6">{post?.content}</p>
+      <PostContent content={post?.content} image={post?.contentImage} />
 
       {post?.contentImage && (
         <div className="h-52 sm360:h-64 sm450:h-80 sm570:h-96 md840:h-30rem mt-2 sm570:mt-5 rounded-lg">
