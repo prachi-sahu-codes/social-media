@@ -89,11 +89,19 @@ export const PostCard = ({ post, noDetail }) => {
             e.stopPropagation();
           }}
         >
-          <img
-            src={user?.profileImage}
-            alt="profile pic"
-            className="w-12 h-12 rounded-full border-2 border-solid border-primary cursor-pointer"
-          />
+          {user?.profileImage ? (
+            <img
+              src={user?.profileImage}
+              alt="profile pic"
+              className="w-12 h-12 rounded-full border-2 border-solid border-primary cursor-pointer"
+            />
+          ) : (
+            <img
+              src="https://i.imgur.com/qMW3Cze.png"
+              alt="profile pic"
+              className="w-12 h-12 rounded-full border-2 border-solid border-primary cursor-pointer"
+            />
+          )}
           <div>
             <p className="font-semibold cursor-pointer">{user?.username}</p>
             <p className="text-xs text-gray">{formattedDate}</p>
