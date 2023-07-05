@@ -49,7 +49,7 @@ export const PostContent = ({ content, image }) => {
             className={`${
               content?.length > 220 &&
               hideFullContent &&
-              " block h-4.5rem overflow-y-hidden"
+              " block h-36 sm360:h-7.5rem sm450:h-24 sm570:h-4.5rem overflow-y-hidden"
             }`}
           >
             {content}
