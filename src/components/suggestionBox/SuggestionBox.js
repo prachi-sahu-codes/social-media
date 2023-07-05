@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import { useUser } from "../../context/userContext/UserContext";
 import { useAuth } from "../../context/authContext/AuthContext";
 import { usePost } from "../../context/postContext/PostContext";
 import { lightGray, lightActive, fireGray, fireActive } from "../../assets";
-import { useNavigate } from "react-router";
+import { avatars } from "../profileModal/component/data/data";
 
 export const SuggestionBox = () => {
   const navigate = useNavigate();
@@ -11,6 +12,8 @@ export const SuggestionBox = () => {
   const { loggedUser } = useAuth();
   const { activeSortBtn, setActiveSortBtn } = usePost();
   const [suggestionsArr, setSuggestionsArr] = useState([]);
+
+  const activityProfile = avatars.slice(3);
 
   useEffect(() => {
     const followedUsers = userData?.filter((user) =>
@@ -114,6 +117,31 @@ export const SuggestionBox = () => {
               </li>
             ))}
           </ul>
+        </div>
+      )}
+
+      {!suggestionsArr.length > 0 && (
+        <div className="text-left">
+          <h1 className="mt-4 pb-3 text-left text-lg font-semibold">
+            Activities
+          </h1>
+          <div className="bg-slate-100 p-3 rounded-lg">
+            <ul className="flex">
+              {activityProfile.map((pic, index) => (
+                <li key={index} className="-mr-2 my-2">
+                  <img
+                    src={pic}
+                    alt="profile pics"
+                    className="w-10 h-10 rounded-full"
+                  />
+                </li>
+              ))}
+            </ul>
+            <p className="font-semibold text-lg my-1">40.8K Peoples</p>
+            <p className="mb-1">
+              Active and engaging with the online community.
+            </p>
+          </div>
         </div>
       )}
     </div>
