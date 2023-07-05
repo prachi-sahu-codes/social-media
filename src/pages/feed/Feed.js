@@ -6,11 +6,13 @@ import { useUser } from "../../context/userContext/UserContext";
 import { PostCard } from "../../components/postCard/PostCard";
 import { NewPost } from "../../components/newPost/NewPost";
 import { lightGray, lightActive, fireGray, fireActive } from "../../assets";
+import { useNavigate } from "react-router";
 
 export const Feed = () => {
   const { postData, activeSortBtn, setActiveSortBtn } = usePost();
   const { userData } = useUser();
   const { loggedUser } = useAuth();
+  const navigate = useNavigate();
 
   const [filterLoggedUserPost, setFilterLoggedUserPost] = useState([]);
 
@@ -92,10 +94,16 @@ export const Feed = () => {
         </ul>
       ) : (
         <div className="py-5">
-          <h1 className="text-center text-lg sm500:text-2xl my-10 max-w-2xl m-auto">
-            No posts yet. Start sharing your own creations and follow other
-            artists to see their amazing posts!!
+          <h1 className="text-center text-lg sm500:text-2xl mt-10 max-w-2xl m-auto">
+            No posts yet. Start sharing your creations & follow other artists to
+            see their amazing posts!!
           </h1>
+          <button
+            className="block px-4 py-1 my-2 border-none bg-primary hover:opacity-90 active:opacity-80 text-white sm500:text-lg rounded-lg shadow-md m-auto"
+            onClick={() => navigate("/explore")}
+          >
+            Explore
+          </button>
         </div>
       )}
     </div>
