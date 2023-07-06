@@ -17,7 +17,11 @@ export const PostModal = ({ post, setShowPopupPost }) => {
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    setMedia(file);
+    setMedia(() => file);
+    newPostDispatch({
+      type: "CONTENT_IMG",
+      payload: null,
+    });
   };
 
   const onEmojiClick = (emojiObj) => {
