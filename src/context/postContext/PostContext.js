@@ -7,6 +7,7 @@ import {
 } from "react";
 import {
   postsService,
+  postObserverService,
   createPostService,
   editPostService,
   deletePostService,
@@ -21,6 +22,8 @@ import { useLocation } from "react-router-dom";
 
 const PostContext = createContext();
 
+const Limit = 3;
+
 export const PostProvider = ({ children }) => {
   const location = useLocation();
   const { token, notifyToast } = useAuth();
@@ -34,6 +37,7 @@ export const PostProvider = ({ children }) => {
     contentImage: "",
     profileImage: "",
   });
+  const [pageInfo, setPageInfo] = useState(null);
 
   const getPostData = async () => {
     try {
@@ -49,11 +53,22 @@ export const PostProvider = ({ children }) => {
     }
   };
 
+  const getPostObserver = async (page) => {
+    try {
+      const res = await postObserverService(Limit, page);
+      setPostData((prev) => [...prev, ...res.data?.posts]);
+      setPageInfo({ ...res.data.info });
+      console.log(page, res.data.posts);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   useEffect(() => {
-    if (token) {
+    if (token && location.pathname !== "/explore") {
       getPostData();
     }
-  }, [token]);
+  }, [token, location.pathname]);
 
   const getPostDetail = async (postId) => {
     try {
@@ -167,6 +182,8 @@ export const PostProvider = ({ children }) => {
         createPost,
         editPost,
         deletePost,
+        getPostObserver,
+        pageInfo,
       }}
     >
       {children}

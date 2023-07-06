@@ -15,22 +15,31 @@ export const getAllpostsHandler = function () {
   return new Response(200, {}, { posts: this.db.posts });
 };
 
+/**
+ * This handler handles gets all posts in the db.
+ * send GET Request at /api/posts/limit/page
+ * */
+
 export const getAllPostByObserverHandler = function (schema, request) {
-  const { limit, page } = request.params;
+  let { page, limit } = request.params || {};
+  page = Number(page);
+  limit = Number(limit);
 
-  const trendingPosts = [...this.db.posts].sort((a, b) => {
-    return (
-      b?.likes?.likeCount +
-      b?.comments?.length -
-      (a?.likes?.likeCount + a?.comments?.length)
-    );
-  });
-  const pagenatedPost = trendingPosts.slice(
-    0,
-    Number(page) * Number(limit) + Number(limit)
+  const startIndex = limit * (page - 1);
+  const endIndex = limit * page;
+
+  const DBposts = [...this.db.posts];
+  const totalPages = Math.ceil(DBposts.length / limit);
+  const pagenatedPost = DBposts.slice(startIndex, endIndex);
+
+  return new Response(
+    200,
+    {},
+    {
+      posts: pagenatedPost,
+      info: { totalProducts: DBposts.length, totalPages },
+    }
   );
-
-  return new Response(200, {}, { posts: pagenatedPost });
 };
 
 /**

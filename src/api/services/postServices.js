@@ -10,6 +10,9 @@ import {
 
 export const postsService = () => axios.get(POSTS_URL);
 
+export const postObserverService = (limit, page) =>
+  axios.get(`${POSTS_URL}/${limit}/${page}`);
+
 export const postDetailService = (postId) =>
   axios.get(`${POSTS_URL}/${postId}`);
 
