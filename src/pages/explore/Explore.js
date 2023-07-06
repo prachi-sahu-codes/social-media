@@ -6,13 +6,15 @@ import { useAuth } from "../../context/authContext/AuthContext";
 import { SuggestionsBox } from "./component/SuggestionsBox";
 
 export const Explore = () => {
-  const { postData, getPostObserver, pageInfo, isLoading } = usePost();
+  const { setPostData, postData, getPostObserver, pageInfo, isLoading } =
+    usePost();
   const { loggedUser } = useAuth();
   const [pageNum, setPageNum] = useState(0);
 
   const loader = useRef(null);
 
   useEffect(() => {
+    setPostData(() => []);
     const elementRef = loader.current;
     const handleObserver = (entries) => {
       const target = entries[0];
@@ -27,6 +29,7 @@ export const Explore = () => {
     return () => {
       observer.unobserve(elementRef);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

@@ -68,10 +68,10 @@ export const PostProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    if (token && location.pathname !== "/explore") {
+    if (token) {
       getPostData();
     }
-  }, [token, location.pathname]);
+  }, [token]);
 
   const getPostDetail = async (postId) => {
     try {
