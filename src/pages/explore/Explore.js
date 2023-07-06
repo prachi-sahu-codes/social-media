@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+import { ColorRing } from "react-loader-spinner";
 import { usePost } from "../../context/postContext/PostContext";
 import { PostCard } from "../../components/postCard/PostCard";
 import { useAuth } from "../../context/authContext/AuthContext";
 import { SuggestionsBox } from "./component/SuggestionsBox";
-import { useLocation } from "react-router";
 
 export const Explore = () => {
-  const location = useLocation();
-  const { postData, getPostObserver, pageInfo } = usePost();
+  const { postData, getPostObserver, pageInfo, isLoading } = usePost();
   const { loggedUser } = useAuth();
   const [pageNum, setPageNum] = useState(0);
 
@@ -36,7 +35,7 @@ export const Explore = () => {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.pathname, pageNum]);
+  }, [pageNum]);
 
   const filterLoggedUserPost = postData.filter(
     (post) => post.username !== loggedUser.username
@@ -47,12 +46,25 @@ export const Explore = () => {
       <SuggestionsBox />
 
       <ul>
-        {filterLoggedUserPost.map((post, index) => (
-          <li key={index}>
+        {filterLoggedUserPost.map((post) => (
+          <li key={post._id}>
             <PostCard post={post} />
           </li>
         ))}
       </ul>
+      {isLoading && (
+        <div className="flex justify-center">
+          <ColorRing
+            visible={true}
+            height="80"
+            width="80"
+            ariaLabel="blocks-loading"
+            wrapperStyle={{}}
+            wrapperClass="blocks-wrapper"
+            colors={["#DC2F02", "#DC2F02", "#DC2F02", "#DC2F02", "#DC2F02"]}
+          />
+        </div>
+      )}
       <div ref={loader}></div>
     </div>
   );

@@ -38,6 +38,7 @@ export const PostProvider = ({ children }) => {
     profileImage: "",
   });
   const [pageInfo, setPageInfo] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getPostData = async () => {
     try {
@@ -55,12 +56,14 @@ export const PostProvider = ({ children }) => {
 
   const getPostObserver = async (page) => {
     try {
+      setIsLoading(true);
       const res = await postObserverService(Limit, page);
       setPostData((prev) => [...prev, ...res.data?.posts]);
       setPageInfo({ ...res.data.info });
-      console.log(page, res.data.posts);
+      setIsLoading(false);
     } catch (e) {
       console.log(e);
+      setIsLoading(false);
     }
   };
 
@@ -184,6 +187,7 @@ export const PostProvider = ({ children }) => {
         deletePost,
         getPostObserver,
         pageInfo,
+        isLoading,
       }}
     >
       {children}
