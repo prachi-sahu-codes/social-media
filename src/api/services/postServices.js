@@ -13,6 +13,9 @@ export const postsService = () => axios.get(POSTS_URL);
 export const postObserverService = (limit, page) =>
   axios.get(`${POSTS_URL}/${limit}/${page}`);
 
+export const feedPostService = (username) =>
+  axios.get(`/api/feeds/${username}`);
+
 export const postDetailService = (postId) =>
   axios.get(`${POSTS_URL}/${postId}`);
 

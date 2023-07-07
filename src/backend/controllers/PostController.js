@@ -16,6 +16,29 @@ export const getAllpostsHandler = function () {
 };
 
 /**
+ * This handler handles gets all feeds post in the db.
+ * send GET Request at /api/feeds/username
+ */
+
+export const getFeedPost = function (schema, request) {
+  const { username } = request.params;
+  const user = schema.users.findBy({ username });
+  const posts = schema.posts.where({ username })?.models;
+  const followedUsersPosts = user.following.flatMap(
+    ({ username }) => schema.posts.where({ username })?.models
+  );
+  const allPost = [...posts, ...followedUsersPosts];
+
+  return new Response(
+    200,
+    {},
+    {
+      posts: allPost,
+    }
+  );
+};
+
+/**
  * This handler handles gets all posts in the db.
  * send GET Request at /api/posts/limit/page
  * */

@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { usePost } from "../../context/postContext/PostContext";
 import { useAuth } from "../../context/authContext/AuthContext";
 import { useUser } from "../../context/userContext/UserContext";
@@ -9,39 +9,21 @@ import { lightGray, lightActive, fireGray, fireActive } from "../../assets";
 import { useNavigate } from "react-router";
 
 export const Feed = () => {
-  const { postData, activeSortBtn, setActiveSortBtn } = usePost();
+  const { postData, activeSortBtn, setActiveSortBtn, getFeedData, feedData } =
+    usePost();
   const { userData } = useUser();
   const { loggedUser } = useAuth();
   const navigate = useNavigate();
 
-  const [filterLoggedUserPost, setFilterLoggedUserPost] = useState([]);
-
   useEffect(() => {
-    const followedUsers = userData?.filter((user) =>
-      user.followers.find((person) => person.username === loggedUser.username)
-    );
-
-    const gettingUsername = followedUsers?.map((user) => user.username);
-
-    const filteredPost = postData.filter(
-      (post) =>
-        post.username === loggedUser.username ||
-        gettingUsername.includes(post.username)
-    );
-
-    setFilterLoggedUserPost(() => filteredPost);
-
+    getFeedData(loggedUser.username);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postData, userData]);
 
   const sortedFeedData =
     activeSortBtn === "latest"
-      ? filterLoggedUserPost.sort(
-          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-        )
-      : filterLoggedUserPost.sort(
-          (a, b) => b.likes.likeCount - a.likes.likeCount
-        );
+      ? feedData.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+      : feedData.sort((a, b) => b.likes.likeCount - a.likes.likeCount);
 
   return (
     <div className="w-full pb-14 pt-4 sm670:pt-6 px-6 sm670:pb-5 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-100">

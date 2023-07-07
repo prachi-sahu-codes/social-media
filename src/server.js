@@ -15,6 +15,7 @@ import {
   dislikePostHandler,
   getAllUserPostsHandler,
   getAllPostByObserverHandler,
+  getFeedPost,
 } from "./backend/controllers/PostController";
 import {
   followUserHandler,
@@ -69,6 +70,7 @@ export function makeServer({ environment = "development" } = {}) {
 
       // post routes (public)
       this.get("/posts", getAllpostsHandler.bind(this));
+      this.get("/feeds/:username", getFeedPost.bind(this));
       this.get("/posts/:limit/:page", getAllPostByObserverHandler.bind(this));
       this.get("/posts/:postId", getPostHandler.bind(this));
       this.get("/posts/user/:username", getAllUserPostsHandler.bind(this));

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { ColorRing } from "react-loader-spinner";
 import { usePost } from "../../context/postContext/PostContext";
 import { PostCard } from "../../components/postCard/PostCard";
@@ -6,15 +6,19 @@ import { useAuth } from "../../context/authContext/AuthContext";
 import { SuggestionsBox } from "./component/SuggestionsBox";
 
 export const Explore = () => {
-  const { setPostData, postData, getPostObserver, pageInfo, isLoading } =
-    usePost();
+  const {
+    postData,
+    getPostObserver,
+    pageInfo,
+    isLoading,
+    pageNum,
+    setPageNum,
+  } = usePost();
   const { loggedUser } = useAuth();
-  const [pageNum, setPageNum] = useState(0);
 
   const loader = useRef(null);
 
   useEffect(() => {
-    setPostData(() => []);
     const elementRef = loader.current;
     const handleObserver = (entries) => {
       const target = entries[0];
@@ -36,7 +40,6 @@ export const Explore = () => {
     if (pageInfo?.totalPages >= pageNum || pageInfo === null) {
       getPostObserver(pageNum);
     }
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pageNum]);
 
@@ -49,8 +52,8 @@ export const Explore = () => {
       <SuggestionsBox />
 
       <ul>
-        {filterLoggedUserPost.map((post) => (
-          <li key={post._id}>
+        {filterLoggedUserPost.map((post, index) => (
+          <li key={index}>
             <PostCard post={post} />
           </li>
         ))}
@@ -64,7 +67,7 @@ export const Explore = () => {
             ariaLabel="blocks-loading"
             wrapperStyle={{}}
             wrapperClass="blocks-wrapper"
-            colors={["#DC2F02", "#DC2F02", "#DC2F02", "#DC2F02", "#DC2F02"]}
+            colors={["#cfcfcf", "#cfcfcf", "#cfcfcf", "#cfcfcf", "#cfcfcf"]}
           />
         </div>
       )}

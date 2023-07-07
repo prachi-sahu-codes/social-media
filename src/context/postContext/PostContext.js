@@ -7,6 +7,7 @@ import {
 } from "react";
 import {
   postsService,
+  feedPostService,
   postObserverService,
   createPostService,
   editPostService,
@@ -29,6 +30,7 @@ export const PostProvider = ({ children }) => {
   const { token, notifyToast } = useAuth();
   const [loading, setLoading] = useState(false);
   const [postData, setPostData] = useState([]);
+  const [feedData, setFeedData] = useState([]);
   const [postDetail, setPostDetail] = useState([]);
   const [singleUserPosts, setSingleUserPosts] = useState([]);
   const [activeSortBtn, setActiveSortBtn] = useState("latest");
@@ -39,6 +41,7 @@ export const PostProvider = ({ children }) => {
   });
   const [pageInfo, setPageInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [pageNum, setPageNum] = useState(0);
 
   const getPostData = async () => {
     try {
@@ -46,7 +49,20 @@ export const PostProvider = ({ children }) => {
       const res = await postsService();
       if (res.status === 200) {
         setPostData(res.data?.posts);
-        setTimeout(() => setLoading(false), 1000);
+      }
+    } catch (e) {
+      console.log("Error:", e?.message);
+      setLoading(false);
+    }
+  };
+
+  const getFeedData = async (username) => {
+    try {
+      setLoading(true);
+      const res = await feedPostService(username);
+      if (res.status === 200) {
+        setFeedData(res.data?.posts);
+        setLoading(false);
       }
     } catch (e) {
       console.log("Error:", e?.message);
@@ -66,12 +82,6 @@ export const PostProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-    if (token) {
-      getPostData();
-    }
-  }, [token]);
 
   const getPostDetail = async (postId) => {
     try {
@@ -177,6 +187,7 @@ export const PostProvider = ({ children }) => {
         postData,
         setPostData,
         postDetail,
+        getPostData,
         getPostDetail,
         singleUserPosts,
         getPostByUsername,
@@ -188,6 +199,10 @@ export const PostProvider = ({ children }) => {
         getPostObserver,
         pageInfo,
         isLoading,
+        getFeedData,
+        feedData,
+        pageNum,
+        setPageNum,
       }}
     >
       {children}
