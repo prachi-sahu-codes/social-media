@@ -1,23 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext/AuthContext";
-import {
-  homeActive,
-  homeBlack,
-  exploreActive,
-  exploreBlack,
-  bookmarkActive,
-  bookmarkBlack,
-  heartActive,
-  heartBlack,
-  logoutBlack,
-} from "../../assets";
+import { homeActive, homeBlack, homeWhite } from "../../assets";
+import { MdExplore, MdOutlineExplore } from "react-icons/md";
+import { FaRegHeart, FaHeart, FaBookmark, FaRegBookmark } from "react-icons/fa";
+import { MdLogout } from "react-icons/md";
+import { useTheme } from "../../context/themeContext/ThemeContext";
 
 export const NavigationBox = () => {
   const { loggedUser, logoutHandler } = useAuth();
+  const { isDarkTheme } = useTheme();
   const navigate = useNavigate();
   const path = window.location.pathname;
-
   const [newActiveLink, setNewActiveLink] = useState(path);
 
   useEffect(() => {
@@ -64,6 +58,8 @@ export const NavigationBox = () => {
                   className="w-1.3rem h-1.3rem"
                   alt="icon"
                 />
+              ) : isDarkTheme ? (
+                <img src={homeWhite} className="w-1.3rem h-1.3rem" alt="icon" />
               ) : (
                 <img src={homeBlack} className="w-1.3rem h-1.3rem" alt="icon" />
               )}
@@ -84,24 +80,16 @@ export const NavigationBox = () => {
           <div className="flex text-xl py-1  w-36 items-center hover:opacity-80 active:opacity-50 rounded-md">
             <div className="mx-3">
               {newActiveLink === "/explore" ? (
-                <img
-                  src={exploreActive}
-                  className="w-1.3rem h-1.3rem"
-                  alt="icon"
-                />
+                <MdExplore className="w-1.3rem h-1.3rem fill-primary" />
               ) : (
-                <img
-                  src={exploreBlack}
-                  className="w-1.05rem h-1.05rem ml-0.1rem "
-                  alt="icon"
-                />
+                <MdOutlineExplore className="w-1.3rem h-1.3rem fill-black dark:fill-white" />
               )}
             </div>
             <span
               className={`text-base font-semibold pt-1 pr-3 ${
                 newActiveLink === "/explore"
                   ? "text-primary"
-                  : "text-black dark:text-white ml-0.15rem"
+                  : "text-black dark:text-white"
               }`}
             >
               Explore
@@ -112,9 +100,9 @@ export const NavigationBox = () => {
           <div className="flex text-xl py-1 items-center w-36 hover:opacity-80 active:opacity-50 rounded-md">
             <div className="mx-3">
               {newActiveLink === "/bookmark" ? (
-                <img src={bookmarkActive} className="w-5 h-5" alt="icon" />
+                <FaBookmark className="fill-primary text-base" />
               ) : (
-                <img src={bookmarkBlack} className="w-5 h-5" alt="icon" />
+                <FaRegBookmark className="fill-black dark:fill-white text-base" />
               )}
             </div>
             <span
@@ -132,17 +120,9 @@ export const NavigationBox = () => {
           <div className="flex text-xl items-center py-1 w-36 hover:opacity-80 active:opacity-50 rounded-md">
             <div className="mx-3">
               {newActiveLink === "/favourite" ? (
-                <img
-                  src={heartActive}
-                  className="w-1.3rem h-1.3rem"
-                  alt="icon"
-                />
+                <FaHeart className="fill-primary text-lg" />
               ) : (
-                <img
-                  src={heartBlack}
-                  className="w-1.3rem h-1.3rem"
-                  alt="icon"
-                />
+                <FaRegHeart className="fill-black dark:fill-white text-lg" />
               )}
             </div>
             <span
@@ -159,12 +139,12 @@ export const NavigationBox = () => {
 
         <hr className="text-bgColorLoad" />
 
-        <div className="flex text-lg items-center py-1  w-36 hover:opacity-80 active:opacity-50 rounded-md">
-          <img src={logoutBlack} className="w-5 h-5 mx-3" alt="icon" />
-          <button
-            onClick={() => logoutHandler()}
-            className="font-semibold text-black text-base dark:text-white"
-          >
+        <div
+          className="flex text-lg items-center py-1  w-36 hover:opacity-80 active:opacity-50 rounded-md"
+          onClick={() => logoutHandler()}
+        >
+          <MdLogout className="fill-black dark:fill-white mx-3" />
+          <button className="font-semibold text-black text-base dark:text-white">
             Log Out
           </button>
         </div>
