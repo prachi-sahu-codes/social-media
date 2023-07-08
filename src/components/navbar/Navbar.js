@@ -14,7 +14,7 @@ export const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex items-center justify-between p-3 px-8 fixed top-0 left-0 right-0 z-10 bg-white shadow-md drop-shadow-s dark:bg-black dark:shadow-shadowDark">
+    <div className="flex items-center justify-between p-3 px-4 sm450:px-8 fixed top-0 left-0 right-0 z-10 bg-white shadow-md drop-shadow-s dark:bg-black dark:shadow-shadowDark">
       <div
         className="flex items-center active:opacity-80"
         onClick={() => navigate("/feed")}
@@ -35,7 +35,7 @@ export const Navbar = () => {
           type="text"
           placeholder="Search Users"
           value={searchTerm}
-          className="px-2 bg-slate-100 py-1 w-16 sm390:w-40 sm570:w-60 outline-none rounded-full dark:bg-blackLightBg dark:text-white"
+          className="px-2 bg-slate-100 py-2 w-16 sm420:w-40 sm570:w-60 outline-none rounded-full dark:bg-blackLightBg dark:text-white"
           onChange={(e) => {
             setSearchTerm(e.target.value);
             setUserModal(true);
@@ -49,9 +49,9 @@ export const Navbar = () => {
           />
         )}
       </div>
-      <div className="flex w-60 justify-between">
+      <div className="flex gap-2 md840:w-60 justify-between">
         <button
-          className="px-4 hidden sm670:flex items-center gap-1 border-none bg-primary hover:opacity-90 active:opacity-80 rounded-full shadow-md dark:shadow-shadowDark active:shadow-sm"
+          className="px-4 hidden md730:flex items-center gap-1 border-none bg-primary hover:opacity-90 active:opacity-80 rounded-full shadow-md dark:shadow-shadowDark active:shadow-sm"
           onClick={() => setNewPostModal((prev) => !prev)}
         >
           <BsPlusLg className="stroke-white stroke-2 text-sm mb-1" />

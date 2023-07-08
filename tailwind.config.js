@@ -11,6 +11,8 @@ module.exports = {
 
       sm390: "390px",
 
+      sm420: "420px",
+
       sm450: "450px",
 
       sm500: "500px",
