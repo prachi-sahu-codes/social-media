@@ -10,10 +10,12 @@ export const FollowModal = ({ followModal, setShowFollowModal }) => {
           onClick={() => setShowFollowModal(false)}
           className="absolute z-10 -top-2 -right-2"
         >
-          <MdCancel className="w-7 h-7 fill-primary bg-slate-50 rounded-full" />
+          <MdCancel className="w-7 h-7 fill-primary bg-slate-50 dark:bg-black rounded-full" />
         </div>
-        <div className="relative flex flex-col gap-4 max-w-2xl mx-auto bg-white shadow-md rounded-lg p-6 ">
-          <h1 className="font-bold text-xl">{followModal?.title}</h1>
+        <div className="relative flex flex-col gap-4 max-w-2xl mx-auto bg-white dark:bg-black shadow-md rounded-lg p-6 ">
+          <h1 className="font-bold text-xl text-black dark:text-white">
+            {followModal?.title}
+          </h1>
           <hr className="text-lightGray" />
           {followModal?.arr.length > 0 ? (
             <ul>

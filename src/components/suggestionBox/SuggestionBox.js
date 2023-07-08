@@ -39,7 +39,7 @@ export const SuggestionBox = () => {
     <div className="w-96 hidden lg:block py-7 px-5 h-calc-nav text-center">
       {checkPath && (
         <>
-          <h1 className="mt-4 text-left text-lg font-semibold">
+          <h1 className="mt-4 text-left text-lg font-semibold text-black dark:text-white">
             Sort Posts By
           </h1>
           <div className="flex gap-2 pt-4 pb-6 mb-2">
@@ -84,7 +84,7 @@ export const SuggestionBox = () => {
 
       {suggestionsArr.length > 0 && (
         <div className="mb-4">
-          <h1 className="mt-4 pb-3 text-left text-lg font-semibold">
+          <h1 className="mt-4 pb-3 text-left text-lg font-semibold text-black dark:text-white">
             Suggestions for you
           </h1>
           <ul className=" max-h-72 pt-2 overflow-y-scroll suggestionScroll">
@@ -103,7 +103,9 @@ export const SuggestionBox = () => {
                     }}
                   />
                   <div>
-                    <p className=" text-sm cursor-pointer">{fullname}</p>
+                    <p className=" text-sm cursor-pointer text-black dark:text-white">
+                      {fullname}
+                    </p>
                     <p className="text-xs text-gray">@{username}</p>
                   </div>
                 </div>
@@ -122,10 +124,10 @@ export const SuggestionBox = () => {
 
       {!suggestionsArr.length > 0 && (
         <div className="text-left">
-          <h1 className="mt-4 pb-3 text-left text-lg font-semibold">
+          <h1 className="mt-4 pb-3 text-left text-lg font-semibold text-black dark:text-white">
             Activities
           </h1>
-          <div className="bg-slate-100 p-3 rounded-lg">
+          <div className="bg-slate-100 dark:bg-blackLightBg p-3 rounded-lg">
             <ul className="flex">
               {activityProfile.map((pic, index) => (
                 <li key={index} className="-mr-2 my-2">
@@ -137,8 +139,10 @@ export const SuggestionBox = () => {
                 </li>
               ))}
             </ul>
-            <p className="font-semibold text-lg my-1">40.8K Peoples</p>
-            <p className="mb-1">
+            <p className="font-semibold text-lg my-1 text-black dark:text-white">
+              40.8K Peoples
+            </p>
+            <p className="mb-1 text-black dark:text-gray ">
               Active and engaging with the online community.
             </p>
           </div>

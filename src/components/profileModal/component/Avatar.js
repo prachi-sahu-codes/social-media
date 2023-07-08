@@ -19,14 +19,16 @@ export const Avatar = ({ setShowAvatar, setFormDetails }) => {
       className="fixed top-0 left-0 z-50 w-full h-full bg-bgModal"
       onClick={(e) => e.stopPropagation()}
     >
-      <div className="absolute p-6 position-center w-80 bg-white rounded-lg">
+      <div className="absolute p-6 position-center w-80 bg-white dark:bg-black rounded-lg">
         <div
           onClick={() => setShowAvatar(false)}
           className="absolute -top-2 -right-2"
         >
-          <MdCancel className="w-7 h-7 fill-primary bg-slate-50 rounded-full" />
+          <MdCancel className="w-7 h-7 fill-primary bg-slate-50 dark:bg-black rounded-full" />
         </div>
-        <h2 className="font-bold text-xl pb-4">Profile Image</h2>
+        <h2 className="font-bold text-xl pb-4 text-black dark:text-white">
+          Profile Image
+        </h2>
         <ul className=" flex flex-wrap gap-2">
           {avatars.map((pic, index) => (
             <li key={index} onClick={() => setSelectAvatar(pic)}>

@@ -4,6 +4,8 @@ import { useAuth } from "../../../context/authContext/AuthContext";
 import { useUser } from "../../../context/userContext/UserContext";
 import ClickOutside from "../../clickOutside/ClickOutside";
 import { useComment } from "../../../context/commentContext/CommentContext";
+import { useTheme } from "../../../context/themeContext/ThemeContext";
+import { dotWhite } from "../../../assets";
 
 export const UserComment = ({ comment, post, setCommentId, setNewComment }) => {
   const { loggedUser } = useAuth();
@@ -11,6 +13,7 @@ export const UserComment = ({ comment, post, setCommentId, setNewComment }) => {
   const { deleteComment } = useComment();
   const [user, setUser] = useState({});
   const [commentModal, setCommentModal] = useState(false);
+  const { isDarkTheme } = useTheme();
 
   const checkUser = loggedUser?.username !== comment?.username;
 
@@ -39,28 +42,35 @@ export const UserComment = ({ comment, post, setCommentId, setNewComment }) => {
             className="w-12 h-12 rounded-full border-2 border-solid border-primary cursor-pointer"
           />
           <div>
-            <p className="font-semibold cursor-pointer">{comment?.username}</p>
+            <p className="font-semibold cursor-pointer text-black dark:text-white">
+              {comment?.username}
+            </p>
           </div>
         </div>
         {checkUser ? (
           ""
         ) : (
           <div className="relative">
-            <BsThreeDotsVertical
-              className="text-xl cursor-pointer"
+            <div
               onClick={(e) => {
                 setCommentModal((prev) => !prev);
                 e.stopPropagation();
               }}
-            />
+            >
+              {isDarkTheme ? (
+                <img src={dotWhite} alt="3 dots icon" className="w-5 h-5" />
+              ) : (
+                <BsThreeDotsVertical className="text-xl cursor-pointer" />
+              )}
+            </div>
             <ClickOutside onClickOutside={() => setCommentModal(() => false)}>
               <div
-                className={`absolute top-6 right-2 shadow-md bg-slate-100 rounded-md p-1 ${
+                className={`absolute top-6 right-2 shadow-md bg-slate-100 dark:bg-black rounded-md p-1 ${
                   commentModal ? "block" : "hidden"
                 }`}
               >
                 <button
-                  className="py-1 px-4 text-left rounded-md hover:text-blue-500 hover:bg-white active:bg-slate-50 w-full"
+                  className="py-1 px-4 text-left rounded-md text-black dark:text-white hover:text-blue-500 dark:hover:text-blue-500 hover:bg-white dark:hover:bg-blackLightBg active:bg-slate-50 w-full"
                   onClick={(e) => {
                     setCommentModal(false);
                     setCommentId(comment?._id);
@@ -71,7 +81,7 @@ export const UserComment = ({ comment, post, setCommentId, setNewComment }) => {
                   Edit
                 </button>
                 <button
-                  className="p-1 px-4 text-left rounded-md hover:text-red-600 hover:bg-white active:bg-slate-50 w-full"
+                  className="p-1 px-4 text-left text-black dark:text-white rounded-md hover:text-red-600 dark:hover:text-red-600 hover:bg-white dark:hover:bg-blackLightBg  active:bg-slate-50 w-full"
                   onClick={(e) => {
                     setCommentModal(false);
                     deleteComment(post?._id, comment?._id);
@@ -86,7 +96,7 @@ export const UserComment = ({ comment, post, setCommentId, setNewComment }) => {
         )}
       </div>
 
-      <p className="p-2">{comment?.text}</p>
+      <p className="p-2 text-black dark:text-white">{comment?.text}</p>
     </div>
   );
 };

@@ -12,7 +12,9 @@ export const Logo = () => {
       <span className="py-0 pt-0.5 px-2 rounded-lg text-lg text-white bg-primary mr-2 font-cursive cursor-pointer">
         W
       </span>
-      <span className="cursor-pointer text-xl font-cursive"> WhizVerse</span>
+      <span className="cursor-pointer text-xl font-cursive text-black dark:text-white">
+        WhizVerse
+      </span>
     </div>
   );
 };

@@ -20,7 +20,7 @@ import { NotFound } from "./pages/notfound/NotFound.js";
 function App() {
   const { loading } = usePost();
   return (
-    <div className="App">
+    <div className="App dark:bg-black dark:text-white">
       {loading && <Loader />}
       <ToastContainer
         position="bottom-right"

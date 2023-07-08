@@ -27,7 +27,7 @@ export const getFeedPost = function (schema, request) {
   const followedUsersPosts = user.following.flatMap(
     ({ username }) => schema.posts.where({ username })?.models
   );
-  const allPost = [...posts, ...followedUsersPosts];
+  const allPost = [...posts, ...followedUsersPosts].sort();
 
   return new Response(
     200,

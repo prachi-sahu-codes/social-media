@@ -72,7 +72,7 @@ export const PostModal = ({ post, setShowPopupPost }) => {
       onClick={(e) => e.stopPropagation()}
     >
       <div className="absolute position-center w-72 sm390:w-80 sm570:w-96 md840:w-30rem">
-        <div className="relative flex flex-col gap-4 mx-auto bg-white shadow-md rounded-lg p-6 ">
+        <div className="relative flex flex-col gap-4 mx-auto bg-white dark:bg-black shadow-md rounded-lg p-6 ">
           <div
             onClick={() => {
               setShowPopupPost(false);
@@ -81,7 +81,7 @@ export const PostModal = ({ post, setShowPopupPost }) => {
             }}
             className="absolute -top-2 -right-2"
           >
-            <MdCancel className="w-7 h-7 fill-primary bg-slate-50 rounded-full" />
+            <MdCancel className="w-7 h-7 fill-primary bg-slate-50 dark:bg-black rounded-full" />
           </div>
           <div className="flex gap-3">
             {loggedUser?.profileImage ? (
@@ -94,13 +94,13 @@ export const PostModal = ({ post, setShowPopupPost }) => {
               <img
                 src="https://i.imgur.com/qMW3Cze.png"
                 alt="profile pic"
-                className="w-12 h-12 rounded-full border-2 border-solid border-primary cursor-pointer"
+                className="w-12 h-12 rounded-full border-2 border-solid border-primary bg-white dark:bg-black cursor-pointer"
               />
             )}
             <textarea
               type="text"
               placeholder="Share your thoughts..."
-              className="border-none py-2 px-3 h-24"
+              className="border-none py-2 px-3 h-24 dark:bg-blackLightBg text-black dark:text-white"
               rows="3"
               value={newPostState.content}
               onChange={(e) => {
@@ -124,7 +124,7 @@ export const PostModal = ({ post, setShowPopupPost }) => {
                 }
                 className="absolute -top-2 left-24"
               >
-                <MdCancel className="w-6 h-6 fill-primary bg-slate-50 rounded-full" />
+                <MdCancel className="w-6 h-6 fill-primary bg-slate-50 dark:bg-black rounded-full" />
               </div>
             </div>
           )}
@@ -147,7 +147,7 @@ export const PostModal = ({ post, setShowPopupPost }) => {
                   onClick={() => setMedia(null)}
                   className="absolute -top-2 left-24"
                 >
-                  <MdCancel className="w-6 h-6 fill-primary bg-slate-50 rounded-full" />
+                  <MdCancel className="w-6 h-6 fill-primary bg-slate-50 dark:bg-blackLightBg rounded-full" />
                 </div>
               </div>
             )}

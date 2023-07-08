@@ -14,7 +14,7 @@ export const PostDetail = () => {
   }, [postData]);
 
   return (
-    <div className="w-full px-6 pb-14 pt-4 sm670:pt-6 sm670:pb-5 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-100">
+    <div className="w-full px-6 pb-14 pt-4 sm670:pt-6 sm670:pb-5 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-100 dark:bg-blackLightBg">
       <PostCard post={postDetail} noDetail />
     </div>
   );

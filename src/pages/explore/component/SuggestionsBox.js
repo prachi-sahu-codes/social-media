@@ -48,12 +48,12 @@ export const SuggestionsBox = () => {
                   }}
                 />
 
-                <p className="text-xs text-center mt-2 cursor-pointer w-20 whitespace-nowrap overflow-hidden text-ellipsis">
+                <p className="text-xs text-center text-black dark:text-white mt-2 cursor-pointer w-20 whitespace-nowrap overflow-hidden text-ellipsis">
                   {username}
                 </p>
 
                 <button
-                  className="text-primary pt-1 bg-white rounded-md text-sm font-semibold mt-1"
+                  className="text-primary pt-1 bg-white dark:bg-black rounded-md text-sm font-semibold mt-1 shadow-sm dark:shadow-shadowDark"
                   onClick={() => followUser(_id)}
                 >
                   Follow

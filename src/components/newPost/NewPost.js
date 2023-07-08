@@ -9,10 +9,10 @@ export const NewPost = () => {
 
   return (
     <div
-      className="flex flex-col gap-4 p-3 sm570:p-6 w-64 sm360:w-80 sm450:w-96 sm570:w-30rem md840:w-36rem lg:w-30rem lg1120:w-36rem mt-6 mx-auto bg-white shadow-md rounded-lg"
+      className="flex flex-col gap-4 p-3 sm570:p-6 w-64 sm360:w-80 sm450:w-96 sm570:w-30rem md840:w-36rem lg:w-30rem lg1120:w-36rem mt-6 mx-auto bg-white dark:bg-black shadow-md rounded-lg dark:shadow-shadowDark"
       onClick={() => setNewPostModal((prev) => !prev)}
     >
-      <div className="flex items-center gap-1 sm500:gap-5 ">
+      <div className="flex items-center gap-1 sm500:gap-5 dark:bg-black">
         {loggedUser?.profileImage ? (
           <img
             src={loggedUser?.profileImage}
@@ -29,11 +29,11 @@ export const NewPost = () => {
         <input
           type="text"
           placeholder={`Share your thoughts...  ${loggedUser?.username}`}
-          className="border-none py-2 text-xs sm360:text-sm sm570:text-base sm570:px-3 w-full outline-none"
+          className="border-none py-2 text-xs sm360:text-sm sm570:text-base dark:bg-black sm570:px-3 w-full outline-none"
           readOnly
         ></input>
 
-        <div className=" hover:opacity-90 active:opacity-80 text-white text-lg rounded-md shadow-md">
+        <div className=" hover:opacity-90 active:opacity-80 bg-white text-lg rounded-md shadow-md">
           <BsFillPlusSquareFill className="fill-primary w-6 h-6 sm500:w-8 sm500:h-8" />
         </div>
       </div>

@@ -26,7 +26,7 @@ export const BottomNavigation = () => {
   }, [path]);
 
   return (
-    <div className="fixed bottom-0 md730:hidden py-7 w-full flex justify-between items-center h-10 bg-white px-3 shadow-inner">
+    <div className="fixed bottom-0 md730:hidden py-7 w-full flex justify-between items-center h-10 bg-white px-3 shadow-inner dark:bg-black">
       <NavLink to="/feed">
         <div className="hover:opacity-80 active:opacity-50 w-7">
           {newActiveLink === "/feed" ? (

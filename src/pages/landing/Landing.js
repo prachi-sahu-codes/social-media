@@ -14,7 +14,7 @@ export const Landing = () => {
         <Logo />
 
         <div className="px-5 sm360:px-10 md970:px-24  pt-8 h-max-content">
-          <h1 className="text-4xl sm570:text-6xl font-bold leading-tight">
+          <h1 className="text-4xl sm570:text-6xl font-bold leading-tight text-black dark:text-white">
             Connect, Inspire, Collaborate
           </h1>
           <p className="py-5 sm570:pr-20 text-gray mt-4">
@@ -41,12 +41,14 @@ export const Landing = () => {
 
           <div className="flex gap-2 items-center mt-20 mb-5 text-sm text-gray">
             <BsPeopleFill className="icon rounded-full" />
-            <span>Largest Art community</span>
+            <span className="text-black dark:text-white">
+              Largest Art community
+            </span>
           </div>
         </div>
       </div>
 
-      <div className="bg-svgBg items-center justify-center w-full hidden md840:flex">
+      <div className="bg-svgBg dark:bg-blackLightBg items-center justify-center w-full hidden md840:flex">
         <img
           src={landing}
           className="object-contain landing-img"

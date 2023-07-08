@@ -20,6 +20,11 @@ export { default as plusWhite } from "./icons/plusWhite.png";
 export { default as plusBlack } from "./icons/plusBlack.png";
 export { default as logout } from "./icons/logout.png";
 export { default as logoutBlack } from "./icons/logoutBlack.png";
+export { default as crossWhite } from "./icons/crossWhite.png";
+export { default as searchWhite } from "./icons/searchWhite.png";
+export { default as dotWhite } from "./icons/dotWhite.png";
+export { default as eyeWhite } from "./icons/eyeWhite.png";
+export { default as eyeHideWhite } from "./icons/eyeHideWhite.png";
 
 export { default as bookmarkNow } from "./emptyPage/bookmarkNow.svg";
 export { default as likingNow } from "./emptyPage/likingNow.svg";

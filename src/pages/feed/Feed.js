@@ -26,15 +26,15 @@ export const Feed = () => {
       : feedData.sort((a, b) => b.likes.likeCount - a.likes.likeCount);
 
   return (
-    <div className="w-full pb-14 pt-4 sm670:pt-6 px-6 sm670:pb-5 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-100">
+    <div className="w-full pb-14 pt-4 sm670:pt-6 px-6 sm670:pb-5 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-100 dark:bg-blackLightBg">
       {sortedFeedData.length > 0 && (
         <div className="flex gap-2 pt-4 mb-2 lg:hidden w-64 sm360:w-80 sm450:w-96 sm570:w-30rem md840:w-36rem mx-auto ">
           <button
             onClick={() => setActiveSortBtn(() => "latest")}
-            className={`flex justify-center items-center bg-white pr-1 text-lg pt-0.1rem w-full border-2 rounded-md hover:opacity-80 active:opacity-60 ${
+            className={`flex justify-center items-center bg-white dark:bg-black pr-1 text-lg pt-0.1rem w-full border-2 rounded-md hover:opacity-80 active:opacity-60 ${
               activeSortBtn === "latest"
                 ? "border-primary text-primary"
-                : "border-lightGray text-mediumGray"
+                : "border-lightGray dark:border-gray text-mediumGray"
             }`}
           >
             <div>
@@ -48,10 +48,10 @@ export const Feed = () => {
           </button>
           <button
             onClick={() => setActiveSortBtn(() => "trending")}
-            className={`flex justify-center items-center bg-white text-lg pt-0.1rem w-full border-2 rounded-md hover:opacity-80 active:opacity-60 ${
+            className={`flex justify-center items-center bg-white dark:bg-black text-lg pt-0.1rem w-full border-2 rounded-md hover:opacity-80 active:opacity-60 ${
               activeSortBtn === "trending"
                 ? "border-primary text-primary"
-                : "border-lightGray text-mediumGray"
+                : "border-lightGray dark:border-gray text-mediumGray"
             }`}
           >
             <div>
@@ -76,7 +76,7 @@ export const Feed = () => {
         </ul>
       ) : (
         <div className="py-5">
-          <h1 className="text-center text-lg sm500:text-2xl mt-10 max-w-2xl m-auto">
+          <h1 className="text-center text-lg sm500:text-2xl mt-10 max-w-2xl m-auto text-black dark:text-white">
             No posts yet. Start sharing your creations & follow other artists to
             see their amazing posts!!
           </h1>

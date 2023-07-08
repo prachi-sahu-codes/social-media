@@ -2,6 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { useUser } from "../../context/userContext/UserContext";
 import { RxCross2 } from "react-icons/rx";
+import { crossWhite } from "../../assets";
 
 export const SearchUserModal = ({
   searchTerm,
@@ -25,9 +26,16 @@ export const SearchUserModal = ({
   };
 
   return (
-    <div className="absolute top-11 -left-48 sm390:-left-28 sm570:-left-2 bg-white px-8 py-4 pt-8 shadow-lg rounded-md max-h-96 overflow-x-hidden overflow-y-scroll">
+    <div className="absolute top-11 -left-48 sm390:-left-28 sm570:-left-2 bg-white dark:bg-blackLightBg dark:border-black dark:border-2 px-8 py-4 pt-8 shadow-lg rounded-md max-h-96 overflow-x-hidden overflow-y-scroll">
       <div className="absolute right-4 top-2" onClick={() => reset()}>
-        <RxCross2 />
+        <div className="dark:hidden">
+          <RxCross2 />
+        </div>
+        <img
+          src={crossWhite}
+          className="hidden dark:block w-6 h-6"
+          alt="cross icon"
+        />
       </div>
       {foundUsers.length > 0 && searchTerm.length > 0 ? (
         <ul>
@@ -47,7 +55,9 @@ export const SearchUserModal = ({
                   }}
                 />
                 <div>
-                  <p className=" text-sm cursor-pointer">{fullname}</p>
+                  <p className=" text-sm cursor-pointer text-black dark:text-white">
+                    {fullname}
+                  </p>
                   <p className="text-xs text-gray">@{username}</p>
                 </div>
               </div>
@@ -55,7 +65,7 @@ export const SearchUserModal = ({
           ))}
         </ul>
       ) : (
-        <div className="w-60">No users found</div>
+        <div className="w-60 text-black dark:text-white">No users found</div>
       )}
     </div>
   );

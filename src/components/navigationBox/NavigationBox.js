@@ -45,7 +45,7 @@ export const NavigationBox = () => {
             className="w-20 rounded-full border-2 my-2 border-solid border-primary"
           />
         )}
-        <div className="pt-2 font-semibold w-36 whitespace-nowrap overflow-hidden text-ellipsis text-center">
+        <div className="pt-2 font-semibold w-36 whitespace-nowrap overflow-hidden text-ellipsis text-center text-black dark:text-white">
           {loggedUser?.fullname}
         </div>
         <div className="pb-4 w-36 whitespace-nowrap overflow-hidden text-ellipsis text-sm text-gray text-center">
@@ -70,7 +70,9 @@ export const NavigationBox = () => {
             </div>
             <span
               className={`text-base font-semibold pt-1 pr-3 ${
-                newActiveLink === "/feed" ? "text-primary" : "text-black"
+                newActiveLink === "/feed"
+                  ? "text-primary"
+                  : "text-black dark:text-white"
               }`}
             >
               Feed
@@ -99,7 +101,7 @@ export const NavigationBox = () => {
               className={`text-base font-semibold pt-1 pr-3 ${
                 newActiveLink === "/explore"
                   ? "text-primary"
-                  : "text-black ml-0.15rem"
+                  : "text-black dark:text-white ml-0.15rem"
               }`}
             >
               Explore
@@ -117,7 +119,9 @@ export const NavigationBox = () => {
             </div>
             <span
               className={`text-base font-semibold pt-1 pr-3 ${
-                newActiveLink === "/bookmark" ? "text-primary" : "text-black"
+                newActiveLink === "/bookmark"
+                  ? "text-primary"
+                  : "text-black dark:text-white"
               }`}
             >
               Bookmarks
@@ -143,7 +147,9 @@ export const NavigationBox = () => {
             </div>
             <span
               className={`text-base font-semibold pr-3 pt-1 ${
-                newActiveLink === "/favourite" ? "text-primary" : "text-black"
+                newActiveLink === "/favourite"
+                  ? "text-primary"
+                  : "text-black dark:text-white"
               }`}
             >
               Favourites
@@ -157,7 +163,7 @@ export const NavigationBox = () => {
           <img src={logoutBlack} className="w-5 h-5 mx-3" alt="icon" />
           <button
             onClick={() => logoutHandler()}
-            className="font-semibold text-black text-base"
+            className="font-semibold text-black text-base dark:text-white"
           >
             Log Out
           </button>

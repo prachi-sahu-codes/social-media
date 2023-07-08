@@ -38,7 +38,7 @@ export const UserProfile = () => {
   const isUserLoggedUser = loggedUser.username === username;
 
   return (
-    <div className="w-full py-7 px-6 pb-11 sm670:pb-5 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-100">
+    <div className="w-full py-7 px-6 pb-11 sm670:pb-5 h-calc-nav overflow-x-hidden overflow-y-scroll bg-slate-100 dark:bg-blackLightBg">
       <img
         src={
           userDetail.profileImage
@@ -46,10 +46,10 @@ export const UserProfile = () => {
             : "https://i.imgur.com/qMW3Cze.png"
         }
         alt="profile pic"
-        className="hidden sm450:block w-32 sm450:h-32 sm450:-mb-20 rounded-full mx-auto bg-white shadow-lg"
+        className="hidden sm450:block w-32 sm450:h-32 sm450:-mb-20 rounded-full mx-auto bg-white dark:bg-black shadow-lg"
       />
 
-      <div className="m-6 shadow-md bg-white rounded-lg p-6 sm450:pt-16 w-64 sm360:w-80 sm450:w-96 sm570:w-30rem md840:w-36rem lg:w-30rem lg1120:w-36rem mx-auto">
+      <div className="m-6 shadow-md bg-white dark:bg-black rounded-lg p-6 sm450:pt-16 w-64 sm360:w-80 sm450:w-96 sm570:w-30rem md840:w-36rem lg:w-30rem lg1120:w-36rem mx-auto">
         <div className="flex items-center justify-between sm450:hidden">
           <img
             src={
@@ -58,7 +58,7 @@ export const UserProfile = () => {
                 : "https://i.imgur.com/qMW3Cze.png"
             }
             alt="profile pic"
-            className="w-16 h-16 rounded-full bg-white border-2 border-primary shadow-lg"
+            className="w-16 h-16 rounded-full bg-white dark:bg-black border-2 border-primary shadow-lg"
           />
           <div className="">
             {isUserLoggedUser ? (
@@ -92,7 +92,9 @@ export const UserProfile = () => {
 
         <div className="sm450:text-center py-4 sm450:p-4">
           <div className="flex items-center justify-between sm450:justify-center">
-            <p className="text-lg font-bold">{userDetail.fullname}</p>
+            <p className="text-lg font-bold text-black dark:text-white">
+              {userDetail.fullname}
+            </p>
             <div className="sm670:hidden text-lg py-1 hover:opacity-80 active:opacity-50 rounded-md">
               <div
                 onClick={() => logoutHandler()}
@@ -103,14 +105,16 @@ export const UserProfile = () => {
             </div>
           </div>
 
-          <p className="text-sm font-semibold text-primary">
+          <p className="text-sm font-semibold text-primary ">
             @{userDetail.username}
           </p>
         </div>
         <div className="flex gap-3">
           <div className="w-full text-center">
             <p className="text-xs font-bold uppercase text-mediumGray">Post</p>
-            <p>{singleUserPosts?.length}</p>
+            <p className="text-black dark:text-white">
+              {singleUserPosts?.length}
+            </p>
           </div>
           <div
             className="w-full text-center"
@@ -126,7 +130,9 @@ export const UserProfile = () => {
             <p className="text-xs font-bold uppercase text-mediumGray">
               Followers
             </p>
-            <p>{userDetail?.followers?.length}</p>
+            <p className="text-black dark:text-white">
+              {userDetail?.followers?.length}
+            </p>
           </div>
 
           <div
@@ -143,7 +149,9 @@ export const UserProfile = () => {
             <p className="text-xs font-bold uppercase text-mediumGray">
               Followings
             </p>
-            <p>{userDetail?.following?.length}</p>
+            <p className="text-black dark:text-white">
+              {userDetail?.following?.length}
+            </p>
           </div>
         </div>
 
@@ -151,7 +159,7 @@ export const UserProfile = () => {
 
         <div className="flex gap-2 justify-between">
           <div>
-            <p>{userDetail.bio}</p>
+            <p className="text-black dark:text-white">{userDetail.bio}</p>
             <p className="text-sky-500">{userDetail.websiteLink}</p>
           </div>
 

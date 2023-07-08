@@ -52,6 +52,7 @@ module.exports = {
         secondary: "#c7310b",
         yellow: "#FFD100",
         black: "#151515",
+        blackLightBg: "#222",
         bgWhole: "#f0f4f5",
         svgBg: "#fdf5f2",
         gray: "#818181",
@@ -59,6 +60,7 @@ module.exports = {
         mediumGray: "#979797",
         bgColorLoad: "#e2e2e2c4",
         bgModal: "#54545488",
+        shadowDark: "#080707",
       },
 
       spacing: {
@@ -74,4 +76,5 @@ module.exports = {
     },
   },
   plugins: [],
+  darkMode: "class",
 };

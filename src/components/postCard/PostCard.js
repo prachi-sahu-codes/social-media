@@ -9,10 +9,12 @@ import {
 } from "react-icons/fa";
 import { HiOutlineShare } from "react-icons/hi";
 import { BsFillSendFill } from "react-icons/bs";
+import { dotWhite } from "../../assets";
 import moment from "moment";
 import { useAuth } from "../../context/authContext/AuthContext";
 import { usePost } from "../../context/postContext/PostContext";
 import { useUser } from "../../context/userContext/UserContext";
+import { useTheme } from "../../context/themeContext/ThemeContext";
 import { useNavigate } from "react-router";
 import ClickOutside from "../clickOutside/ClickOutside";
 import { PostModal } from "../postModal/PostModal";
@@ -25,6 +27,7 @@ export const PostCard = ({ post, noDetail }) => {
   const { loggedUser, notifyToast } = useAuth();
   const { deletePost, likePost, dislikePost, newPostDispatch } = usePost();
   const { userData, bookmarkPost, removeBookmark, bookmarkArr } = useUser();
+  const { isDarkTheme } = useTheme();
   const { addComment, editComment } = useComment();
   const [newComment, setNewComment] = useState("");
   const [commentId, setCommentId] = useState("");
@@ -78,7 +81,7 @@ export const PostCard = ({ post, noDetail }) => {
 
   return (
     <div
-      className="m-6 shadow-md bg-white rounded-lg p-3 sm570:p-6 w-64 sm360:w-80 sm450:w-96 sm570:w-30rem md840:w-36rem lg:w-30rem lg1120:w-36rem mx-auto"
+      className="m-6 shadow-md bg-white rounded-lg p-3 sm570:p-6 w-64 sm360:w-80 sm450:w-96 sm570:w-30rem md840:w-36rem lg:w-30rem lg1120:w-36rem mx-auto dark:bg-black dark:text-white dark:shadow-shadowDark"
       onClick={() => navigate(`/posts/${post._id}`)}
     >
       <div className="flex justify-between items-center">
@@ -103,8 +106,10 @@ export const PostCard = ({ post, noDetail }) => {
             />
           )}
           <div>
-            <p className="font-semibold cursor-pointer">{user?.username}</p>
-            <p className="text-xs text-gray">{formattedDate}</p>
+            <p className="font-semibold cursor-pointer text-black dark:text-white">
+              {user?.username}
+            </p>
+            <p className="text-xs text-gray ">{formattedDate}</p>
           </div>
         </div>
 
@@ -112,21 +117,27 @@ export const PostCard = ({ post, noDetail }) => {
           ""
         ) : (
           <div className="relative">
-            <BsThreeDotsVertical
-              className="text-xl cursor-pointer"
+            <div
               onClick={(e) => {
                 setShowModal((s) => !s);
                 e.stopPropagation();
               }}
-            />
+            >
+              {isDarkTheme ? (
+                <img src={dotWhite} alt="3 dots icon" className="w-5 h-5" />
+              ) : (
+                <BsThreeDotsVertical className="text-xl cursor-pointer" />
+              )}
+            </div>
+
             <ClickOutside onClickOutside={() => setShowModal(() => false)}>
               <div
-                className={`absolute top-6 right-2 shadow-md bg-slate-100 rounded-md p-1 ${
+                className={`absolute top-6 right-2 shadow-md bg-slate-100 dark:bg-blackLightBg rounded-md p-1 ${
                   showModal ? "block" : "hidden"
                 }`}
               >
                 <button
-                  className="py-1 px-4 text-left rounded-md hover:text-blue-500 hover:bg-white active:bg-slate-50 w-full"
+                  className="py-1 px-4 text-left rounded-md text-black dark:text-white hover:text-blue-500 dark:hover:text-blue-500 dark:hover:bg-black hover:bg-white active:bg-slate-50 w-full"
                   onClick={(e) => {
                     setShowPopupPost((prev) => !prev);
                     newPostDispatch({
@@ -144,7 +155,7 @@ export const PostCard = ({ post, noDetail }) => {
                   Edit
                 </button>
                 <button
-                  className="p-1 px-4 text-left rounded-md hover:text-red-600 hover:bg-white active:bg-slate-50 w-full"
+                  className="p-1 px-4 text-left text-black dark:text-white rounded-md hover:text-red-600 dark:hover:text-red-600 hover:bg-white dark:hover:bg-black active:bg-slate-50 w-full"
                   onClick={(e) => {
                     deletePost(post._id);
                     e.stopPropagation();
@@ -182,9 +193,11 @@ export const PostCard = ({ post, noDetail }) => {
           >
             <FaRegHeart />
 
-            <span className="flex gap-1 text-sm">
+            <span className="flex gap-1 text-sm text-black dark:text-white">
               {post?.likes?.likeCount}{" "}
-              <span className="hidden sm570:block">Likes</span>
+              <span className="hidden sm570:block text-black dark:text-white">
+                Likes
+              </span>
             </span>
           </div>
         ) : (
@@ -197,9 +210,11 @@ export const PostCard = ({ post, noDetail }) => {
             }}
           >
             <FaHeart className="fill-red-600" />
-            <span className="flex gap-1 text-sm">
+            <span className="flex gap-1 text-sm text-black dark:text-white">
               {post?.likes?.likeCount}
-              <span className="hidden sm570:block">Likes</span>
+              <span className="hidden sm570:block text-black dark:text-white">
+                Likes
+              </span>
             </span>
           </div>
         )}
@@ -211,9 +226,11 @@ export const PostCard = ({ post, noDetail }) => {
           }}
         >
           <FaRegComment />
-          <span className="flex gap-1 text-sm">
+          <span className="flex gap-1 text-sm text-black dark:text-white">
             {post?.comments?.length === 0 ? "" : post?.comments?.length}{" "}
-            <span className="hidden sm570:block">Comment</span>
+            <span className="hidden sm570:block text-black dark:text-white">
+              Comment
+            </span>
           </span>
         </div>
 
@@ -225,7 +242,9 @@ export const PostCard = ({ post, noDetail }) => {
           }}
         >
           <HiOutlineShare />
-          <span className="hidden sm570:block text-sm">Share</span>
+          <span className="hidden sm570:block text-sm text-black dark:text-white">
+            Share
+          </span>
         </div>
 
         {!isBookmarked ? (
@@ -238,7 +257,9 @@ export const PostCard = ({ post, noDetail }) => {
             }}
           >
             <FaRegBookmark />
-            <span className="text-sm hidden sm570:block">Bookmark</span>
+            <span className="text-sm hidden sm570:block text-black dark:text-white">
+              Bookmark
+            </span>
           </div>
         ) : (
           <div
@@ -250,7 +271,9 @@ export const PostCard = ({ post, noDetail }) => {
             }}
           >
             <FaBookmark />
-            <span className="hidden sm570:block text-sm">Bookmark</span>{" "}
+            <span className="hidden sm570:block text-sm text-black dark:text-white">
+              Bookmark
+            </span>
           </div>
         )}
       </div>
@@ -258,8 +281,8 @@ export const PostCard = ({ post, noDetail }) => {
       <hr className="text-bgColorLoad mt-3 sm570:mt-5" />
 
       {noDetail && post?.comments?.length > 0 && (
-        <div className="bg-slate-100 mt-3 sm570:mt-5 rounded-lg">
-          <p className="pt-4 px-2 pb-4">Comments</p>
+        <div className="bg-slate-100 dark:bg-blackLightBg mt-3 sm570:mt-5 rounded-lg">
+          <p className="pt-4 px-2 pb-4 text-black dark:text-white">Comments</p>
           <div>
             {post?.comments?.map((comment, index) => (
               <li key={index} className="list-none">
@@ -276,7 +299,7 @@ export const PostCard = ({ post, noDetail }) => {
       )}
 
       <div
-        className="flex rounded-full border-2 border-bgColorLoad bg-slate-50 w-full mt-3 sm570:mt-5 pl-3 sm360:pl-6"
+        className="flex rounded-full border-2 border-bgColorLoad dark:border-gray bg-slate-50 dark:bg-blackLightBg w-full mt-3 sm570:mt-5 pl-3 sm360:pl-6"
         onClick={(e) => e.stopPropagation()}
       >
         <input
@@ -287,10 +310,10 @@ export const PostCard = ({ post, noDetail }) => {
             setNewComment(() => e.target.value);
             e.stopPropagation();
           }}
-          className="w-full py-2 bg-slate-50 outline-none"
+          className="w-full py-2 bg-slate-50 dark:bg-blackLightBg outline-none text-black dark:text-white"
         />
         <button
-          className="font-semibold text-lg bg-white px-3 sm360:px-4 hover:opacity-80 rounded-r-full"
+          className="font-semibold text-lg bg-white dark:bg-black px-3 sm360:px-4 hover:opacity-80 rounded-r-full"
           onClick={() => {
             sendCommentHandler();
             setNewComment("");

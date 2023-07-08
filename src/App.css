@@ -34,7 +34,7 @@
 /********scrollbar********/
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 5px;
   padding-top: 10rem;
 }
 
@@ -60,4 +60,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   width: 300px;
+}
+
+.white-shadow-sm {
+  box-shadow: 0 2px 5px #080707;
 }
