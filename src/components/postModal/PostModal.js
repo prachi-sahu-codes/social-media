@@ -158,7 +158,7 @@ export const PostModal = ({ post, setShowPopupPost }) => {
           <div className="flex items-center justify-between">
             <div className="flex gap-4 md:gap-6 text-xl">
               <div className="relative">
-                <FiImage />
+                <FiImage className="stroke-green-700" />
                 <input
                   type="file"
                   accept="image/*"
@@ -168,6 +168,7 @@ export const PostModal = ({ post, setShowPopupPost }) => {
               </div>
               <div className="relative">
                 <BsEmojiSunglasses
+                  className="fill-yellow"
                   onClick={(e) => {
                     setShowEmojis((prev) => !prev);
                     e.stopPropagation();

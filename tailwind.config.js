@@ -50,7 +50,7 @@ module.exports = {
       colors: {
         primary: "#DC2F02",
         secondary: "#c7310b",
-        yellow: "#FFD100",
+        yellow: "#ff9d00",
         black: "#151515",
         blackLightBg: "#222",
         bgWhole: "#f0f4f5",
