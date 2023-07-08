@@ -270,24 +270,6 @@ export const PostCard = ({ post, noDetail }) => {
 
       <hr className="text-bgColorLoad mt-3 sm570:mt-5" />
 
-      {noDetail && post?.comments?.length > 0 && (
-        <div className="bg-slate-100 dark:bg-blackLightBg mt-3 sm570:mt-5 rounded-lg">
-          <p className="pt-4 px-2 pb-4 text-black dark:text-white">Comments</p>
-          <div>
-            {post?.comments?.map((comment, index) => (
-              <li key={index} className="list-none">
-                <UserComment
-                  comment={comment}
-                  post={post}
-                  setCommentId={setCommentId}
-                  setNewComment={setNewComment}
-                />
-              </li>
-            ))}
-          </div>
-        </div>
-      )}
-
       <div
         className="flex rounded-full border-2 border-bgColorLoad dark:border-gray bg-slate-50 dark:bg-blackLightBg w-full mt-3 sm570:mt-5 pl-3 sm360:pl-6"
         onClick={(e) => e.stopPropagation()}
@@ -312,6 +294,24 @@ export const PostCard = ({ post, noDetail }) => {
           <BsFillSendFill className="rotate-45 fill-primary" />
         </button>
       </div>
+
+      {noDetail && post?.comments?.length > 0 && (
+        <div className="bg-slate-100 dark:bg-blackLightBg mt-3 sm570:mt-5 rounded-lg">
+          <p className="pt-4 px-2 pb-4 text-black dark:text-white">Comments</p>
+          <div>
+            {post?.comments?.map((comment, index) => (
+              <li key={index} className="list-none">
+                <UserComment
+                  comment={comment}
+                  post={post}
+                  setCommentId={setCommentId}
+                  setNewComment={setNewComment}
+                />
+              </li>
+            ))}
+          </div>
+        </div>
+      )}
 
       {showPopupPost && (
         <PostModal post={post} setShowPopupPost={setShowPopupPost} />
