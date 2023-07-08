@@ -5,6 +5,7 @@ module.exports = {
     fontFamily: {
       cursive: ["Calistoga"],
     },
+
     screens: {
       sm360: "360px",
 

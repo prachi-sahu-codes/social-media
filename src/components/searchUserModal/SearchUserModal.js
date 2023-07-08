@@ -1,8 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
 import { useUser } from "../../context/userContext/UserContext";
-import { RxCross2 } from "react-icons/rx";
-import { crossWhite } from "../../assets";
+import { BsXLg } from "react-icons/bs";
 
 export const SearchUserModal = ({
   searchTerm,
@@ -27,15 +26,8 @@ export const SearchUserModal = ({
 
   return (
     <div className="absolute top-11 -left-48 sm390:-left-28 sm570:-left-2 bg-white dark:bg-blackLightBg dark:border-black dark:border-2 px-8 py-4 pt-8 shadow-lg rounded-md max-h-96 overflow-x-hidden overflow-y-scroll">
-      <div className="absolute right-4 top-2" onClick={() => reset()}>
-        <div className="dark:hidden">
-          <RxCross2 />
-        </div>
-        <img
-          src={crossWhite}
-          className="hidden dark:block w-6 h-6"
-          alt="cross icon"
-        />
+      <div className="absolute right-4 top-3" onClick={() => reset()}>
+        <BsXLg className="fill-black dark:fill-white" />
       </div>
       {foundUsers.length > 0 && searchTerm.length > 0 ? (
         <ul>

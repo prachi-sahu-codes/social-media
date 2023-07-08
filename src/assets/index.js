@@ -1,5 +1,5 @@
 export { default as homeActive } from "./icons/homeActive.svg";
-export { default as homeGray } from "./icons/homeGray.svg";
+export { default as homeWhite } from "./icons/homeWhite.svg";
 export { default as homeBlack } from "./icons/homeBlack.png";
 export { default as exploreActive } from "./icons/exploreActive.png";
 export { default as exploreGray } from "./icons/exploreGray.png";

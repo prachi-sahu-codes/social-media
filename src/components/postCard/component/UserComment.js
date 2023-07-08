@@ -4,8 +4,6 @@ import { useAuth } from "../../../context/authContext/AuthContext";
 import { useUser } from "../../../context/userContext/UserContext";
 import ClickOutside from "../../clickOutside/ClickOutside";
 import { useComment } from "../../../context/commentContext/CommentContext";
-import { useTheme } from "../../../context/themeContext/ThemeContext";
-import { dotWhite } from "../../../assets";
 
 export const UserComment = ({ comment, post, setCommentId, setNewComment }) => {
   const { loggedUser } = useAuth();
@@ -13,7 +11,6 @@ export const UserComment = ({ comment, post, setCommentId, setNewComment }) => {
   const { deleteComment } = useComment();
   const [user, setUser] = useState({});
   const [commentModal, setCommentModal] = useState(false);
-  const { isDarkTheme } = useTheme();
 
   const checkUser = loggedUser?.username !== comment?.username;
 
@@ -51,18 +48,14 @@ export const UserComment = ({ comment, post, setCommentId, setNewComment }) => {
           ""
         ) : (
           <div className="relative">
-            <div
+            <BsThreeDotsVertical
+              className="text-xl cursor-pointer fill-black dark:fill-white"
               onClick={(e) => {
                 setCommentModal((prev) => !prev);
                 e.stopPropagation();
               }}
-            >
-              {isDarkTheme ? (
-                <img src={dotWhite} alt="3 dots icon" className="w-5 h-5" />
-              ) : (
-                <BsThreeDotsVertical className="text-xl cursor-pointer" />
-              )}
-            </div>
+            />
+
             <ClickOutside onClickOutside={() => setCommentModal(() => false)}>
               <div
                 className={`absolute top-6 right-2 shadow-md bg-slate-100 dark:bg-black rounded-md p-1 ${
