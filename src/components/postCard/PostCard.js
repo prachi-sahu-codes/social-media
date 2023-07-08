@@ -9,12 +9,10 @@ import {
 } from "react-icons/fa";
 import { HiOutlineShare } from "react-icons/hi";
 import { BsFillSendFill } from "react-icons/bs";
-import { dotWhite } from "../../assets";
 import moment from "moment";
 import { useAuth } from "../../context/authContext/AuthContext";
 import { usePost } from "../../context/postContext/PostContext";
 import { useUser } from "../../context/userContext/UserContext";
-import { useTheme } from "../../context/themeContext/ThemeContext";
 import { useNavigate } from "react-router";
 import ClickOutside from "../clickOutside/ClickOutside";
 import { PostModal } from "../postModal/PostModal";
@@ -27,7 +25,6 @@ export const PostCard = ({ post, noDetail }) => {
   const { loggedUser, notifyToast } = useAuth();
   const { deletePost, likePost, dislikePost, newPostDispatch } = usePost();
   const { userData, bookmarkPost, removeBookmark, bookmarkArr } = useUser();
-  const { isDarkTheme } = useTheme();
   const { addComment, editComment } = useComment();
   const [newComment, setNewComment] = useState("");
   const [commentId, setCommentId] = useState("");
@@ -117,18 +114,13 @@ export const PostCard = ({ post, noDetail }) => {
           ""
         ) : (
           <div className="relative">
-            <div
+            <BsThreeDotsVertical
+              className="text-xl cursor-pointer fill-black dark:fill-white"
               onClick={(e) => {
                 setShowModal((s) => !s);
                 e.stopPropagation();
               }}
-            >
-              {isDarkTheme ? (
-                <img src={dotWhite} alt="3 dots icon" className="w-5 h-5" />
-              ) : (
-                <BsThreeDotsVertical className="text-xl cursor-pointer" />
-              )}
-            </div>
+            />
 
             <ClickOutside onClickOutside={() => setShowModal(() => false)}>
               <div
@@ -191,11 +183,11 @@ export const PostCard = ({ post, noDetail }) => {
               e.stopPropagation();
             }}
           >
-            <FaRegHeart />
+            <FaRegHeart className="fill-black dark:fill-white" />
 
             <span className="flex gap-1 text-sm text-black dark:text-white">
               {post?.likes?.likeCount}{" "}
-              <span className="hidden sm570:block text-black dark:text-white">
+              <span className="hidden sm570:block text-black dark:text-white ">
                 Likes
               </span>
             </span>
@@ -209,12 +201,10 @@ export const PostCard = ({ post, noDetail }) => {
               e.stopPropagation();
             }}
           >
-            <FaHeart className="fill-red-600" />
-            <span className="flex gap-1 text-sm text-black dark:text-white">
+            <FaHeart className="fill-primary" />
+            <span className="flex gap-1 text-sm text-primary">
               {post?.likes?.likeCount}
-              <span className="hidden sm570:block text-black dark:text-white">
-                Likes
-              </span>
+              <span className="hidden sm570:block text-primary">Likes</span>
             </span>
           </div>
         )}
@@ -225,7 +215,7 @@ export const PostCard = ({ post, noDetail }) => {
             setShowModal(() => false);
           }}
         >
-          <FaRegComment />
+          <FaRegComment className="fill-black dark:fill-white" />
           <span className="flex gap-1 text-sm text-black dark:text-white">
             {post?.comments?.length === 0 ? "" : post?.comments?.length}{" "}
             <span className="hidden sm570:block text-black dark:text-white">
@@ -241,8 +231,8 @@ export const PostCard = ({ post, noDetail }) => {
             e.stopPropagation();
           }}
         >
-          <HiOutlineShare />
-          <span className="hidden sm570:block text-sm text-black dark:text-white">
+          <HiOutlineShare className="stroke-black dark:stroke-white" />
+          <span className="hidden sm570:block text-sm text-black dark:text-white ">
             Share
           </span>
         </div>
@@ -256,7 +246,7 @@ export const PostCard = ({ post, noDetail }) => {
               e.stopPropagation();
             }}
           >
-            <FaRegBookmark />
+            <FaRegBookmark className="fill-black dark:fill-white" />
             <span className="text-sm hidden sm570:block text-black dark:text-white">
               Bookmark
             </span>
@@ -270,7 +260,7 @@ export const PostCard = ({ post, noDetail }) => {
               e.stopPropagation();
             }}
           >
-            <FaBookmark />
+            <FaBookmark className="fill-black dark:fill-white" />
             <span className="hidden sm570:block text-sm text-black dark:text-white">
               Bookmark
             </span>
