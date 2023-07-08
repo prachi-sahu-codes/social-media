@@ -2,14 +2,11 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { BsEyeSlashFill, BsEyeFill } from "react-icons/bs";
 import { useAuth } from "../../context/authContext/AuthContext";
-import { useTheme } from "../../context/themeContext/ThemeContext";
 import { Logo } from "../../components/logo/Logo";
 import auth from "../../assets/auth.png";
-import { eyeHideWhite, eyeWhite } from "../../assets";
 
 export const Signup = () => {
   const { signUpUser, notifyToast } = useAuth();
-  const { isDarkTheme } = useTheme();
   const [passVisible, setPassVisible] = useState("password");
   const [userInfo, setUserInfo] = useState({
     fullname: "",
@@ -104,21 +101,15 @@ export const Signup = () => {
               />
               <div className="absolute right-5 top-3">
                 {passVisible === "password" ? (
-                  <div onClick={() => setPassVisible(() => "text")}>
-                    {isDarkTheme ? (
-                      <img src={eyeHideWhite} alt="icon" className="w-4 h-4" />
-                    ) : (
-                      <BsEyeSlashFill />
-                    )}
-                  </div>
+                  <BsEyeSlashFill
+                    onClick={() => setPassVisible(() => "text")}
+                    className="fill-black dark:fill-white"
+                  />
                 ) : (
-                  <div onClick={() => setPassVisible(() => "password")}>
-                    {isDarkTheme ? (
-                      <img src={eyeWhite} alt="icon" className="w-4 h-4" />
-                    ) : (
-                      <BsEyeFill />
-                    )}
-                  </div>
+                  <BsEyeFill
+                    onClick={() => setPassVisible(() => "password")}
+                    className="fill-black dark:fill-white"
+                  />
                 )}
               </div>
             </div>
