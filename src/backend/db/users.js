@@ -47,7 +47,7 @@ export const users = [
     bio: "Contemporary Artist",
     createdAt: "2022-09-15T08:30:45+05:00",
     updatedAt: formatDate(),
-    websiteLink: "",
+    websiteLink: "https://furn.netlify.app",
     bookmarks: [],
     followers: [
       {
