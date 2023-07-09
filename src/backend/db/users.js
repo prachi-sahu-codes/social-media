@@ -17,7 +17,7 @@ export const users = [
     bio: "Pop Art Icon",
     createdAt: "2023-05-02T10:55:01+18:30",
     updatedAt: formatDate(),
-    websiteLink: "https://furn.netlify.app/",
+    websiteLink: "https://furn.netlify.app",
     bookmarks: [],
     followers: [
       {
@@ -125,7 +125,7 @@ export const users = [
     bio: "Modernist Painter",
     createdAt: "2023-05-10T16:35:55+10:00 ",
     updatedAt: formatDate(),
-    websiteLink: "https://furn.netlify.app/",
+    websiteLink: "https://furn.netlify.app",
     bookmarks: [],
     followers: [
       {
@@ -178,7 +178,7 @@ export const users = [
     bio: "Surrealist Painter",
     createdAt: "2023-05-03T18:20:10+05:30",
     updatedAt: formatDate(),
-    websiteLink: "https://furn.netlify.app/",
+    websiteLink: "https://furn.netlify.app",
     bookmarks: [],
     followers: [
       {
@@ -244,7 +244,7 @@ export const users = [
     bio: "Renaissance Polymath",
     createdAt: "2023-05-05T12:45:30+02:00",
     updatedAt: formatDate(),
-    websiteLink: "https://furn.netlify.app/",
+    websiteLink: "https://furn.netlify.app",
     bookmarks: [],
     followers: [
       {
