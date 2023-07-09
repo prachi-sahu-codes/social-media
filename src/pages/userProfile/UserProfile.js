@@ -160,7 +160,14 @@ export const UserProfile = () => {
         <div className="flex gap-2 justify-between">
           <div>
             <p className="text-black dark:text-white">{userDetail.bio}</p>
-            <p className="text-sky-500">{userDetail.websiteLink}</p>
+            <a
+              href={userDetail.websiteLink}
+              className="text-sky-500"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {userDetail.websiteLink}
+            </a>
           </div>
 
           <div className="hidden sm450:block">
