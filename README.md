@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# WHIZVERSE
+WHIZVERSE is a Social Media App designed exclusively for artists and creative individuals. It serves as a virtual hub, bringing together painters, sculptors, photographers, illustrators, designers, and enthusiasts from all corners of the globe. Created to foster a vibrant community, Whizverse offers a unique platform for artists to showcase their work, connect with fellow creatives, gain inspiration, and build meaningful relationships within the artistic realm.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Key Features
 
-## Available Scripts
+- User Feed page with sorting functionality by latest and trending.
+- Explore page for showing all users post.
+- Bookmark page for user's personal collection of saved bookmarks.
+- Favourite page for displaying user's liked posts.
+- Profile page for showcasing user details, followers, followings and personal posts.
+- Edit Profile: add avatar and edit other user details.
+- Suggestions for users to discover and follow individuals.
+- Search functionality to find particular user.
+- User can Create, Update or Delete post.
+- Individual post detail page with comprehensive information.
+- User can Like, Share, Comment and Bookmark posts.
+- Comment edit or delete functionality.
+- Dark mode and Light mode.
+- Authentication features, including user signup, login, and logout.
+- 404 page for handling page not found errors.
+- Toast notifications and loaders for providing user feedback.
+- Fully responsive design for optimal user experience across devices.
+  
+## Key Dependencies
 
-In the project directory, you can run:
+- **React JS:** A robust JavaScript library known for its component-based architecture and seamless UI rendering.
+- **React Router v6:** For dynamic routing and seamless navigation within the application
+- **React Hooks:** React Hooks like useState(), useReducer(), useContext(), useNavigate() and useLocation() to enable efficient state management, dynamic routing, and enhanced user interactions.
+- **Tailwind CSS:** For custom styling, ensuring a unique and visually appealing user interface design.
+- **React Icons:** For enhancing the visual presentation.
+- **mockBee backend:** To simulate API calls and handle data, enabling smooth development and testing processes.
+- **React Toastify:** to provide informative and intuitive feedback to users.
 
-### `npm start`
+## Installation and Usage Instructions 
+To clone and run this application. From your command line:
+```
+# Clone this repository
+$ git clone https://github.com/prachi-sahu-codes/social-media.git
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+# Go into the repository
+$ cd social-media
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# Install dependencies
+$ npm install
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+# Run the app
+$ npm start
+```
