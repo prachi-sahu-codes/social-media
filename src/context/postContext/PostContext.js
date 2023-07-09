@@ -42,6 +42,7 @@ export const PostProvider = ({ children }) => {
   const [pageInfo, setPageInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [pageNum, setPageNum] = useState(0);
+  const [fetchedPages, setFetchedPages] = useState([]);
 
   const getPostData = async () => {
     try {
@@ -71,12 +72,16 @@ export const PostProvider = ({ children }) => {
   };
 
   const getPostObserver = async (page) => {
+    if (fetchedPages.includes(page)) {
+      return; // Page already fetched, return early
+    }
     try {
       setIsLoading(true);
       const res = await postObserverService(Limit, page);
       setPostData((prev) => [...prev, ...res.data?.posts]);
       setPageInfo({ ...res.data.info });
       setIsLoading(false);
+      setFetchedPages((prev) => [...prev, page]);
     } catch (e) {
       console.log(e);
       setIsLoading(false);

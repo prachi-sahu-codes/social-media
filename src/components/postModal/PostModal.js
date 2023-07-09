@@ -7,10 +7,12 @@ import { usePost } from "../../context/postContext/PostContext";
 import { useAuth } from "../../context/authContext/AuthContext";
 import ClickOutside from "../clickOutside/ClickOutside";
 import { uploadMedia } from "./utils/uploadApi";
+import { useTheme } from "../../context/themeContext/ThemeContext";
 
 export const PostModal = ({ post, setShowPopupPost }) => {
   const { newPostState, newPostDispatch, createPost, editPost } = usePost();
   const { loggedUser, notifyToast } = useAuth();
+  const { isDarkTheme } = useTheme();
   const [media, setMedia] = useState(null);
   const [showEmojis, setShowEmojis] = useState(false);
   const [loadingPost, setLoadingPost] = useState(false);
@@ -100,7 +102,7 @@ export const PostModal = ({ post, setShowPopupPost }) => {
             <textarea
               type="text"
               placeholder="Share your thoughts..."
-              className="border-none py-2 px-3 h-24 dark:bg-blackLightBg text-black dark:text-white"
+              className="relative border-none py-2 px-3 h-24 dark:bg-blackLightBg text-black dark:text-white"
               rows="3"
               value={newPostState.content}
               onChange={(e) => {
@@ -166,7 +168,7 @@ export const PostModal = ({ post, setShowPopupPost }) => {
                   className="w-5 h-5 absolute top-0 opacity-0"
                 />
               </div>
-              <div className="relative">
+              <div>
                 <BsEmojiSunglasses
                   className="fill-yellow"
                   onClick={(e) => {
@@ -178,11 +180,12 @@ export const PostModal = ({ post, setShowPopupPost }) => {
                   <ClickOutside
                     onClickOutside={() => setShowEmojis(() => false)}
                   >
-                    <div className="absolute left-6 -top-10">
+                    <div className="absolute right-14 top-32">
                       <Picker
                         onEmojiClick={onEmojiClick}
                         height={400}
                         width={300}
+                        theme={isDarkTheme ? "dark" : "light"}
                       />
                     </div>
                   </ClickOutside>

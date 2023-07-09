@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ColorRing } from "react-loader-spinner";
 import { usePost } from "../../context/postContext/PostContext";
 import { PostCard } from "../../components/postCard/PostCard";
@@ -15,7 +15,6 @@ export const Explore = () => {
     setPageNum,
   } = usePost();
   const { loggedUser } = useAuth();
-
   const loader = useRef(null);
 
   useEffect(() => {
@@ -23,7 +22,7 @@ export const Explore = () => {
     const handleObserver = (entries) => {
       const target = entries[0];
       if (target.isIntersecting) {
-        setPageNum((prev) => ++prev);
+        setPageNum((prev) => prev + 1);
       }
     };
     const observer = new IntersectionObserver(handleObserver);
