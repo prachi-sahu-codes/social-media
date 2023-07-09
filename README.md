@@ -1,5 +1,3 @@
-C:\Users\prati\OneDrive\Desktop\ReactHub\New folder\social-media\src\assets\logo.png
-
 # WHIZVERSE
 WHIZVERSE is a Social Media App designed exclusively for artists and creative individuals. It serves as a virtual hub, bringing together painters, sculptors, photographers, illustrators, designers, and enthusiasts from all corners of the globe. Created to foster a vibrant community, Whizverse offers a unique platform for artists to showcase their work, connect with fellow creatives, gain inspiration, and build meaningful relationships within the artistic realm.
 
