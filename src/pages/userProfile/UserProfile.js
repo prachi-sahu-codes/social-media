@@ -95,12 +95,12 @@ export const UserProfile = () => {
             <p className="text-lg font-bold text-black dark:text-white">
               {userDetail.fullname}
             </p>
-            <div className="sm670:hidden text-lg py-1 hover:opacity-80 active:opacity-50 rounded-md">
+            <div className="md730:hidden text-lg py-1 hover:opacity-80 active:opacity-50 rounded-md">
               <div
                 onClick={() => logoutHandler()}
                 className="font-semibold text-lg ml-2"
               >
-                <MdLogout />
+                <MdLogout className="fill-black dark:fill-white" />
               </div>
             </div>
           </div>
