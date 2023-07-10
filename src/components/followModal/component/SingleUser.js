@@ -24,7 +24,13 @@ export const SingleUser = ({ user, setShowFollowModal }) => {
   }, [user, userData]);
 
   return (
-    <div className="flex gap-3 items-center">
+    <div
+      className="flex gap-3 items-center"
+      onClick={() => {
+        navigate(`/users/${followUser.username}`);
+        setShowFollowModal(false);
+      }}
+    >
       <img
         src={
           followUser.profileImage !== ""
@@ -33,16 +39,12 @@ export const SingleUser = ({ user, setShowFollowModal }) => {
         }
         alt="profile pic"
         className="w-10 h-10 rounded-full border-2 border-solid border-primary cursor-pointer"
-        onClick={() => {
-          navigate(`/users/${followUser.username}`);
-          setShowFollowModal(false);
-        }}
       />
       <div>
         <p className="w-32 text-sm cursor-pointer text-black dark:text-white whitespace-nowrap overflow-hidden text-ellipsis">
           {followUser.fullname}
         </p>
-        <p className="w-32 text-xs text-gray whitespace-nowrap overflow-hidden text-ellipsis">
+        <p className="w-32 text-xs cursor-pointer text-gray whitespace-nowrap overflow-hidden text-ellipsis">
           @{followUser.username}
         </p>
       </div>
