@@ -81,13 +81,13 @@ export const BottomNavigation = () => {
           <img
             src={loggedUser?.profileImage}
             alt="profile pic"
-            className="w-10 rounded-full border-2 my-2 border-solid border-primary"
+            className="w-10 h-10 rounded-full border-2 my-2 border-solid border-primary"
           />
         ) : (
           <img
             src="https://i.imgur.com/qMW3Cze.png"
             alt="profile pic"
-            className="w-10 rounded-full border-2 my-2 border-solid border-primary"
+            className="w-10 h-10 rounded-full border-2 my-2 border-solid border-primary"
           />
         )}
       </div>

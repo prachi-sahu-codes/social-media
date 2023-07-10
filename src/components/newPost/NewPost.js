@@ -17,7 +17,7 @@ export const NewPost = () => {
           <img
             src={loggedUser?.profileImage}
             alt="profile pic"
-            className="hidden sm450:block w-8 h-8 sm500:h-12 sm500:w-12 rounded-full border-2 border-solid border-primary cursor-pointer"
+            className="hidden sm450:block w-8 h-8 sm500:h-12 sm500:w-12 rounded-full border-2 border-solid border-primary cursor-pointer shrink-0"
           />
         ) : (
           <img
