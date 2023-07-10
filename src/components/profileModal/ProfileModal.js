@@ -3,9 +3,12 @@ import { MdCancel } from "react-icons/md";
 import { BsFillCameraFill } from "react-icons/bs";
 import { useUser } from "../../context/userContext/UserContext";
 import { Avatar } from "./component/Avatar";
+import { uploadMedia } from "../postModal/utils/uploadApi";
 
 export const ProfileModal = ({ user, setEditModal }) => {
   const { editProfile } = useUser();
+  const [media, setMedia] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [formDetails, setFormDetails] = useState({
     fullname: user.fullname,
     profileImage: user.profileImage,
@@ -14,8 +17,16 @@ export const ProfileModal = ({ user, setEditModal }) => {
   });
   const [showAvatar, setShowAvatar] = useState(false);
 
-  const updateHandler = () => {
-    editProfile(formDetails);
+  const updateHandler = async () => {
+    if (media) {
+      setLoading(true);
+      const response = await uploadMedia(media);
+      editProfile({ ...formDetails, profileImage: response.url });
+      setLoading(false);
+      setMedia(null);
+    } else {
+      editProfile(formDetails);
+    }
     setEditModal(false);
   };
 
@@ -111,12 +122,16 @@ export const ProfileModal = ({ user, setEditModal }) => {
             className="w-32 py-1 border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full shadow-md"
             onClick={updateHandler}
           >
-            Update
+            {loading ? "Updating..." : "Update"}
           </button>
         </div>
       </div>
       {showAvatar && (
-        <Avatar setShowAvatar={setShowAvatar} setFormDetails={setFormDetails} />
+        <Avatar
+          setShowAvatar={setShowAvatar}
+          setFormDetails={setFormDetails}
+          setMedia={setMedia}
+        />
       )}
     </div>
   );

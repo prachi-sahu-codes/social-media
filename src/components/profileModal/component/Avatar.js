@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MdCancel } from "react-icons/md";
 import { avatars } from "./data/data";
 
-export const Avatar = ({ setShowAvatar, setFormDetails }) => {
+export const Avatar = ({ setShowAvatar, setFormDetails, setMedia }) => {
   const [selectAvatar, setSelectAvatar] = useState("");
 
   const addAvatarHandler = () => {
@@ -19,6 +19,7 @@ export const Avatar = ({ setShowAvatar, setFormDetails }) => {
       ...prev,
       profileImage: URL.createObjectURL(e.target.files[0]),
     }));
+    setMedia(e.target.files[0]);
     setShowAvatar(false);
   };
 
