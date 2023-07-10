@@ -61,6 +61,9 @@ export const PostCard = ({ post, noDetail }) => {
         (user) => user.username === post.username
       );
       setUser(findUsername);
+      if (!findUsername) {
+        setUser(post.username);
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [post, userData]);

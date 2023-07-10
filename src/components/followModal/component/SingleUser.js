@@ -39,7 +39,7 @@ export const SingleUser = ({ user, setShowFollowModal }) => {
         }}
       />
       <div>
-        <p className=" text-sm cursor-pointer text-black dark:text-white">
+        <p className="text-sm cursor-pointer text-black dark:text-white">
           {followUser.fullname}
         </p>
         <p className="text-xs text-gray">@{followUser.username}</p>
