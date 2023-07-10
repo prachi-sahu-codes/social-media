@@ -59,7 +59,7 @@ export const Navbar = () => {
         </button>
 
         <div
-          className="w-10 h-10 shadow-md rounded-full bg-slate-100 dark:bg-blackLightBg hover:opacity-80 active:shadow-sm"
+          className="w-10 h-10 shadow-md rounded-full bg-slate-100 dark:bg-blackLightBg hover:opacity-80 active:shadow-sm cursor-pointer"
           onClick={() => setIsDarkTheme((prev) => !prev)}
         >
           {isDarkTheme ? (
