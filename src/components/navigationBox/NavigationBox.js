@@ -30,13 +30,13 @@ export const NavigationBox = () => {
           <img
             src={loggedUser?.profileImage}
             alt="profile pic"
-            className="w-20 rounded-full border-2 my-2 border-solid border-primary"
+            className="w-20 h-20 rounded-full border-2 my-2 border-solid border-primary"
           />
         ) : (
           <img
             src="https://i.imgur.com/qMW3Cze.png"
             alt="profile pic"
-            className="w-20 rounded-full border-2 my-2 border-solid border-primary"
+            className="w-20 h-20 rounded-full border-2 my-2 border-solid border-primary"
           />
         )}
         <div className="pt-2 font-semibold w-36 whitespace-nowrap overflow-hidden text-ellipsis text-center text-black dark:text-white">
