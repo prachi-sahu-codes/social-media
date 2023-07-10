@@ -1,4 +1,7 @@
-# WHIZVERSE
+
+ 
+<h1 align="center">WHIZVERSE</h1>
+
 WHIZVERSE is a Social Media App designed exclusively for artists and creative individuals. 
 
 It serves as a virtual hub, bringing together painters, sculptors, photographers, illustrators, designers, and enthusiasts from all corners of the globe. 
@@ -12,7 +15,8 @@ Created to foster a vibrant community, Whizverse offers a unique platform for ar
 - Bookmark page for user's personal collection of saved bookmarks.
 - Favourite page for displaying user's liked posts.
 - Profile page for showcasing user details, followers, followings and personal posts.
-- Edit Profile: add avatar and edit other user details.
+- Infinite scrolling on Explore Page while fetching posts.
+- Edit Profile: add avatar or upload images and edit other user details.
 - Suggestions for users to discover and follow individuals.
 - Search functionality to find particular user.
 - User can Create, Update or Delete post.
