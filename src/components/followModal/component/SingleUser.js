@@ -39,10 +39,12 @@ export const SingleUser = ({ user, setShowFollowModal }) => {
         }}
       />
       <div>
-        <p className="text-sm cursor-pointer text-black dark:text-white">
+        <p className="w-32 text-sm cursor-pointer text-black dark:text-white whitespace-nowrap overflow-hidden text-ellipsis">
           {followUser.fullname}
         </p>
-        <p className="text-xs text-gray">@{followUser.username}</p>
+        <p className="w-32 text-xs text-gray whitespace-nowrap overflow-hidden text-ellipsis">
+          @{followUser.username}
+        </p>
       </div>
     </div>
   );

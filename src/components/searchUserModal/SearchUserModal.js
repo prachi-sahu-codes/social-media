@@ -52,10 +52,10 @@ export const SearchUserModal = ({
                   className="w-10 h-10 rounded-full border-2 border-solid border-primary cursor-pointer"
                 />
                 <div>
-                  <p className=" text-sm cursor-pointer text-black dark:text-white">
+                  <p className="w-32 text-sm cursor-pointer text-black dark:text-white whitespace-nowrap overflow-hidden text-ellipsis">
                     {fullname}
                   </p>
-                  <p className="text-xs text-gray cursor-pointer">
+                  <p className="w-32 text-xs text-gray cursor-pointer whitespace-nowrap overflow-hidden text-ellipsis">
                     @{username}
                   </p>
                 </div>
