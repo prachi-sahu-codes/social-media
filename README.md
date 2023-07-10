@@ -1,13 +1,7 @@
-<style>
-  .flex-container {
-    display: flex;
-    align-items: center;
-  }
-</style>
-<div class="flex-container">
+
  
-<h1>WHIZVERSE</h1>
-</div>
+<h1 align="center">WHIZVERSE</h1>
+
 WHIZVERSE is a Social Media App designed exclusively for artists and creative individuals. 
 
 It serves as a virtual hub, bringing together painters, sculptors, photographers, illustrators, designers, and enthusiasts from all corners of the globe. 
