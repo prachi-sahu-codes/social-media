@@ -168,7 +168,9 @@ export const PostCard = ({ post, lessContent, fullContent, noDetail }) => {
         <PostContent content={post?.content} image={post?.contentImage} />
       )}
 
-      {fullContent && <p className="mt-4">{post?.content}</p>}
+      {fullContent && (
+        <p className="mt-4 text-black dark:text-white">{post?.content}</p>
+      )}
 
       {post?.contentImage && (
         <div className="h-52 sm360:h-64 sm450:h-80 sm570:h-96 md840:h-30rem mt-2 sm570:mt-5 rounded-lg">
