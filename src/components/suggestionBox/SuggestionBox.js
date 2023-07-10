@@ -93,20 +93,24 @@ export const SuggestionBox = () => {
                 key={_id}
                 className="flex gap-3 justify-between items-center mb-5 w-60 pr-2"
               >
-                <div className="flex gap-3 items-center">
+                <div
+                  className="flex gap-3 items-center"
+                  onClick={() => {
+                    navigate(`/users/${username}`);
+                  }}
+                >
                   <img
                     src={profileImage}
                     alt="profile pic"
                     className="w-10 h-10 rounded-full border-2 border-solid border-primary cursor-pointer"
-                    onClick={() => {
-                      navigate(`/users/${username}`);
-                    }}
                   />
                   <div>
                     <p className=" text-sm cursor-pointer text-black dark:text-white">
                       {fullname}
                     </p>
-                    <p className="text-xs text-gray">@{username}</p>
+                    <p className="text-xs text-gray cursor-pointer">
+                      @{username}
+                    </p>
                   </div>
                 </div>
 
