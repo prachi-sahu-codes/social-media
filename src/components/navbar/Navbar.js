@@ -10,7 +10,7 @@ export const Navbar = () => {
   const [newPostModal, setNewPostModal] = useState(false);
   const [userModal, setUserModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const { isDarkTheme, setIsDarkTheme } = useTheme();
+  const { darkTheme, setDarkTheme } = useTheme();
   const navigate = useNavigate();
 
   return (
@@ -60,9 +60,9 @@ export const Navbar = () => {
 
         <div
           className="w-10 h-10 shadow-md rounded-full bg-slate-100 dark:bg-blackLightBg hover:opacity-80 active:shadow-sm cursor-pointer"
-          onClick={() => setIsDarkTheme((prev) => !prev)}
+          onClick={() => setDarkTheme((prev) => !prev)}
         >
-          {isDarkTheme ? (
+          {darkTheme ? (
             <div className="text-2xl p-2 white-shadow-sm rounded-full ">
               <BsSunFill className="fill-primary" />
             </div>

@@ -12,7 +12,7 @@ import { useTheme } from "../../context/themeContext/ThemeContext";
 export const PostModal = ({ post, setShowPopupPost }) => {
   const { newPostState, newPostDispatch, createPost, editPost } = usePost();
   const { loggedUser, notifyToast } = useAuth();
-  const { isDarkTheme } = useTheme();
+  const { darkTheme } = useTheme();
   const [media, setMedia] = useState(null);
   const [showEmojis, setShowEmojis] = useState(false);
   const [loadingPost, setLoadingPost] = useState(false);
@@ -185,7 +185,7 @@ export const PostModal = ({ post, setShowPopupPost }) => {
                         onEmojiClick={onEmojiClick}
                         height={400}
                         width={300}
-                        theme={isDarkTheme ? "dark" : "light"}
+                        theme={darkTheme ? "dark" : "light"}
                       />
                     </div>
                   </ClickOutside>

@@ -16,9 +16,11 @@ import { Favourite } from "./pages/favourite/Favourite";
 import { PostDetail } from "./pages/postDetail/PostDetail";
 import { UserProfile } from "./pages/userProfile/UserProfile";
 import { NotFound } from "./pages/notfound/NotFound.js";
+import { useTheme } from "./context/themeContext/ThemeContext";
 
 function App() {
   const { loading } = usePost();
+  const { darkTheme } = useTheme();
   return (
     <div className="App dark:bg-black dark:text-white">
       {loading && <Loader />}
@@ -33,7 +35,7 @@ function App() {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme={darkTheme ? "dark" : "light"}
       />
 
       <Routes>

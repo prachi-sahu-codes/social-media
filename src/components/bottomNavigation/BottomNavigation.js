@@ -11,7 +11,7 @@ import { useTheme } from "../../context/themeContext/ThemeContext";
 export const BottomNavigation = () => {
   const navigate = useNavigate();
   const { loggedUser } = useAuth();
-  const { isDarkTheme } = useTheme();
+  const { darkTheme } = useTheme();
   const path = window.location.pathname;
   const [newPostModal, setNewPostModal] = useState(false);
   const [newActiveLink, setNewActiveLink] = useState(path);
@@ -26,7 +26,7 @@ export const BottomNavigation = () => {
         <div className="w-7">
           {newActiveLink === "/feed" ? (
             <img src={homeActive} className="w-7 h-7" alt="icon" />
-          ) : isDarkTheme ? (
+          ) : darkTheme ? (
             <img src={homeWhite} className="w-6 h-6" alt="icon" />
           ) : (
             <img src={homeBlack} className="w-6 h-6" alt="icon" />

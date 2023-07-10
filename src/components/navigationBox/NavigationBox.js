@@ -9,7 +9,7 @@ import { useTheme } from "../../context/themeContext/ThemeContext";
 
 export const NavigationBox = () => {
   const { loggedUser, logoutHandler } = useAuth();
-  const { isDarkTheme } = useTheme();
+  const { darkTheme } = useTheme();
   const navigate = useNavigate();
   const path = window.location.pathname;
   const [newActiveLink, setNewActiveLink] = useState(path);
@@ -58,7 +58,7 @@ export const NavigationBox = () => {
                   className="w-1.3rem h-1.3rem"
                   alt="icon"
                 />
-              ) : isDarkTheme ? (
+              ) : darkTheme ? (
                 <img src={homeWhite} className="w-1.3rem h-1.3rem" alt="icon" />
               ) : (
                 <img src={homeBlack} className="w-1.3rem h-1.3rem" alt="icon" />
