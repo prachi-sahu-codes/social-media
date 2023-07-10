@@ -24,6 +24,9 @@ export const UserProfile = () => {
   });
 
   const findUserDetail = userData?.find((user) => user.username === username);
+  const sortPostByLatest = singleUserPosts.sort(
+    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  );
 
   useEffect(() => {
     getUserDetail(username);
@@ -113,7 +116,7 @@ export const UserProfile = () => {
           <div className="w-full text-center">
             <p className="text-xs font-bold uppercase text-mediumGray">Post</p>
             <p className="text-black dark:text-white">
-              {singleUserPosts?.length}
+              {sortPostByLatest?.length}
             </p>
           </div>
           <div
@@ -202,8 +205,8 @@ export const UserProfile = () => {
       </div>
 
       <ul>
-        {singleUserPosts.length > 0 &&
-          singleUserPosts?.map((post) => (
+        {sortPostByLatest.length > 0 &&
+          sortPostByLatest?.map((post) => (
             <li key={post._id}>
               <PostCard post={post} lessContent />
             </li>
