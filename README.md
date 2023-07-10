@@ -5,7 +5,7 @@
   }
 </style>
 <div class="flex-container">
-  ![icon](https://github.com/prachi-sahu-codes/social-media/assets/87253962/c9ac3e04-a9ac-486a-be82-60c9945343dc)
+ 
 <h1>WHIZVERSE</h1>
 </div>
 WHIZVERSE is a Social Media App designed exclusively for artists and creative individuals. 
