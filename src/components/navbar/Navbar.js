@@ -41,7 +41,7 @@ export const Navbar = () => {
             setUserModal(true);
           }}
         />
-        {userModal && (
+        {userModal && searchTerm && (
           <SearchUserModal
             searchTerm={searchTerm}
             setSearchTerm={setSearchTerm}
