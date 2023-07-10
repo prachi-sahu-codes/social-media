@@ -37,20 +37,23 @@ export const SuggestionsBox = () => {
             {suggestionsArr.map(({ _id, fullname, username, profileImage }) => (
               <li
                 key={_id}
-                className="flex flex-col p-2 justify-center  rounded-md mr-2"
+                className="flex flex-col p-2 justify-center rounded-md mr-2"
               >
-                <img
-                  src={profileImage}
-                  alt="profile pic"
-                  className="w-20 h-20 rounded-full border-2 border-solid border-primary cursor-pointer"
+                <div
                   onClick={() => {
                     navigate(`/users/${username}`);
                   }}
-                />
+                >
+                  <img
+                    src={profileImage}
+                    alt="profile pic"
+                    className="w-20 h-20 rounded-full border-2 border-solid border-primary cursor-pointer"
+                  />
 
-                <p className="text-xs text-center text-black dark:text-white mt-2 cursor-pointer w-20 whitespace-nowrap overflow-hidden text-ellipsis">
-                  {username}
-                </p>
+                  <p className="text-xs text-center text-black dark:text-white mt-2 cursor-pointer w-20 whitespace-nowrap overflow-hidden text-ellipsis">
+                    {username}
+                  </p>
+                </div>
 
                 <button
                   className="text-primary pt-1 bg-white dark:bg-black rounded-md text-sm font-semibold mt-1 shadow-sm dark:shadow-shadowDark"
