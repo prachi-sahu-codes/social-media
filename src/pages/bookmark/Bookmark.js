@@ -18,7 +18,7 @@ export const Bookmark = () => {
         <ul>
           {finalBookmarkArr.map((post) => (
             <li key={post._id}>
-              <PostCard post={post} />
+              <PostCard post={post} lessContent />
             </li>
           ))}
         </ul>

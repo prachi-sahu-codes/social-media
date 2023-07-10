@@ -20,7 +20,7 @@ import { useComment } from "../../context/commentContext/CommentContext";
 import { UserComment } from "./component/UserComment";
 import { PostContent } from "./component/PostContent";
 
-export const PostCard = ({ post, noDetail }) => {
+export const PostCard = ({ post, lessContent, fullContent, noDetail }) => {
   const navigate = useNavigate();
   const { loggedUser, notifyToast } = useAuth();
   const { deletePost, likePost, dislikePost, newPostDispatch } = usePost();
@@ -164,7 +164,11 @@ export const PostCard = ({ post, noDetail }) => {
         )}
       </div>
 
-      <PostContent content={post?.content} image={post?.contentImage} />
+      {lessContent && (
+        <PostContent content={post?.content} image={post?.contentImage} />
+      )}
+
+      {fullContent && <p className="mt-4">{post?.content}</p>}
 
       {post?.contentImage && (
         <div className="h-52 sm360:h-64 sm450:h-80 sm570:h-96 md840:h-30rem mt-2 sm570:mt-5 rounded-lg">

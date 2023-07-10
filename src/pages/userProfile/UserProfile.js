@@ -205,7 +205,7 @@ export const UserProfile = () => {
         {singleUserPosts.length > 0 &&
           singleUserPosts?.map((post) => (
             <li key={post._id}>
-              <PostCard post={post} />
+              <PostCard post={post} lessContent />
             </li>
           ))}
       </ul>

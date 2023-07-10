@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import { ColorRing } from "react-loader-spinner";
 import { usePost } from "../../context/postContext/PostContext";
 import { PostCard } from "../../components/postCard/PostCard";
@@ -53,7 +53,7 @@ export const Explore = () => {
       <ul>
         {filterLoggedUserPost.map((post, index) => (
           <li key={index}>
-            <PostCard post={post} />
+            <PostCard post={post} lessContent />
           </li>
         ))}
       </ul>
