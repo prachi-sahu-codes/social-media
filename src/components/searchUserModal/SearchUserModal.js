@@ -29,7 +29,10 @@ export const SearchUserModal = ({
       <div className="absolute right-4 top-3" onClick={() => reset()}>
         <BsXLg className="fill-black dark:fill-white" />
       </div>
-      {foundUsers.length > 0 && searchTerm.length > 0 ? (
+
+      {searchTerm === "" ? (
+        setUserModal(false)
+      ) : foundUsers.length > 0 && searchTerm.length > 0 ? (
         <ul>
           {foundUsers.map(({ _id, fullname, username, profileImage }) => (
             <li
