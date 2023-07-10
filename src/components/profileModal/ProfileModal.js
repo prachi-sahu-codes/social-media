@@ -56,7 +56,10 @@ export const ProfileModal = ({ user, setEditModal }) => {
             onClick={() => setShowAvatar((prev) => !prev)}
           />
           <div className="bg-white dark:bg-black rounded-full absolute bottom-0 border-2 border-primary right-24">
-            <BsFillCameraFill className="fill-primary text-md m-1 " />
+            <BsFillCameraFill
+              className="fill-primary text-md m-1"
+              onClick={() => setShowAvatar((prev) => !prev)}
+            />
           </div>
         </div>
 
@@ -105,7 +108,7 @@ export const ProfileModal = ({ user, setEditModal }) => {
 
         <div className="text-right">
           <button
-            className="w-24 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full shadow-md"
+            className="w-32 py-1 border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full shadow-md"
             onClick={updateHandler}
           >
             Update

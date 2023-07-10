@@ -14,6 +14,14 @@ export const Avatar = ({ setShowAvatar, setFormDetails }) => {
     }
   };
 
+  const handleImageChange = (e) => {
+    setFormDetails((prev) => ({
+      ...prev,
+      profileImage: URL.createObjectURL(e.target.files[0]),
+    }));
+    setShowAvatar(false);
+  };
+
   return (
     <div
       className="fixed top-0 left-0 z-50 w-full h-full bg-bgModal"
@@ -35,14 +43,26 @@ export const Avatar = ({ setShowAvatar, setFormDetails }) => {
               <img
                 src={pic}
                 alt="profile pic"
-                className="w-20 h-20 rounded-full border-2 hover:border-black hover:shadow-lg active:border-primary border-solid border-primary cursor-pointer"
+                className="w-20 h-20 rounded-full border-2 hover:border-black dark:hover:border-white hover:shadow-lg active:border-primary border-solid border-primary cursor-pointer"
               />
             </li>
           ))}
         </ul>
-        <div className="text-right mt-5">
+        <div className="flex justify-between mt-5">
+          <div className="relative">
+            <button className=" py-1 px-2 pb-0.15rem text-primary border-2 border-primary hover:opacity-90 active:opacity-80 text-lg rounded-full shadow-md">
+              Upload Image
+            </button>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="absolute left-0 w-32 opacity-0"
+            />
+          </div>
+
           <button
-            className="w-24 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full shadow-md"
+            className="w-32 py-1 pb-0.15rem border-none bg-primary hover:opacity-90 active:opacity-80 text-white text-lg rounded-full shadow-md"
             onClick={() => addAvatarHandler()}
           >
             Save
