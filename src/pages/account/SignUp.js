@@ -24,10 +24,12 @@ export const Signup = () => {
     if (
       userInfo.fullname &&
       userInfo.username &&
-      userInfo.password &&
+      userInfo.password.length > 5 &&
       userInfo.email
     ) {
       signUpUser(userInfo);
+    } else if (userInfo.password.length <= 5) {
+      notifyToast("error", "Password length should be greater than 5.!");
     } else {
       notifyToast("error", "Please fill in valid details.!");
     }
