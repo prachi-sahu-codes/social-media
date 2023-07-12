@@ -16,7 +16,6 @@ https://github.com/prachi-sahu-codes/social-media/assets/87253962/cfe83645-17a4-
 - Bookmark page for user's personal collection of saved bookmarks.
 - Favourite page for displaying user's liked posts.
 - Profile page for showcasing user details, followers, followings and personal posts.
-- Infinite scrolling on Explore Page while fetching posts.
 - Edit Profile: add avatar or upload images and edit other user details.
 - Suggestions for users to discover and follow individuals.
 - Search functionality to find particular user.
