@@ -103,7 +103,7 @@ export const UserProfile = () => {
                 onClick={() => logoutHandler()}
                 className="font-semibold text-lg ml-2"
               >
-                <MdLogout className="fill-black dark:fill-white" />
+                <MdLogout className="fill-black dark:fill-white cursor-pointer" />
               </div>
             </div>
           </div>
@@ -120,7 +120,7 @@ export const UserProfile = () => {
             </p>
           </div>
           <div
-            className="w-full text-center"
+            className="w-full text-center cursor-pointer"
             onClick={() => {
               setShowFollowModal((prev) => !prev);
               setFollowModal((prev) => ({
@@ -139,7 +139,7 @@ export const UserProfile = () => {
           </div>
 
           <div
-            className="w-full text-center"
+            className="w-full text-center cursor-pointer"
             onClick={() => {
               setShowFollowModal((prev) => !prev);
               setFollowModal((prev) => ({
