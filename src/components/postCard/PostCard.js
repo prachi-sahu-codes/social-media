@@ -40,9 +40,7 @@ export const PostCard = ({ post, lessContent, fullContent, noDetail }) => {
     (person) => person?.username === loggedUser?.username
   );
 
-  const isBookmarked = !!bookmarkArr?.find(
-    (currPost) => currPost._id === post?._id
-  );
+  const isBookmarked = !!bookmarkArr?.find((postId) => postId === post?._id);
 
   const copyLinkHandler = () => {
     setShowModal(() => false);
