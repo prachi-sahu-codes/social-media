@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import { ColorRing } from "react-loader-spinner";
 import { usePost } from "../../context/postContext/PostContext";
 import { PostCard } from "../../components/postCard/PostCard";
@@ -6,41 +6,8 @@ import { useAuth } from "../../context/authContext/AuthContext";
 import { SuggestionsBox } from "./component/SuggestionsBox";
 
 export const Explore = () => {
-  const {
-    postData,
-    getPostObserver,
-    pageInfo,
-    isLoading,
-    pageNum,
-    setPageNum,
-  } = usePost();
+  const { postData, isLoading } = usePost();
   const { loggedUser } = useAuth();
-  const loader = useRef(null);
-
-  useEffect(() => {
-    const elementRef = loader.current;
-    const handleObserver = (entries) => {
-      const target = entries[0];
-      if (target.isIntersecting) {
-        setPageNum((prev) => prev + 1);
-      }
-    };
-    const observer = new IntersectionObserver(handleObserver);
-    if (elementRef) {
-      observer.observe(elementRef);
-    }
-    return () => {
-      observer.unobserve(elementRef);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (pageInfo?.totalPages >= pageNum || pageInfo === null) {
-      getPostObserver(pageNum);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [pageNum]);
 
   const filterLoggedUserPost = postData.filter(
     (post) => post.username !== loggedUser.username
@@ -70,7 +37,6 @@ export const Explore = () => {
           />
         </div>
       )}
-      <div ref={loader}></div>
     </div>
   );
 };
