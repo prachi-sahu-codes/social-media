@@ -59,7 +59,7 @@ export const PostProvider = ({ children }) => {
 
   useEffect(() => {
     getPostData();
-  }, [token]);
+  }, []);
 
   const getFeedData = async (username) => {
     try {
