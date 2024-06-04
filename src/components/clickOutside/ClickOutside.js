@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from "react";
 
 const ClickOutside = ({ onClickOutside, children }) => {
+  
   const boxRef = useRef(null);
 
   useEffect(() => {
